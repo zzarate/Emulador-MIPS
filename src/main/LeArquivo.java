@@ -11,8 +11,7 @@ public class LeArquivo {
 	void abrirArquivo () throws IOException  {
 		System.out.println("Insira o caminho do arquivo a ser lido: ");
 		Scanner scanner = new Scanner (System.in);
-		String localArquivo = scanner.toString();
-		scanner.close();
+		String localArquivo = scanner.nextLine();
 		
 		File arquivo = new File (localArquivo);
 		byte[] fileBytes = Files.readAllBytes(arquivo.toPath());
@@ -21,5 +20,6 @@ public class LeArquivo {
 			singleChar = (char) b;
 			System.out.println(singleChar);
 		}
+		scanner.close();
 	}
 }
