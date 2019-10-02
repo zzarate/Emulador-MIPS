@@ -1,8 +1,9 @@
 package main;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.util.Scanner;
 
 public class LeArquivo {
@@ -12,14 +13,19 @@ public class LeArquivo {
 		System.out.println("Insira o caminho do arquivo a ser lido: ");
 		Scanner scanner = new Scanner (System.in);
 		String localArquivo = scanner.nextLine();
-		
-		File arquivo = new File (localArquivo);
-		byte[] fileBytes = Files.readAllBytes(arquivo.toPath());
-		char singleChar;	//Variavel para salvar cada caractere lido
-		//Imprime cada caractere lido, apenas para verificar se esta lendo corretamente
-		for (byte b : fileBytes) {
-			singleChar = (char) b;
-			System.out.println(singleChar);
+
+		FileInputStream arquivo = new FileInputStream(localArquivo);
+
+		//Especificando codificação UTF-8 explicitamente
+		InputStreamReader inputStreamReader = new InputStreamReader(arquivo, "UTF-8");
+
+		try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader) ) {
+			String linha;
+			while ((linha = bufferedReader.readLine()) != null) {
+				System.out.println (linha);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		scanner.close();
 	}
