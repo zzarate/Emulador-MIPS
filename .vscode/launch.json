@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - InicioPrograma",
+            "request": "launch",
+            "mainClass": "main.InicioPrograma",
+            "projectName": "Emulador-MIPS"
+        }
+    ]
+}

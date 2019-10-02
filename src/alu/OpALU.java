@@ -1,26 +1,31 @@
 package alu;
 
-public class AluOP implements AluInterface {
+public class OpALU implements AluInterface {
 	public char[] Or(char num1, char num2) {
         // TODO Auto-generated method stub
-        return 0;
+		char [] a = null; //Remover
+        return a;
     }
 
     public char[] And(char num1, char num2) {
         // TODO Auto-generated method stub
         int result;
         result = num1 + num2;
-        return result;
+        
+        char [] a = null; //Remover
+        return a;
     }
 
     public char[] Add(char num1, char num2) {
         // TODO Auto-generated method stub
-        return 0;
+    	char [] a = null; //Remover
+        return a;
     }
 
     public char[] Sub(char num1, char num2) {
         // TODO Auto-generated method stub
-        return 0;
+    	char [] a = null; //Remover
+        return a;
     }
 
     public char slt(char num1, char num2) {
