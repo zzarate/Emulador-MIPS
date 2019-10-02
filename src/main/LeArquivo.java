@@ -15,7 +15,8 @@ public class LeArquivo {
 		
 		File arquivo = new File (localArquivo);
 		byte[] fileBytes = Files.readAllBytes(arquivo.toPath());
-		char singleChar;
+		char singleChar;	//Variavel para salvar cada caractere lido
+		//Imprime cada caractere lido, apenas para verificar se esta lendo corretamente
 		for (byte b : fileBytes) {
 			singleChar = (char) b;
 			System.out.println(singleChar);
