@@ -25,3 +25,6 @@ hs_err_pid*
 # eclipse files
 /bin
 /.settings
+
+# VS-Code
+.code-workspace
