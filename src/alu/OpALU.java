@@ -31,6 +31,7 @@ public class OpALU implements AluInterface {
         char[] result;
         result = new char[63];
     	for(int i = 0; i < 64; i++){
+            carryin = carryout;
             int and = And(num1[i], num2[i]);
             int or = Or(num1[i], num2[i]);
             if(carryin == 0){
