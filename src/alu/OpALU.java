@@ -1,6 +1,7 @@
 package alu;
 
 public class OpALU implements AluInterface {
+
 	public char Or(char num1, char num2) {
         // TODO Auto-generated method stub
 		if(num1 == 0 && num2 == 0){
@@ -19,12 +20,6 @@ public class OpALU implements AluInterface {
         else{
             return 0;
         }
-
-
-        
-        
-        char [] a = null; //Remover
-        return a;
     }
 
     public char[] Add(char num1, char num2) {
