@@ -62,6 +62,7 @@ public class OpALU implements AluInterface {
                 }
             }
         }   
+        return result;
     }
 
     public char[] Sub(char num1, char num2) {
