@@ -8,6 +8,5 @@ public class InicioPrograma {
         //Teste
         LeArquivo arquivo = new LeArquivo();
         arquivo.abrirArquivo();
-
     }
 }
