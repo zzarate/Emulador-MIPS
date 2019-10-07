@@ -9,4 +9,5 @@ public interface AluInterface {
     char slt (char[] num1,char[] num2);
     char bne (char[] num1,char[] num2);
     char beq (char[] num1,char[] num2);
+    char[] Addi (char[] num1, int num2);
 }
