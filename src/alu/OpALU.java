@@ -3,6 +3,8 @@ package alu;
 import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.Add;
 import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.And;
 
+import jdk.internal.loader.AbstractClassLoaderValue.Sub;
+
 public class OpALU implements AluInterface {
 
 	public char Or(char num1, char num2) {
@@ -85,9 +87,17 @@ public class OpALU implements AluInterface {
         return result;
     }
 
-    public char slt(char num1, char num2) {
+    public char slt(char[] num1, char[] num2) {
         // TODO Auto-generated method stub
-        return 0;
+        char[] result;
+        result = new char[63];
+        result = Sub(num1, num2);
+        if(result[63] == 1){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
 
     public char bne(char num1, char num2) {
