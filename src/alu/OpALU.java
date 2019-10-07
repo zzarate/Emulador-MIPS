@@ -1,5 +1,6 @@
 package alu;
 
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.Add;
 import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.And;
 
 public class OpALU implements AluInterface {
@@ -66,10 +67,22 @@ public class OpALU implements AluInterface {
         return result;
     }
 
-    public char[] Sub(char num1, char num2) {
+    public char[] Sub(char[] num1, char[] num2) {
         // TODO Auto-generated method stub
-    	char [] a = null; //Remover
-        return a;
+        char[] result;
+        result = new char[63];
+
+    	for(int i = 0; i < 64; i++){
+            if(num2[i] == 0){
+                num2[i] = 1;
+            }
+            else{
+                num2[i] = 0;
+            }
+        }
+        //num2 = Addi(num2, 1); para somar 1
+        result = Add(num1, num2);
+        return result;
     }
 
     public char slt(char num1, char num2) {
