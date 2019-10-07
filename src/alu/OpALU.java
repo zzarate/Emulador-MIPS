@@ -100,13 +100,41 @@ public class OpALU implements AluInterface {
         }
     }
 
-    public char bne(char num1, char num2) {
+    public char bne(char[] num1, char[] num2) {
         // TODO Auto-generated method stub
-        return 0;
+        char[] result;
+        int j = 0;
+        result = new char[63];
+        result = Sub(num1, num2);
+        for(int i = 0; i < 64; i++){
+            if(result[i] == 1){
+                return 1;
+            }
+            else{
+                j++;
+            }
+        }
+        if(j == 64){
+            return 0;
+        }
     }
 
-    public char beq(char num1, char num2) {
+    public char beq(char[] num1, char[] num2) {
         // TODO Auto-generated method stub
-        return 0;
+        char[] result;
+        int j = 0;
+        result = new char[63];
+        result = Sub(num1, num2);
+        for(int i = 0; i < 64; i++){
+            if(result[i] == 1){
+                return 0;
+            }
+            else{
+                j++;
+            }
+        }
+        if(j == 64){
+            return 1;
+        }
     }
 }
