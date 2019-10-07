@@ -1,34 +1,21 @@
 package alu;
 
 public class OpALU implements AluInterface {
+    static final char zero = '0';
+    static final char hum = '1';
 
-	public char Or(char num1, char num2) {
-		if(num1 == 0 && num2 == 0){
-            return 0;
-        }
-        else{
-            return 1;
-        }
-    }
 
-    public char And(char num1, char num2) {
-        if(num1 == 1 && num2 == 1){
-            return 1;
-        }
-        else{
-            return 0;
-        }
-    }
-
-    public char[] Add(char[] num1, char[] num2) {
+    //Soma
+    @Override
+    public char[] add(char[] num1, char[] num2) {
         int carryin = 0;
         int carryout = 0;
         char[] result;
         result = new char[64];
     	for(int i = 0; i < 64; i++){
             carryin = carryout;
-            int and = And(num1[i], num2[i]);
-            int or = Or(num1[i], num2[i]);
+            int and = and(num1[i], num2[i]);
+            int or = or(num1[i], num2[i]);
             if(carryin == 0){
                 if(and == 1 && or == 1){
                     result[i] = 0;
@@ -62,8 +49,9 @@ public class OpALU implements AluInterface {
         return result;
     }
 
-    public char[] Sub(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
+    //Subtração
+    @Override
+    public char[] sub(char[] num1, char[] num2) {
         char[] result;
         result = new char[63];
 
@@ -76,62 +64,13 @@ public class OpALU implements AluInterface {
             }
         }
         //num2 = Addi(num2, 1); para somar 1
-        result = Add(num1, num2);
+        result = add(num1, num2);
         return result;
     }
 
-    public char slt(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        char[] result;
-        result = new char[63];
-        result = Sub(num1, num2);
-        if(result[63] == 1){
-            return 1;
-        }
-        else{
-            return 0;
-        }
-    }
-
-    public char bne(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        char[] result;
-        int j = 0;
-        result = new char[63];
-        result = Sub(num1, num2);
-        for(int i = 0; i < 64; i++){
-            if(result[i] == 1){
-                return 1;
-            }
-            else{
-                j++;
-            }
-        }
-        if(j == 64){
-            return 0;
-        }
-    }
-
-    public char beq(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        char[] result;
-        int j = 0;
-        result = new char[63];
-        result = Sub(num1, num2);
-        for(int i = 0; i < 64; i++){
-            if(result[i] == 1){
-                return 0;
-            }
-            else{
-                j++;
-            }
-        }
-        if(j == 64){
-            return 1;
-        }
-    }
-
-    public char[] Addi(char[] num1, int num2) {
+    //Add Imediato
+    @Override
+    public char[] addi(char[] num1, int num2) {
         int aux = 0;
         int numd;
         char[] numi;
@@ -144,4 +83,76 @@ public class OpALU implements AluInterface {
         }
 
     }
+
+    @Override
+	public char or(char num1, char num2) {
+		if(num1 == 0 && num2 == 0){
+            return zero;
+        }
+        else{
+            return hum;
+        }
+    }
+
+    @Override
+    public char and(char num1, char num2) {
+        if(num1 == 1 && num2 == 1){
+            return hum;
+        }
+        else{
+            return zero;
+        }
+    }
+
+    @Override
+    public char slt(char[] num1, char[] num2) {
+        char[] result;
+        result = new char[63];
+        result = sub(num1, num2);
+        if(result[63] == 1){
+            return hum;
+        }
+        else{
+            return zero;
+        }
+    }
+
+    @Override
+    public char bne(char[] num1, char[] num2) {
+        char[] result;
+        int j = 0;
+        result = new char[63];
+        result = sub(num1, num2);
+        for(int i = 0; i < 64; i++){
+            if(result[i] == 1){
+                return hum;
+            }
+            else{
+                j++;
+            }
+        }
+        if(j == 64){
+            return zero;
+        }
+    }
+
+    @Override
+    public char beq(char[] num1, char[] num2) {
+        char[] result;
+        int j = 0;
+        result = new char[63];
+        result = sub(num1, num2);
+        for(int i = 0; i < 64; i++){
+            if(result[i] == 1){
+                return zero;
+            }
+            else{
+                j++;
+            }
+        }
+        if(j == 64){
+            return hum;
+        }
+    }
+
 }
