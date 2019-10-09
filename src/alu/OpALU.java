@@ -71,18 +71,37 @@ public class OpALU implements AluInterface {
     //Add Imediato
     @Override
     public char[] addi(char[] num1, int num2) {
+        int num;
+        int i = 63;
+        int j = 63;
+        int k = 63;
+        int[] numi;
+        char[] numc;
+        numc = new char[63];
+        num = num2;
+        numi = new int[63];
 
-        int aux = 0;
-        int numd;
-        char[] numi;
-        numd = num2;
-        numi = new char[63];
-
-        while(num2 > 0){
-            
-
+        while(k >= 0){
+            numi[k] = 0;
+            k--;
         }
 
+        while(num > 0){
+            numi[i] = num % 2;
+            num = num / 2;
+            i--;
+        }
+        for(i = 0; i < 63; i++){
+            if(numi[i] == 0){
+                numc[j] = 0;
+                j--;
+            }
+            else{
+                numc[j] = 1;
+                j--;
+            }
+        }
+        return numc;
     }
 
     @Override
