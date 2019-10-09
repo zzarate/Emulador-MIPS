@@ -4,7 +4,6 @@ public class OpALU implements AluInterface {
     static final char zero = '0';
     static final char hum = '1';
 
-
     //Soma
     @Override
     public char[] add(char[] num1, char[] num2) {
