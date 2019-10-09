@@ -139,39 +139,26 @@ public class OpALU implements AluInterface {
     @Override
     public char bne(char[] num1, char[] num2) {
         char[] result;
-        int j = 0;
         result = new char[63];
         result = sub(num1, num2);
         for(int i = 0; i < 64; i++){
             if(result[i] == 1){
                 return hum;
             }
-            else{
-                j++;
-            }
         }
-        if(j == 64){
-            return zero;
-        }
+        return zero;
     }
 
     @Override
     public char beq(char[] num1, char[] num2) {
         char[] result;
-        int j = 0;
         result = new char[63];
         result = sub(num1, num2);
         for(int i = 0; i < 64; i++){
             if(result[i] == 1){
                 return zero;
             }
-            else{
-                j++;
-            }
         }
-        if(j == 64){
-            return hum;
-        }
+        return hum;
     }
-
 }
