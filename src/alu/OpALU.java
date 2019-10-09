@@ -7,41 +7,41 @@ public class OpALU implements AluInterface {
     //Soma
     @Override
     public char[] add(char[] num1, char[] num2) {
-        int carryin = 0;
-        int carryout = 0;
+        int carryIn = 0;
+        int carryOut = 0;
         char[] result;
         result = new char[5];
     	for(int i = 0; i < 5; i++){
-            carryin = carryout;
+            carryIn = carryOut;
             int and = and(num1[i], num2[i]);
             int or = or(num1[i], num2[i]);
-            if(carryin == 0){
+            if(carryIn == 0){
                 if(and == 1 && or == 1){
                     result[i] = 0;
-                    carryout = 1;
+                    carryOut = 1;
                 }
                 else
                     if(and == 0 && or == 0){
                           result[i] = 0;
-                          carryout = 0; 
+                          carryOut = 0; 
                     }
                 else{
                     result[i] = 1;
-                    carryout = 0;
+                    carryOut = 0;
                 }
             }
             else{
                 if(and == 1 && or == 1){
                     result[i] = 1;
-                    carryout = 1;
+                    carryOut = 1;
                 }
                 else if(and == 0 && or == 0){
                           result[i] = 1;
-                          carryout = 0; 
+                          carryOut = 0; 
                 }
                 else{
                     result[i] = 0;
-                    carryout = 1;
+                    carryOut = 1;
                 }
             }
         }   
@@ -74,32 +74,32 @@ public class OpALU implements AluInterface {
         int i = 4;
         int j = 4;
         int k = 15;
-        int[] numi;
-        char[] numc;
-        numc = new char[5];
-        numi = new int[16];
+        int[] numI;
+        char[] numC;
+        numC = new char[5];
+        numI = new int[16];
 
         while(k >= 0){
-            numi[k] = 0;
+            numI[k] = 0;
             k--;
         }
 
         while(num2 > 0){
-            numi[i] = num2 % 2;
+            numI[i] = num2 % 2;
             num2 = num2 / 2;
             i--;
         }
         for(i = 0; i < 5; i++){
-            if(numi[i] == 0){
-                numc[j] = 0;
+            if(numI[i] == 0){
+                numC[j] = 0;
                 j--;
             }
             else{
-                numc[j] = 1;
+                numC[j] = 1;
                 j--;
             }
         }
-        return numc;
+        return numC;
     }
 
     @Override
