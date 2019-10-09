@@ -11,8 +11,8 @@ public class OpALU implements AluInterface {
         int carryin = 0;
         int carryout = 0;
         char[] result;
-        result = new char[64];
-    	for(int i = 0; i < 64; i++){
+        result = new char[5];
+    	for(int i = 0; i < 5; i++){
             carryin = carryout;
             int and = and(num1[i], num2[i]);
             int or = or(num1[i], num2[i]);
@@ -53,9 +53,9 @@ public class OpALU implements AluInterface {
     @Override
     public char[] sub(char[] num1, char[] num2) {
         char[] result;
-        result = new char[63];
+        result = new char[5];
 
-    	for(int i = 0; i < 64; i++){
+    	for(int i = 0; i < 5; i++){
             if(num2[i] == 0){
                 num2[i] = 1;
             }
@@ -72,13 +72,13 @@ public class OpALU implements AluInterface {
     @Override
     public char[] addi(char[] num1, int num2) {
 
-        int i = 63;
-        int j = 63;
-        int k = 63;
+        int i = 4;
+        int j = 4;
+        int k = 15;
         int[] numi;
         char[] numc;
-        numc = new char[63];
-        numi = new int[63];
+        numc = new char[5];
+        numi = new int[16];
 
         while(k >= 0){
             numi[k] = 0;
@@ -90,7 +90,7 @@ public class OpALU implements AluInterface {
             num2 = num2 / 2;
             i--;
         }
-        for(i = 0; i < 63; i++){
+        for(i = 0; i < 5; i++){
             if(numi[i] == 0){
                 numc[j] = 0;
                 j--;
