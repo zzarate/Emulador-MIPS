@@ -63,7 +63,7 @@ public class OpALU implements AluInterface {
                 num2[i] = 0;
             }
         }
-        //num2 = addi(num2, 1); para somar 1
+        num2 = addi(num2, 1);
         result = add(num1, num2);
         return result;
     }
@@ -71,14 +71,13 @@ public class OpALU implements AluInterface {
     //Add Imediato
     @Override
     public char[] addi(char[] num1, int num2) {
-        int num;
+
         int i = 63;
         int j = 63;
         int k = 63;
         int[] numi;
         char[] numc;
         numc = new char[63];
-        num = num2;
         numi = new int[63];
 
         while(k >= 0){
@@ -86,9 +85,9 @@ public class OpALU implements AluInterface {
             k--;
         }
 
-        while(num > 0){
-            numi[i] = num % 2;
-            num = num / 2;
+        while(num2 > 0){
+            numi[i] = num2 % 2;
+            num2 = num2 / 2;
             i--;
         }
         for(i = 0; i < 63; i++){
