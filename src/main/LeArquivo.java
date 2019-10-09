@@ -19,7 +19,16 @@ public class LeArquivo {
 
 		try {
 			byte [] conteudo = Files.readAllBytes(arquivo.toPath());
+			System.out.println ("Conteudo: ");
 			System.out.println(new String(conteudo));
+			
+			//For para exiber conteudo do arquivo em string de bits
+			
+			for (int i = 0; i < conteudo.length; i++) {
+				System.out.println ("Binario " + i + ": ");
+				System.out.println(Integer.toBinaryString((conteudo[i] & 0xFF) + 0x100).substring(1));
+			}
+
 		} catch (Exception e) {
 			System.out.println("Erro ao ler o arquivo! Tente outro arquivo. ");
 			System.out.println("Detalhes do erro: ");
