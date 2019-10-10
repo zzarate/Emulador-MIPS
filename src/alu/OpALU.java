@@ -103,6 +103,12 @@ public class OpALU implements AluInterface {
     }
 
     @Override
+    public char mult(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
 	public char or(char num1, char num2) {
 		if(num1 == 0 && num2 == 0){
             return zero;
@@ -125,9 +131,10 @@ public class OpALU implements AluInterface {
     @Override
     public char slt(char[] num1, char[] num2) {
         char[] result;
-        result = new char[63];
+        result = new char[5];
         result = sub(num1, num2);
-        if(result[63] == 1){
+        
+        if(result[4] == 1){
             return hum;
         }
         else{
@@ -136,11 +143,40 @@ public class OpALU implements AluInterface {
     }
 
     @Override
+    public char[] sll(char[] num1, char num2) {
+        int i = 4;
+        int k;
+        while(num2 > 0){
+            for(k = 4; k > 0; k--){
+                num1[i] = num1[i-1];
+                i--;
+            }
+            num1[0] = 0;
+            num2--;
+        }
+        return null;
+    }
+
+    public char[] srl(char[] num1, char num2) {
+        int i = 0;
+        int k;
+        while(num2 > 0){
+            for(k = 4; k > 0; k--){
+                num1[i] = num1[i+1];
+                i++;
+            }
+            num1[4] = 0;
+            num2--;
+        }
+        return null;
+    }
+ 
+    @Override
     public char bne(char[] num1, char[] num2) {
         char[] result;
-        result = new char[63];
+        result = new char[16];
         result = sub(num1, num2);
-        for(int i = 0; i < 64; i++){
+        for(int i = 0; i < 16; i++){
             if(result[i] == 1){
                 return hum;
             }
@@ -151,9 +187,9 @@ public class OpALU implements AluInterface {
     @Override
     public char beq(char[] num1, char[] num2) {
         char[] result;
-        result = new char[63];
+        result = new char[16];
         result = sub(num1, num2);
-        for(int i = 0; i < 64; i++){
+        for(int i = 0; i < 16; i++){
             if(result[i] == 1){
                 return zero;
             }
