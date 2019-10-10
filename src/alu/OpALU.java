@@ -1,8 +1,11 @@
 package alu;
 
+import registradores.HILO;
+
 public class OpALU implements AluInterface {
     static final char zero = '0';
     static final char hum = '1';
+    HILO hilo = new HILO();
 
     //Soma
     @Override
@@ -103,9 +106,33 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char mult(char[] num1, char[] num2) {
+    public void mult(char[] num1, char[] num2) {
+        int i;
+        char[] mult; //multiplicando
+        mult = new char[64];
+        char[] prod;
+        prod = new char[64];
+        int aux = num2.length;
+
+        for(i = 0; i < aux; i++){
+            mult[i] = num2[i];
+        }
+        for(i = aux; i < 64; i++){
+            mult[i] = 0;
+        }
+        for(i = 0; i < 64; i++){
+            if(num1[0] == 1){
+                add(mult, prod);
+                sll(mult, (char) 1);
+                srl(num1, (char) 1);
+            }
+            else{
+                sll(mult, (char) 1);
+                srl(num1, (char) 1);
+            }
+        }
         
-        return 0;
+        hilo.setHilo(prod);
     }
 
     @Override
