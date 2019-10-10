@@ -12,7 +12,7 @@ public interface AluInterface {
     char slt (char[] num1,char[] num2);
     //Deslocameno de bits
     char[] sll (char[] num1, char num2);
-    //char[] srl
+    char[] srl (char[] num1, char num2);
     //Desvio condicional
     char bne (char[] num1,char[] num2);
     char beq (char[] num1,char[] num2);
