@@ -17,7 +17,11 @@ public class LeArquivo {
 		String localArquivo = scanner.nextLine();
 		File arquivo = new File(localArquivo);
 
-		imprimeDados(arquivo);
+		separaInstrucao(arquivo);
+
+		//Descomentar para verificar se esta lendo corretamenta
+		//Somente para debug
+		//imprimeDados(arquivo);
 
 		scanner.close();
 	}
