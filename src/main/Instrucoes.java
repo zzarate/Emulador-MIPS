@@ -67,7 +67,4 @@ public class Instrucoes {
 
     //Syscall
     public static final char [] syscall = { '0','0','1','1','0','0'};  //--Valor correto* 
-
-
-
 }
