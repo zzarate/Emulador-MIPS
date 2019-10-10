@@ -104,7 +104,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char mult(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
+        
         return 0;
     }
 
@@ -144,7 +144,8 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] sll(char[] num1, char num2) {
-        int i = 4;
+        int aux = num1.length; //ver o tamanho do vetor
+        int i = aux - 1;
         int k;
         while(num2 > 0){
             for(k = 4; k > 0; k--){
@@ -158,7 +159,8 @@ public class OpALU implements AluInterface {
     }
 
     public char[] srl(char[] num1, char num2) {
-        int i = 0;
+        int aux = num1.length; //ver o tamanho do vetor
+        int i = aux - 1;
         int k;
         while(num2 > 0){
             for(k = 4; k > 0; k--){
