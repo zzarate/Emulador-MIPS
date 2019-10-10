@@ -17,7 +17,11 @@ public class LeArquivo {
 		String localArquivo = scanner.nextLine();
 		File arquivo = new File(localArquivo);
 
-		imprimeDados(arquivo);
+		separaInstrucao(arquivo);
+
+		//Descomentar para verificar se esta lendo corretamenta
+		//Somente para debug
+		//imprimeDados(arquivo);
 
 		scanner.close();
 	}
@@ -31,13 +35,13 @@ public class LeArquivo {
 				String instrucao;
 				instrucao = null;
 
-				instrucao =Integer.toBinaryString((conteudo[i+3] & 0xFF) + 0x100).substring(1);
+				instrucao= Integer.toBinaryString((conteudo[i+3] & 0xFF) + 0x100).substring(1);
 				instrucao= instrucao+ Integer.toBinaryString((conteudo[i+2] & 0xFF) + 0x100).substring(1);
 				instrucao= instrucao+ Integer.toBinaryString((conteudo[i+1] & 0xFF) + 0x100).substring(1);
 				instrucao= instrucao+ Integer.toBinaryString((conteudo[i] & 0xFF) + 0x100).substring(1);
 
 				//Chamar metodo para decodificar instrução
-				decode.decodificaInstrucao(instrucao);
+				decode.separaInstrucao(instrucao);
 			}
 
 		} catch (IOException e) {
@@ -49,7 +53,7 @@ public class LeArquivo {
 		
 	}
 
-	//Metodo para testar se le os dados corretamente
+	//Metodo para testar se le os dados corretamente ***DEBUG****
 	void imprimeDados (File arquivo){
 		try {
 			byte [] conteudo = Files.readAllBytes(arquivo.toPath());
