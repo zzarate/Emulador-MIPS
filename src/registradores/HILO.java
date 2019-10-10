@@ -5,14 +5,14 @@ public class HILO {
     private char[] HILO = new char [64];
 
     //Define valor no HILO
-    void setHilo (char [] value_64){
+    public void setHilo (char [] value_64){
         for (int i =0; i<64; i++){
             HILO[i] = value_64 [i];
         }
     }
 
     //Devolve valor armazenaddo no LO
-    char [] getLO (){
+    public char [] getLO (){
         char [] dest_LO;
         dest_LO = new char [32];
 
