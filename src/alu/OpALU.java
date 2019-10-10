@@ -104,7 +104,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char mult(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
+        
         return 0;
     }
 
