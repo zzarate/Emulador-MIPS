@@ -120,7 +120,7 @@ public class OpALU implements AluInterface {
         for(i = aux; i < 64; i++){
             mult[i] = 0;
         }
-        for(i = 0; i < 64; i++){
+        for(i = 0; i < 32; i++){
             if(num1[0] == 1){
                 add(mult, prod);
                 sll(mult, (char) 1);
