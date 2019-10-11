@@ -12,9 +12,10 @@ public class OpALU implements AluInterface {
     public char[] add(char[] num1, char[] num2) {
         int carryIn = 0;
         int carryOut = 0;
+        int tam = num1.length;  // tamanho do vetor
         char[] result;
-        result = new char[5];
-    	for(int i = 0; i < 5; i++){
+        result = new char[tam];
+    	for(int i = 0; i < tam; i++){
             carryIn = carryOut;
             int and = and(num1[i], num2[i]);
             int or = or(num1[i], num2[i]);
@@ -54,10 +55,11 @@ public class OpALU implements AluInterface {
     //Subtração
     @Override
     public char[] sub(char[] num1, char[] num2) {
+        int tam = num1.length;
         char[] result;
-        result = new char[5];
+        result = new char[tam];
 
-    	for(int i = 0; i < 5; i++){
+    	for(int i = 0; i < tam; i++){
             if(num2[i] == 0){
                 num2[i] = 1;
             }
@@ -106,21 +108,25 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public void mult(char[] num1, char[] num2) {
+    public char[] mult(char[] num1, char[] num2) {
         int i;
         char[] mult; //multiplicando
         mult = new char[64];
         char[] prod;
         prod = new char[64];
         int aux = num2.length;
+        int tam = num1.length;
 
-        for(i = 0; i < aux; i++){
+        for(i = 0; i < aux; i++){ //aumentando num2 para mult de tamanho 64
             mult[i] = num2[i];
         }
         for(i = aux; i < 64; i++){
             mult[i] = 0;
         }
-        for(i = 0; i < 32; i++){
+        for(i = 0; i < 64; i++){
+            prod[i] = 0;
+        }
+        for(i = 0; i < tam; i++){
             if(num1[0] == 1){
                 add(mult, prod);
                 sll(mult, (char) 1);
@@ -131,9 +137,40 @@ public class OpALU implements AluInterface {
                 srl(num1, (char) 1);
             }
         }
-        
         hilo.setHilo(prod);
+        return prod;
     }
+
+    @Override
+    public void div(char[] num1, char[] num2) {
+        int i;
+        int id = 0;
+        char[] p;
+        p = new char[32];
+        char[] m;
+        m = new char[64];
+        char[] hi, lo;
+        hi = new char[32];
+        lo = new char[32];
+      
+        for(i = 0; i < 32; i++){
+            if(num1[i] == 1){
+                id = i;
+            }
+        }
+        for(i = 0; i < 32; i++){
+            p[i] = 0;
+        }
+        p[id] = 1;
+        while(id > -1){
+            m = mult(num2, p);
+            num1 = sub(num1, m);
+            if(num1[31] == 1){
+                add(num1, m);
+            }
+        }
+    }
+    
 
     @Override
 	public char or(char num1, char num2) {
@@ -225,4 +262,6 @@ public class OpALU implements AluInterface {
         }
         return hum;
     }
+
+    
 }
