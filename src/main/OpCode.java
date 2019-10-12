@@ -6,7 +6,7 @@
 
 package main;
 
-public class InstrucoesOpCode {
+public class OpCode {
     //Valores do OpCode
 
     //Tipo R

@@ -1,6 +1,6 @@
 package main;
 
-public class InstrucoesFunct {
+public class Funct {
     //Valor do funct para instruções do tipo R
     //Aritmetica - funct
     public final char [] add = { '1','0','0','0','0','0'};   //Add
