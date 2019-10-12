@@ -28,4 +28,4 @@ hs_err_pid*
 
 # VS-Code
 Emulador-MIPS.code-workspace
-launch.json
+/.vscode
