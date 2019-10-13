@@ -11,6 +11,18 @@ public class HILO {
         }
     }
 
+    public void setHI (char [] value_32){
+        for (int i =0; i<32; i++){
+            HILO[i] = value_32 [i];
+        }
+    }
+
+    public void setLO (char [] value_32){
+        for (int i =32; i<64; i++){
+            HILO[i] = value_32 [i];
+        }
+    }
+
     //Devolve valor armazenaddo no LO
     public char [] getLO (){
         char [] dest_LO;
