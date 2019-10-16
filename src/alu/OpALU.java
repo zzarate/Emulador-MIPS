@@ -143,35 +143,24 @@ public class OpALU implements AluInterface {
 
     @Override
     public void div(char[] num1, char[] num2) {
-        int i;
-        int id = 0;
-        char[] p;
-        p = new char[32];
-        char[] m;
-        m = new char[64];
+       /* String n1 = String.copyValueOf(num1);
+        String n2 = String.copyValueOf(num2);
+        int numero1 = Integer.parseInt(n1, 2);
+        int numero2 = Integer.parseInt(n2, 2);
+        int num;
+        int i = 31;
         char[] hi, lo;
         hi = new char[32];
         lo = new char[32];
-      
-        for(i = 0; i < 32; i++){
-            if(num1[i] == 1){
-                id = i;
-            }
+        num = numero1 / numero2;
+        while(num > 0){
+            lo[i] = num % 2;
+            num = num / 2;
+            i--;
         }
-        for(i = 0; i < 32; i++){
-            p[i] = 0;
-        }
-        p[id] = 1;
-        while(id > -1){
-            m = mult(num2, p);
-            num1 = sub(num1, m);
-            if(num1[31] == 1){
-                add(num1, m);
-            }
-        }
+        */
     }
     
-
     @Override
 	public char or(char num1, char num2) {
 		if(num1 == 0 && num2 == 0){
@@ -262,6 +251,4 @@ public class OpALU implements AluInterface {
         }
         return hum;
     }
-
-    
 }
