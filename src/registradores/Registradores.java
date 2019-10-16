@@ -6,51 +6,58 @@ package registradores;
 
 public class Registradores {
 	//Registrador Zero
-    final char $zero = 0;   //0
+    public final char $zero = 0;   //0
+
+    //Assembler temporary
+    public char[] $AT = new char [32]; //1
 
     //Para valores de resultados e operacoes
-    char[] $V0 = new char [32]; //2
-    char[] $V1 = new char [32]; //3
+    public char[] $V0 = new char [32]; //2
+    public char[] $V1 = new char [32]; //3
 
     //Argumentos
-    char[] $A0 = new char [32]; //4
-    char[] $A1 = new char [32]; //5
-    char[] $A2 = new char [32]; //6
-    char[] $A3 = new char [32]; //7
+    public char[] $A0 = new char [32]; //4
+    public char[] $A1 = new char [32]; //5
+    public char[] $A2 = new char [32]; //6
+    public char[] $A3 = new char [32]; //7
 
     //Temporarios
-    char[] $T0 = new char [32]; //8
-    char[] $T1 = new char [32]; //9
-    char[] $T2 = new char [32]; //10
-    char[] $T3 = new char [32]; //11
-    char[] $T4 = new char [32]; //12
-    char[] $T5 = new char [32]; //13
-    char[] $T6 = new char [32]; //14
-    char[] $T7 = new char [32]; //15
+    public char[] $T0 = new char [32]; //8
+    public char[] $T1 = new char [32]; //9
+    public char[] $T2 = new char [32]; //10
+    public char[] $T3 = new char [32]; //11
+    public char[] $T4 = new char [32]; //12
+    public char[] $T5 = new char [32]; //13
+    public char[] $T6 = new char [32]; //14
+    public char[] $T7 = new char [32]; //15
         
     //Salvos
-    char[] $S0 = new char [32]; //16
-    char[] $S1 = new char [32]; //17
-    char[] $S2 = new char [32]; //18
-    char[] $S3 = new char [32]; //19
-    char[] $S4 = new char [32]; //20
-    char[] $S5 = new char [32]; //21
-    char[] $S6 = new char [32]; //22
-    char[] $S7 = new char [32]; //23
+    public char[] $S0 = new char [32]; //16
+    public char[] $S1 = new char [32]; //17
+    public char[] $S2 = new char [32]; //18
+    public char[] $S3 = new char [32]; //19
+    public char[] $S4 = new char [32]; //20
+    public char[] $S5 = new char [32]; //21
+    public char[] $S6 = new char [32]; //22
+    public char[] $S7 = new char [32]; //23
 
     //Temporarios
-    char[] $T8 = new char [32]; //24
-    char[] $T9 = new char [32]; //25
+    public char[] $T8 = new char [32]; //24
+    public char[] $T9 = new char [32]; //25
+
+    //Kernel SO
+    public char[] $K0 = new char [32]; //26
+    public char[] $K1 = new char [32]; //27
 
     //Ponteiro Global
-    char[] $gp = new char [32]; //28
+    public char[] $gp = new char [32]; //28
 
     //Ponteiro Stack (pilha)
-    char[] $sp = new char [32]; //29
+    public char[] $sp = new char [32]; //29
 
     //Ponteiro Frame
-    char[] $fp = new char [32]; //30
+    public char[] $fp = new char [32]; //30
 
     //Endereco de retorno
-    char[] $ra = new char [32]; //31
+    public char[] $ra = new char [32]; //31
 }

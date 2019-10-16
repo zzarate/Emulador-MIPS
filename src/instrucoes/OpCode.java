@@ -4,7 +4,7 @@
  * Ex.: addi = 001000               *
 *************************************/
 
-package main;
+package instrucoes;
 
 public class OpCode {
     //Valores do OpCode

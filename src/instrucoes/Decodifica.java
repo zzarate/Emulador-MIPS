@@ -1,7 +1,8 @@
-package main;
+package instrucoes;
 
 import java.util.Arrays;
 public class Decodifica {
+	
     private InstrucoesR tipoR = new InstrucoesR();
 
     void separaInstrucao (String instrucao){

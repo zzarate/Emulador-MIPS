@@ -1,4 +1,4 @@
-package main;
+package instrucoes;
 
 public class Funct {
     //Valor do funct para instruções do tipo R

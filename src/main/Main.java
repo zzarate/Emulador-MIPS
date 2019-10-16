@@ -4,21 +4,18 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        
-        //Abre e le o arquivo
-        LeArquivo arquivo = new LeArquivo();
-        arquivo.abrirArquivo();
+
+        //Recebe parametros da main
+        String filetText = new String (args [0]);   //Recebe nome do primeiro arquivo do parametro
+        String fileData = new String (args [1]);    //Recebe nome do segundo arquivo do parametro
 
         //Inicia a decodificacao e o programa
-        InicioPrograma inicio = new InicioPrograma();
-        inicio.separaInstrucao(arquivo.arquivo);
+        Inicio inicio = new Inicio();
+        inicio.fillTextSection();
+        inicio.fillDataSection();
+        inicio.abreArquivo(filetText, fileData);
 
-        
-        //Exibe uma mensagem avisando que o programa terminou de ser executado (????)
-        System.out.println(" ___________________________");
-        System.out.println("|                           |");
-        System.out.println("|    Execução finalizada    |");
-        System.out.println("|                           |");
-        System.out.println("|___________________________|");
     }
+
+    
 }

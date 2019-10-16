@@ -1,4 +1,4 @@
-package main;
+package instrucoes;
 
 import java.util.Arrays;
 
@@ -84,7 +84,7 @@ public class InstrucoesR {
         for (int i = 6, j =0; i <10; i++, j++) {
             regDest [j] = instrucao[i];
         }
-        setValorReg(Integer.parseInt(new String(regDest)));
+        //setValorReg(Integer.parseInt(new String(regDest)));       <<<------
 
         //Reg rt
         for (int i = 10, j =0; i <15; i++, j++) {

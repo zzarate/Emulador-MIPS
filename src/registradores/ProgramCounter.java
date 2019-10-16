@@ -1,6 +1,7 @@
 package registradores;
 
 public class ProgramCounter {
+
 	//Program counter
     private char[] $PC = new char [32];
     
@@ -10,7 +11,7 @@ public class ProgramCounter {
         }
     }
     
-    void proximoPC (){
-        
+    void proximoPC (char [] proximaInstrucao){
+        $PC = proximaInstrucao;
     }
 }
