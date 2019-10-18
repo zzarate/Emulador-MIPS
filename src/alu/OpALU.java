@@ -76,12 +76,12 @@ public class OpALU implements AluInterface {
     @Override
     public char[] addi(char[] num1, int num2) {
 
-        int i = 4;
-        int j = 4;
+        int i = 31;
+        int j = 31;
         int k = 15;
         int[] numI;
         char[] numC;
-        numC = new char[5];
+        numC = new char[32];
         numI = new int[16];
 
         while(k >= 0){
@@ -94,7 +94,7 @@ public class OpALU implements AluInterface {
             num2 = num2 / 2;
             i--;
         }
-        for(i = 0; i < 5; i++){
+        for(i = 0; i < 32; i++){
             if(numI[i] == 0){
                 numC[j] = 0;
                 j--;
