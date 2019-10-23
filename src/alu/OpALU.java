@@ -58,6 +58,12 @@ public class OpALU implements AluInterface {
         int tam = num1.length;
         char[] result;
         result = new char[tam];
+        char[] numI;
+        numI = new char[16];
+        for(int i = 0; i < 16; i++){
+            numI[i] = 0;
+        }
+        numI[0] = 1;
 
     	for(int i = 0; i < tam; i++){
             if(num2[i] == 0){
@@ -67,48 +73,37 @@ public class OpALU implements AluInterface {
                 num2[i] = 0;
             }
         }
-        num2 = addi(num2, 1);
+        num2 = addi(num2, numI);
         result = add(num1, num2);
         return result;
     }
 
     //Add Imediato
     @Override
-    public char[] addi(char[] num1, int num2) {
+    public char[] addi(char[] num1, char[] num2) {
 
-        int i = 31;
-        int j = 31;
-        int k = 15;
-        int[] numI;
-        char[] numC;
-        numC = new char[32];
-        numI = new int[16];
-
-        while(k >= 0){
-            numI[k] = 0;
-            k--;
+        char[] numI;
+        numI = new char[32];
+        for(int i = 0; i < 32; i++){
+            numI[i] = 0;
         }
-
-        while(num2 > 0){
-            numI[i] = num2 % 2;
-            num2 = num2 / 2;
-            i--;
-        }
-        for(i = 0; i < 32; i++){
-            if(numI[i] == 0){
-                numC[j] = 0;
-                j--;
+        if(num2[15] == 1){
+            for(int i = 0; i < 15; i++){
+                numI[i] = num2[i];
             }
-            else{
-                numC[j] = 1;
-                j--;
+            numI[31] = 1;
+        }
+        else{
+            for(int i = 0; i < 15; i++){
+                numI[i] = num2[i];
             }
         }
-        return numC;
+        numI = add(num1, numI);
+        return numI;
     }
 
     @Override
-    public char[] mult(char[] num1, char[] num2) {
+    public void mult(char[] num1, char[] num2) {
         int i;
         char[] mult; //multiplicando
         mult = new char[64];
@@ -138,7 +133,6 @@ public class OpALU implements AluInterface {
             }
         }
         hilo.setHilo(prod);
-        return prod;
     }
 
     @Override
