@@ -1,4 +1,4 @@
-package instrucoes;
+package main;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,10 +6,10 @@ import java.nio.file.Files;
 
 import main.Memoria;
 
-public class SeparaDados{
+class SeparaDados{
 
-    //Pega o conteudo presente no arquivo, e separa em string de 32 bits, big endian
-	public void separaInstrucao (File arquivo, byte [] memory ,Memoria memoria){
+    /* Le o conteudo presente no arquivo e armazena na memoria em formato big endian*/
+	void salvaInstrucao (File arquivo, byte [] memory ,Memoria memoria){
 		try {
 			byte[] conteudo = Files.readAllBytes(arquivo.toPath());
 			for (int i = 0; i < conteudo.length; i+=4) {
@@ -18,15 +18,6 @@ public class SeparaDados{
 				for (int j = 3; j >= 0; j--) {
 					memoria.salvaMemText(memory, conteudo[i]);
 				}
-
-				/* Salva as instruções em uma string
-				String instrucao;
-				instrucao = null;
-				instrucao= Integer.toBinaryString((conteudo[i+3] & 0xFF) + 0x100).substring(1);
-				instrucao= instrucao+ Integer.toBinaryString((conteudo[i+2] & 0xFF) + 0x100).substring(1);
-				instrucao= instrucao+ Integer.toBinaryString((conteudo[i+1] & 0xFF) + 0x100).substring(1);
-				instrucao= instrucao+ Integer.toBinaryString((conteudo[i] & 0xFF) + 0x100).substring(1);
-				*/
 			}
 
 		} catch (IOException e) {
@@ -39,7 +30,7 @@ public class SeparaDados{
 	}
 
 	/*Separa os dados em 4 bytes para enviar para a memoria de dados*/
-	public void separaDado (File arquivo, byte [] memory ,Memoria memoria){
+	void salvaDados (File arquivo, byte [] memory ,Memoria memoria){
 		try {
 			byte[] conteudo = Files.readAllBytes(arquivo.toPath());
 			for (int i = 0; i < conteudo.length; i+=4) {
@@ -57,5 +48,15 @@ public class SeparaDados{
 			e.printStackTrace();
 		}
 		
+	}
+
+	/*Separa as instruções de 4 bytes, e devolve elas em uma string*/
+	String separaInstrucao (String instrucao, int PC, byte [] memory){
+		instrucao =Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+
+		return instrucao;
 	}
 }

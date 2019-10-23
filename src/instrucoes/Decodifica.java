@@ -5,7 +5,7 @@ public class Decodifica {
 	
     private InstrucoesR tipoR = new InstrucoesR();
 
-    void separaInstrucao (String instrucao){
+    public void separaInstrucao (String instrucao){
 
         //Separa OpCode
         char opCode [];
@@ -17,7 +17,7 @@ public class Decodifica {
         for (int i = 0; i <6; i++) {
             opCode [i] = vetInstrucao[i];
         }
-        verificaInstrucao(opCode, vetInstrucao);
+        verificaInstrucao(opCode, vetInstrucao, instrucao);
         
         //Debug
         System.out.println ("OpCode: ");
@@ -25,7 +25,7 @@ public class Decodifica {
         System.out.println ("");
     }
 
-    void verificaInstrucao (char [] opCode, char [] vetInstrucao){
+    void verificaInstrucao (char [] opCode, char [] vetInstrucao, String instrucao){
         OpCode instrucoes = new OpCode();
 
         if (Arrays.equals(opCode, instrucoes.R )) {
@@ -36,6 +36,9 @@ public class Decodifica {
         if (Arrays.equals(opCode, instrucoes.addi )) {
             //opCode Add Immediate
             System.out.println("Instrucao Add Immediate");
+            salvaImmTipoI(instrucao);//Salva valor do imediato
+
+            
         }
         if (Arrays.equals(opCode, instrucoes.addiu )) {
             //opCode Add Immediate Unsigned 
@@ -98,5 +101,47 @@ public class Decodifica {
             System.out.println("Instrucao Jump and link");
         }
     }
+
+    void salvaImmTipoI(String instrucao){
+        char [] vetInstrucao = new char [32];
+        vetInstrucao = instrucao.toCharArray();
+        char[] valor = new char [16];
+
+        //Reg imm
+        for (int i = 15, j =0; i <31; i++, j++) {
+            valor [j] = vetInstrucao[i];
+        }
+        int imm = Integer.parseInt(new String(valor));
+
+    }
+
+    void salvaImmTipoJ(String instrucao){
+        char [] vetInstrucao = new char [32];
+        vetInstrucao = instrucao.toCharArray();
+
+        char[] regDest = new char [25];
+
+        //Reg imm
+        for (int i = 6, j =0; i <31; i++, j++) {
+            regDest [j] = vetInstrucao [i];
+        }
+    }
+
+    void salvaRegTipoI (char [] instrucao){
+        char[] regDest = new char [5];
+
+        //Reg rs
+        for (int i = 6, j =0; i <10; i++, j++) {
+            regDest [j] = instrucao[i];
+        }
+        int rs = Integer.parseInt(new String(regDest));
+
+        //Reg rt
+        for (int i = 10, j =0; i <15; i++, j++) {
+            regDest [j] = instrucao[i];
+        }
+        int rt = Integer.parseInt(new String(regDest));
+    }
+
 
 }

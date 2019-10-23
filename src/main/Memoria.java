@@ -1,6 +1,6 @@
 package main;
 
-public class Memoria {
+class Memoria {
     final int minTextSection = 0x0000;   //0
     final int maxTextSection = 0x0fff;   //4.095
     final int minDataSection = 0x2000;   //8.192
@@ -11,7 +11,7 @@ public class Memoria {
     private int countMemText = minTextSection;
     private int countMemData = minDataSection;
 
-    public void salvaMemText (byte [] memory, byte instrucao){
+    void salvaMemText (byte [] memory, byte instrucao){
         if (countMemText < maxTextSection){
             memory [countMemText] = instrucao;
 
@@ -19,7 +19,7 @@ public class Memoria {
         }
     }
 
-    public void salvaMemData (byte [] memory, byte instrucao){
+    void salvaMemData (byte [] memory, byte instrucao){
         if (countMemData < maxDataSection){
             memory [countMemData] = instrucao;
 

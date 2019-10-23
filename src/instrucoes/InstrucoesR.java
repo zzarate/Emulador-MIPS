@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class InstrucoesR {
 
+    private int newPC;
+
     void separaFunct (char [] vetInstrucao){
         char [] funct;
         funct = new char [6];
@@ -14,6 +16,10 @@ public class InstrucoesR {
         //Debug
         System.out.println("Funct: ");
         System.out.println (funct);
+    }
+
+    void verificaShant (){
+        //------------------//
     }
 
     void verificaFunct (char [] funct){
@@ -70,10 +76,13 @@ public class InstrucoesR {
         if (Arrays.equals(funct, instrucoes.jr )) {
             //opCode Jump register
             System.out.println("Instrucao Jump register");
+
+            newPC= 
         }
         if (Arrays.equals(funct, instrucoes.syscall)) {
-            //opCode Jsyscall
+            //opCode Syscall
             System.out.println("Instrucao syscall");
+            
         }
     }
 
@@ -84,7 +93,6 @@ public class InstrucoesR {
         for (int i = 6, j =0; i <10; i++, j++) {
             regDest [j] = instrucao[i];
         }
-        //setValorReg(Integer.parseInt(new String(regDest)));       <<<------
 
         //Reg rt
         for (int i = 10, j =0; i <15; i++, j++) {
