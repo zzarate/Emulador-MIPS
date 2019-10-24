@@ -1,7 +1,7 @@
 package main;
 
 import instrucoes.Decodifica;
-//import registradores.*;
+import registradores.OperacoesRegistradores;
 
 public class Inicio {
 
@@ -16,6 +16,7 @@ public class Inicio {
     private Memoria memoria = new Memoria();
     private SeparaDados separaDados = new SeparaDados();
     private Decodifica decodifica = new Decodifica();
+    private OperacoesRegistradores opReg = new OperacoesRegistradores();
     
 
     /*Abrir arquivos recebidos como argumento*/
@@ -38,10 +39,10 @@ public class Inicio {
              *  a partir do endereço do PC */ 
             String instrucao = null;
             instrucao = separaDados.separaInstrucao(instrucao, PC, memory);
-            decodifica.separaInstrucao(instrucao);
+            decodifica.separaInstrucao(instrucao, PC, opReg); //Decodifica e executa a instrucao
 
             //Verificar se pc precisa ser alterado
-            
+
 
             //Teste para saber se esta lendo as instruções corretamente
             System.out.println(instrucao);
@@ -61,7 +62,9 @@ public class Inicio {
     }
 
     void fillRegistradores (){
-
+        for (int i = 0; i < 31; i++) {
+            opReg.setValorReg(i, opReg.getValorReg(0));
+        }
     }
 
     void alteraValorPC (){

@@ -1,12 +1,14 @@
 package alu;
 
+import registradores.HILO;
+
 public interface AluInterface {
 	//Aritimeticas
     char[] add (char[] num1,char[] num2);
     char[] sub (char[] num1,char[] num2);
     char[] addi (char[] num1, char[] num2);
-    void mult (char[] num1, char[] num2);
-    void div (char[] num1, char[] num2);
+    void mult (char[] num1, char[] num2, HILO hilo);
+    void div (char[] num1, char[] num2, HILO hilo);
     //Logica
 	char or (char num1,char num2);
     char and (char num1,char num2);

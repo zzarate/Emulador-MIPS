@@ -12,6 +12,7 @@ public class Main {
         //Inicia a decodificacao e o programa
         Inicio inicio = new Inicio();
         inicio.fillMem();
+        inicio.fillRegistradores();
         inicio.abreArquivo(filetText, fileData);
         inicio.executaInstrucoes();
 

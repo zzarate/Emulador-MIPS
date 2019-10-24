@@ -5,7 +5,6 @@ import registradores.HILO;
 public class OpALU implements AluInterface {
     static final char zero = '0';
     static final char hum = '1';
-    HILO hilo = new HILO();
 
     //Soma
     @Override
@@ -103,7 +102,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public void mult(char[] num1, char[] num2) {
+    public void mult(char[] num1, char[] num2, HILO hilo) {
         int i;
         char[] mult; //multiplicando
         mult = new char[64];
@@ -136,7 +135,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public void div(char[] num1, char[] num2) {
+    public void div(char[] num1, char[] num2, HILO hilo) {
         String n1 = String.copyValueOf(num1);
         String n2 = String.copyValueOf(num2);
         int numero1 = Integer.parseInt(n1, 2);
@@ -211,8 +210,16 @@ public class OpALU implements AluInterface {
         }
     }
 
+
+    /*************************************************************************************************
+     * Receber dois arrays de char, o primeiro do valor,                                             *
+     * o segundo da quantidade de deslocamentos se preferir,                                         *
+     * depois de receber a quantidade de deslocamentos (num2),                                       *                   
+     * voce pode transformar em int, | numerodeslocamento = Integer.parseInt(new String (num2)); |   *   
+     * onde numerodeslocamento é uma varivavel do tipo int, e o num2, é o array que vc recebe        *   
+     * ***********************************************************************************************/
     @Override
-    public char[] sll(char[] num1, char num2) {
+    public char[] sll(char[] num1, char num2) {     
         int aux = num1.length; //ver o tamanho do vetor
         int i = aux - 1;
         int k;
