@@ -4,328 +4,367 @@ public class OperacoesRegistradores{
 
     private Registradores registradores = new Registradores();
 
+    public void setPC (int newPC){
+        registradores.PC= newPC;
+    }
+
+    public int getPC (){
+        return registradores.PC;
+    }
+
     public void setValorReg(int enderecoReg, char [] valor ){
+        //Registrador $zero     0
         if (enderecoReg == 0 ) {
-            //Registrador $zero     0
-            System.out.println("Registrador $zero");
         }
+        
+        //Registrador $AT       1
         if (enderecoReg == 1 ) {
-            //Registrador $AT       1
-            System.out.println("Registrador $AT");
+            registradores.$AT=registradores.$zero;
             registradores.$AT=valor;
         }
+        
+        //Registrador $V0       2
         if (enderecoReg == 2 ) {
-            //Registrador $V0       2
-            System.out.println("Registrador $V0");
+            registradores.$V0=registradores.$zero;
             registradores.$V0=valor;
         } 
+
+        //Registrador $V1       3
         if (enderecoReg == 3 ) {
-            //Registrador $V1       3
-            System.out.println("Registrador $V1");
+            registradores.$V1=registradores.$zero;
             registradores.$V1=valor;
         }
+
+        //Registrador $A0       4
         if (enderecoReg == 4 ) {
-            //Registrador $A0       4
-            System.out.println("Registrador $A0");
+            registradores.$A0=registradores.$zero;
             registradores.$A0=valor;
         }
+        
+        //Registrador $A1       5
         if (enderecoReg == 5 ) {
-            //Registrador $A1       5
-            System.out.println("Registrador $A1");
+            registradores.$A1=registradores.$zero;
             registradores.$A1=valor;
         }
+        
+        //Registrador $A2       6
         if (enderecoReg == 6 ) {
-            //Registrador $A2       6
-            System.out.println("Registrador $A2");
+            registradores.$A2=registradores.$zero;
             registradores.$A2=valor;
         }
+        
+        //Registrador $A3       7
         if (enderecoReg == 7 ) {
-            //Registrador $A3       7
-            System.out.println("Registrador $A3");
+            registradores.$A3=registradores.$zero;
             registradores.$A3=valor;
         }
+        
+        //Registrador $T0       8
         if (enderecoReg == 8 ) {
-            //Registrador $T0       8
-            System.out.println("Registrador $T0");
+            registradores.$T0=registradores.$zero;
             registradores.$T0=valor;
         }
+        
+        //Registrador $T1       9
         if (enderecoReg == 9 ) {
-            //Registrador $T1       9
-            System.out.println("Registrador $T1");
+            registradores.$T1=registradores.$zero;
             registradores.$T1=valor;
         }
+        
+        //Registrador $T2       10
         if (enderecoReg == 10 ) {
-            //Registrador $T2       10
-            System.out.println("Registrador $T2");
+            registradores.$T2=registradores.$zero;
             registradores.$T2=valor;
         }
+        
+        //Registrador $T3       11
         if (enderecoReg == 11 ) {
-            //Registrador $T3       11
-            System.out.println("Registrador $T3");
+            registradores.$T3=registradores.$zero;
             registradores.$T3=valor;
         }
+        
+        //Registrador $T4       12
         if (enderecoReg == 12 ) {
-            //Registrador $T4       12
-            System.out.println("Registrador $T4");
+            registradores.$T4=registradores.$zero;
             registradores.$T4=valor;
         }
+
+        //Registrador $T5       13
         if (enderecoReg == 13 ) {       
-            //Registrador $T5       13
-            System.out.println("Registrador $T5");
-            registradores.$T5=valor;
+        registradores.$T5=registradores.$zero;
+        registradores.$T5=valor;
         }
+        
+        //Registrador $T6       14
         if (enderecoReg == 14 ) {
-            //Registrador $T6       14
-            System.out.println("Registrador $T6");
+            registradores.$T6=registradores.$zero;
             registradores.$T6=valor;
         }
+        
+        //Registrador $T7       15
         if (enderecoReg == 15 ) {
-            //Registrador $T7       15
-            System.out.println("Registrador $T7");
+            registradores.$T7=registradores.$zero;
             registradores.$T7=valor;
         }
+        
+        //Registrador $S0       16
         if (enderecoReg == 16 ) {
-            //Registrador $S0       16
-            System.out.println("Registrador $S0");
+            registradores.$S0=registradores.$zero;
             registradores.$S0=valor;
         }
+        
+        //Registrador $S1       17
         if (enderecoReg == 17 ) {
-            //Registrador $S1       17
-            System.out.println("Registrador $S1");
+            registradores.$S1=registradores.$zero;
             registradores.$S1=valor;
         }
+        
+        //Registrador $S2       18
         if (enderecoReg == 18 ) {
-            //Registrador $S2       18
-            System.out.println("Registrador $S2");
+            registradores.$S2=registradores.$zero;
             registradores.$S2=valor;
         }
+        
+        //Registrador $S3       19
         if (enderecoReg == 19 ) {
-            //Registrador $S3       19
-            System.out.println("Registrador $S3");
+            registradores.$S3=registradores.$zero;
             registradores.$S3=valor;
         }
+        
+        //Registrador $S4       20
         if (enderecoReg == 20 ) {
-            //Registrador $S4       20
-            System.out.println("Registrador $S4");
+            registradores.$S4=registradores.$zero;
             registradores.$S4=valor;
         }
+        
+        //Registrador $S5       21
         if (enderecoReg == 21 ) {
-            //Registrador $S5       21
-            System.out.println("Registrador $S5");
+            registradores.$S5=registradores.$zero;
             registradores.$S5=valor;
         }
+        
+        //Registrador $S6       22
         if (enderecoReg == 22 ) {
-            //Registrador $S6       22
-            System.out.println("Registrador $S6");
+            registradores.$S6=registradores.$zero;
             registradores.$S6=valor;
         }
+        
+        //Registrador $S7       23
         if (enderecoReg == 23 ) {
-            //Registrador $S7       23
-            System.out.println("Registrador $S7");
+            registradores.$S7=registradores.$zero;
             registradores.$S7=valor;
         }
+        
+        //Registrador $T8       24
         if (enderecoReg == 24 ) {
-            //Registrador $T8       24
-            System.out.println("Registrador $T8");
+            registradores.$T8=registradores.$zero;
             registradores.$T8=valor;
         }
+        
+        //Registrador $T9       25
         if (enderecoReg == 25 ) {
-            //Registrador $T9       25
-            System.out.println("Registrador $T9");
+            registradores.$T9=registradores.$zero;
             registradores.$T9=valor;
         }
+        
+        //Registrador $K0       26
         if (enderecoReg == 26 ) {
-            //Registrador $K0       26
-            System.out.println("Registrador $K0");
+            registradores.$K0=registradores.$zero;
             registradores.$K0=valor;
         }
+        
+        //Registrador $K1       27
         if (enderecoReg == 27 ) {
-            //Registrador $K1       27
-            System.out.println("Registrador $K1");
+            registradores.$K1=registradores.$zero;
             registradores.$K1=valor;
         }
+        
+        //Registrador $gp       28
         if (enderecoReg == 28 ) {
-            //Registrador $gp       28
-            System.out.println("Registrador $gp");
+            registradores.$gp=registradores.$zero;
             registradores.$gp=valor;
         }
+        
+        //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            //Registrador $sp       29
-            System.out.println("Registrador $sp");
+            registradores.$sp=registradores.$zero;
             registradores.$sp=valor;
         }
+        
+        //Registrador $fp       30
         if (enderecoReg == 30 ) {
-            //Registrador $fp       30
-            System.out.println("Registrador $fp");
+            registradores.$fp=registradores.$zero;
             registradores.$fp=valor;
         }
+        
+        //Registrador $ra       31
         if (enderecoReg == 31 ) {
-            //Registrador $ra       31
-            System.out.println("Registrador $ra");
+            registradores.$ra=registradores.$zero;
             registradores.$ra=valor;
         }
     }
     
     public char [] getValorReg(int enderecoReg){
+        //Registrador $zero     0
         if (enderecoReg == 0 ) {
-            //Registrador $zero     0
             return registradores.$zero;
         }
+
+        //Registrador $AT       1
         if (enderecoReg == 1 ) {
-            //Registrador $AT       1
-            System.out.println("Registrador $AT");
             return registradores.$AT;
         }
+
+        //Registrador $V0       2
         if (enderecoReg == 2 ) {
-            //Registrador $V0       2
-            System.out.println("Registrador $V0");
             return registradores.$V0;
         } 
+
+        //Registrador $V1       3
         if (enderecoReg == 3 ) {
-            //Registrador $V1       3
-            System.out.println("Registrador $V1");
             return registradores.$V1;
         }
+
+        //Registrador $A0       4
         if (enderecoReg == 4 ) {
-            //Registrador $A0       4
-            System.out.println("Registrador $A0");
             return registradores.$A0;
         }
+
+        //Registrador $A1       5
         if (enderecoReg == 5 ) {
-            //Registrador $A1       5
-            System.out.println("Registrador $A1");
             return registradores.$A1;
         }
+
+        //Registrador $A2       6
         if (enderecoReg == 6 ) {
-            //Registrador $A2       6
-            System.out.println("Registrador $A2");
             return registradores.$A2;
         }
+
+        //Registrador $A3       7
         if (enderecoReg == 7 ) {
-            //Registrador $A3       7
-            System.out.println("Registrador $A3");
             return registradores.$A3;
         }
+
+        //Registrador $T0       8
         if (enderecoReg == 8 ) {
-            //Registrador $T0       8
-            System.out.println("Registrador $T0");
             return registradores.$T0;
         }
+
+        //Registrador $T1       9
         if (enderecoReg == 9 ) {
-            //Registrador $T1       9
-            System.out.println("Registrador $T1");
             return registradores.$T1;
         }
+
+        //Registrador $T2       10
         if (enderecoReg == 10 ) {
-            //Registrador $T2       10
-            System.out.println("Registrador $T2");
             return registradores.$T2;
         }
+
+        //Registrador $T3       11
         if (enderecoReg == 11 ) {
-            //Registrador $T3       11
-            System.out.println("Registrador $T3");
             return registradores.$T3;
         }
+
+        //Registrador $T4       12
         if (enderecoReg == 12 ) {
-            //Registrador $T4       12
-            System.out.println("Registrador $T4");
             return registradores.$T4;
         }
+
+        //Registrador $T5       13
         if (enderecoReg == 13 ) {       
-            //Registrador $T5       13
-            System.out.println("Registrador $T5");
             return registradores.$T5;
         }
+
+        //Registrador $T6       14
         if (enderecoReg == 14 ) {
-            //Registrador $T6       14
-            System.out.println("Registrador $T6");
             return registradores.$T6;
         }
+
+        //Registrador $T7       15
         if (enderecoReg == 15 ) {
-            //Registrador $T7       15
-            System.out.println("Registrador $T7");
             return registradores.$T7;
         }
+
+        //Registrador $S0       16
         if (enderecoReg == 16 ) {
-            //Registrador $S0       16
-            System.out.println("Registrador $S0");
             return registradores.$S0;
         }
+
+        //Registrador $S1       17
         if (enderecoReg == 17 ) {
-            //Registrador $S1       17
-            System.out.println("Registrador $S1");
             return registradores.$S1;
         }
+
+        //Registrador $S2       18
         if (enderecoReg == 18 ) {
-            //Registrador $S2       18
-            System.out.println("Registrador $S2");
             return registradores.$S2;
         }
+
+        //Registrador $S3       19
         if (enderecoReg == 19 ) {
-            //Registrador $S3       19
-            System.out.println("Registrador $S3");
             return registradores.$S3;
         }
+
+        //Registrador $S4       20
         if (enderecoReg == 20 ) {
-            //Registrador $S4       20
-            System.out.println("Registrador $S4");
             return registradores.$S4;
         }
+
+        //Registrador $S5       21
         if (enderecoReg == 21 ) {
-            //Registrador $S5       21
-            System.out.println("Registrador $S5");
             return registradores.$S5;
         }
+
+        //Registrador $S6       22
         if (enderecoReg == 22 ) {
-            //Registrador $S6       22
-            System.out.println("Registrador $S6");
             return registradores.$S6;
         }
+
+        //Registrador $S7       23
         if (enderecoReg == 23 ) {
-            //Registrador $S7       23
-            System.out.println("Registrador $S7");
             return registradores.$S7;
         }
+
+        //Registrador $T8       24
         if (enderecoReg == 24 ) {
-            //Registrador $T8       24
-            System.out.println("Registrador $T8");
             return registradores.$T8;
         }
+
+        //Registrador $T9       25
         if (enderecoReg == 25 ) {
-            //Registrador $T9       25
-            System.out.println("Registrador $T9");
             return registradores.$T9;
         }
+
+        //Registrador $K0       26
         if (enderecoReg == 26 ) {
-            //Registrador $K0       26
-            System.out.println("Registrador $K0");
             return registradores.$K0;
         }
+
+        //Registrador $K1       27
         if (enderecoReg == 27 ) {
-            //Registrador $K1       27
-            System.out.println("Registrador $K1");
             return registradores.$K1;
         }
+
+        //Registrador $gp       28
         if (enderecoReg == 28 ) {
-            //Registrador $gp       28
-            System.out.println("Registrador $gp");
             return registradores.$gp;
         }
+
+        //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            //Registrador $sp       29
-            System.out.println("Registrador $sp");
             return registradores.$sp;
         }
+
+        //Registrador $fp       30
         if (enderecoReg == 30 ) {
-            //Registrador $fp       30
-            System.out.println("Registrador $fp");
             return registradores.$fp;
         }
+
+        //Registrador $ra       31
         if (enderecoReg == 31 ) {
-            //Registrador $ra       31
-            System.out.println("Registrador $ra");
             return registradores.$ra;
         }
+
 
         return registradores.$zero;
     }
@@ -333,131 +372,163 @@ public class OperacoesRegistradores{
     public void imprimeValorReg(int enderecoReg){
         if (enderecoReg == 0 ) {
             //Registrador $zero     0
-            System.out.println(registradores.$zero);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$zero))));
         }
+
+        //Registrador $AT       1
         if (enderecoReg == 1 ) {
-            //Registrador $AT       1
-            System.out.println(registradores.$AT);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$AT))));
         }
+
+        //Registrador $V0       2
         if (enderecoReg == 2 ) {
-            //Registrador $V0       2
-            System.out.println(registradores.$V0);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$V0))));
         }
+
+        //Registrador $V1       3
         if (enderecoReg == 3 ) {
-            //Registrador $V1       3
-            System.out.println(registradores.$V1);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$V1))));
         }
+
+        //Registrador $A0       4
         if (enderecoReg == 4 ) {
-            //Registrador $A0       4
-            System.out.println(registradores.$A0);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$A0))));
         }
+
+        //Registrador $A1       5
         if (enderecoReg == 5 ) {
-            //Registrador $A1       5
-            System.out.println(registradores.$A1);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$A1))));
         }
+
+        //Registrador $A2       6
         if (enderecoReg == 6 ) {
-            //Registrador $A2       6
-            System.out.println(registradores.$A2);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$A2))));
         }
+
+        //Registrador $A3       7
         if (enderecoReg == 7 ) {
-            //Registrador $A3       7
-            System.out.println(registradores.$A3);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$A3))));
         }
+
+        //Registrador $T0       8
         if (enderecoReg == 8 ) {
-            //Registrador $T0       8
-            System.out.println(registradores.$T0);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T0))));
         }
+
+        //Registrador $T1       9
         if (enderecoReg == 9 ) {
-            //Registrador $T1       9
-            System.out.println(registradores.$T1);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T1))));
         }
+
+        //Registrador $T2       10
         if (enderecoReg == 10 ) {
-            //Registrador $T2       10
-            System.out.println(registradores.$T2);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T2))));
         }
+
+        //Registrador $T3       11
         if (enderecoReg == 11 ) {
-            //Registrador $T3       11
-            System.out.println(registradores.$T3);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T3))));
         }
+
+        //Registrador $T4       12
         if (enderecoReg == 12 ) {
-            //Registrador $T4       12
-            System.out.println(registradores.$T4);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T4))));
         }
-        if (enderecoReg == 13 ) {       
-            //Registrador $T5       13
-            System.out.println(registradores.$T5);
+
+
+        //Registrador $T5       13
+        if (enderecoReg == 13 ) {     
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T5))));
         }
+
+        //Registrador $T6       14
         if (enderecoReg == 14 ) {
-            //Registrador $T6       14
-            System.out.println(registradores.$T6);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T6))));
         }
+
+        //Registrador $T7       15
         if (enderecoReg == 15 ) {
-            //Registrador $T7       15
-            System.out.println(registradores.$T7);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T7))));
         }
+
+        //Registrador $S0       16
         if (enderecoReg == 16 ) {
-            //Registrador $S0       16
-            System.out.println(registradores.$S0);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S0))));
         }
+
+        //Registrador $S1       17
         if (enderecoReg == 17 ) {
-            //Registrador $S1       17
-            System.out.println(registradores.$S1);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S1))));
         }
+
+        //Registrador $S2       18
         if (enderecoReg == 18 ) {
-            //Registrador $S2       18
-            System.out.println(registradores.$S2);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S2))));
         }
+
+        //Registrador $S3       19
         if (enderecoReg == 19 ) {
-            //Registrador $S3       19
-            System.out.println(registradores.$S3);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S3))));
         }
+
+        //Registrador $S4       20
         if (enderecoReg == 20 ) {
-            //Registrador $S4       20
-            System.out.println(registradores.$S4);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S4))));
         }
+
+        //Registrador $S5       21
         if (enderecoReg == 21 ) {
-            //Registrador $S5       21
-            System.out.println(registradores.$S5);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S5))));
         }
+
+        //Registrador $S6       22
         if (enderecoReg == 22 ) {
-            //Registrador $S6       22
-            System.out.println(registradores.$S6);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S6))));
         }
+
+        //Registrador $S7       23
         if (enderecoReg == 23 ) {
-            //Registrador $S7       23
-            System.out.println(registradores.$S7);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$S7))));
         }
+
+        //Registrador $T8       24
         if (enderecoReg == 24 ) {
-            //Registrador $T8       24
-            System.out.println(registradores.$T8);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T8))));
         }
+
+        //Registrador $T9       25
         if (enderecoReg == 25 ) {
-            //Registrador $T9       25
-            System.out.println(registradores.$T9);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$T9))));
         }
+
+        //Registrador $K0       26
         if (enderecoReg == 26 ) {
-            //Registrador $K0       26
-            System.out.println(registradores.$K0);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$K0))));
         }
+
+        //Registrador $K1       27
         if (enderecoReg == 27 ) {
-            //Registrador $K1       27
-            System.out.println(registradores.$K1);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$K1))));
         }
+
+        //Registrador $gp       28
         if (enderecoReg == 28 ) {
-            //Registrador $gp       28
-            System.out.println(registradores.$gp);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$gp))));
         }
+
+        //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            //Registrador $sp       29
-            System.out.println(registradores.$sp);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$sp))));
         }
+
+        //Registrador $fp       30
         if (enderecoReg == 30 ) {
-            //Registrador $fp       30
-            System.out.println(registradores.$fp);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$fp))));
         }
+
+        //Registrador $ra       31
         if (enderecoReg == 31 ) {
-            //Registrador $ra       31
-            System.out.println(registradores.$ra);
+            System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$ra))));
         }
     }
 }

@@ -51,6 +51,24 @@ public class OpALU implements AluInterface {
         return result;
     }
 
+	private char or(char num1, char num2) {
+		if(num1 == 0 && num2 == 0){
+            return zero;
+        }
+        else{
+            return hum;
+        }
+    }
+
+    private char and(char num1, char num2) {
+        if(num1 == 1 && num2 == 1){
+            return hum;
+        }
+        else{
+            return zero;
+        }
+    }
+
     //Subtração
     @Override
     public char[] sub(char[] num1, char[] num2) {
@@ -175,25 +193,17 @@ public class OpALU implements AluInterface {
         }
         hilo.setHilo(hl);
     }
-    
+
     @Override
-	public char or(char num1, char num2) {
-		if(num1 == 0 && num2 == 0){
-            return zero;
-        }
-        else{
-            return hum;
-        }
+    public char[] or(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public char and(char num1, char num2) {
-        if(num1 == 1 && num2 == 1){
-            return hum;
-        }
-        else{
-            return zero;
-        }
+    public char[] and(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -211,15 +221,8 @@ public class OpALU implements AluInterface {
     }
 
 
-    /*************************************************************************************************
-     * Receber dois arrays de char, o primeiro do valor,                                             *
-     * o segundo da quantidade de deslocamentos se preferir,                                         *
-     * depois de receber a quantidade de deslocamentos (num2),                                       *                   
-     * voce pode transformar em int, | numerodeslocamento = Integer.parseInt(new String (num2)); |   *   
-     * onde numerodeslocamento é uma varivavel do tipo int, e o num2, é o array que vc recebe        *   
-     * ***********************************************************************************************/
     @Override
-    public char[] sll(char[] num1, char num2) {     
+    public char[] sll(char[] num1, int num2) {     
         int aux = num1.length; //ver o tamanho do vetor
         int i = aux - 1;
         int k;
@@ -231,10 +234,10 @@ public class OpALU implements AluInterface {
             num1[0] = 0;
             num2--;
         }
-        return null;
+        return num1;
     }
 
-    public char[] srl(char[] num1, char num2) {
+    public char[] srl(char[] num1, int num2) {
         int aux = num1.length; //ver o tamanho do vetor
         int i = aux - 1;
         int k;
@@ -243,10 +246,10 @@ public class OpALU implements AluInterface {
                 num1[i] = num1[i+1];
                 i++;
             }
-            num1[4] = 0;
+            num1[31] = 0;
             num2--;
         }
-        return null;
+        return num1;
     }
  
     @Override
@@ -274,4 +277,5 @@ public class OpALU implements AluInterface {
         }
         return hum;
     }
+
 }

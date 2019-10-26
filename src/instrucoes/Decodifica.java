@@ -40,74 +40,49 @@ public class Decodifica {
 
         //opCode tipo R
         if (Arrays.equals(opCode, instrucoes.R )) {
-            System.out.println("Instrucao tipo R");
             tipoR.separaFunct(vetInstrucao, PC, opReg, alu);
         }
         
         //opCode Add immediate
-        if (Arrays.equals(opCode, instrucoes.addi )) {
+        if (Arrays.equals(opCode, instrucoes.addi )) {               //<---- Verificar
             salvaTipoI(vetInstrucao);//Salva valor do imediato
             opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), valorImmI));
         }
         
         if (Arrays.equals(opCode, instrucoes.addiu )) {
-            //opCode Add ediate Unsigned 
-            System.out.println("Instrucao Add immediate Unsigned");
             salvaTipoI(vetInstrucao);//Salva valor do imediato
         }
         if (Arrays.equals(opCode, instrucoes.lw )) {
-            //opCode Load Word
-            System.out.println("Instrucao Load Word");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.lh )) {
-            //opCode Load Halfword
-            System.out.println("Instrucao Load Halfword");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.lb )) {
-            //opCode Load Byte
-            System.out.println("Instrucao Load Byte");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.sw )) {
-            //opCode Store Word
-            System.out.println("Instrucao Store Word");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.sh )) {
-            //opCode Store Halfword
-            System.out.println("Instrucao Store Halfword");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.sb )) {
-            //opCode Move from low
-            System.out.println("Instrucao Move from low");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.lui )) {
-            //opCode And
-            System.out.println("Instrucao And");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.andi )) {
-            //opCode Or 
-            System.out.println("Instrucao Or");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.ori )) {
-            //opCode Set on Less Than 
-            System.out.println("Instrucao Set on Less Than");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.slti )) {
-            //opCode Shift left logical
-            System.out.println("Instrucao Shift left logical");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.beq )) {
-            //opCode Shift right logical
-            System.out.println("Instrucao Shift right logical");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
         if (Arrays.equals(opCode, instrucoes.bne )) {
@@ -115,15 +90,50 @@ public class Decodifica {
             System.out.println("Instrucao Branch on not equal");
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
+        
+        //opCode Jump
         if (Arrays.equals(opCode, instrucoes.j )) {
-            //opCode Jump
-            System.out.println("Instrucao Jump");
             salvaTipoJ(vetInstrucao);
+
+            char [] auxPC = new char [32];
+            char [] newPC = new char [32];
+
+            salvaTipoJ(vetInstrucao);
+            auxPC = ("" + PC+4).toCharArray();      //Atualiza o PC para a proxima instrução
+
+            for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
+                newPC[i] = auxPC[i];
+            }
+            for (int i = 3, j=0 ; i < 29; i++, j++) {       //Rcebe os 26 bits do imediato
+                newPC[i] = valorImmJ [j];
+            }
+            for (int i = 29; i < 31; i++) {     //Adiciona zero nos dois bits menos significativo
+                newPC [i] = 0;
+            }
+
+            opReg.setPC(Integer.parseInt(new String(newPC)));   //Atualiza o Proximo valor do PC
         }
+        
+        //opCode Jump and link
         if (Arrays.equals(opCode, instrucoes.jal )) {
-            //opCode Jump and link
-            System.out.println("Instrucao Jump and link");
+            char [] auxPC = new char [32];
+            char [] newPC = new char [32];
+
             salvaTipoJ(vetInstrucao);
+            auxPC = ("" + PC+4).toCharArray();  //Atualiza o PC para a proxima instrução
+            opReg.setValorReg(31, auxPC);       //Guarda o valor do proximo PC no $RA
+
+            for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
+                newPC[i] = auxPC[i];
+            }
+            for (int i = 3, j=0 ; i < 29; i++, j++) {       //Receber os 26 bits do imediato em sequencia
+                newPC[i] = valorImmJ [j];
+            }
+            for (int i = 29; i < 31; i++) {     //Adiciona zero nos dois bits menos significativos
+                newPC [i] = 0;
+            }
+
+            opReg.setPC(Integer.parseInt(new String(newPC)));   //Atualiza o Proximo valor do PC
         }
     }
 

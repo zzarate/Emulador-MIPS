@@ -5,6 +5,9 @@ package registradores;
  *******************************/
 
 public class Registradores {
+
+    int PC = 0x0;     //Program Counter
+
 	//Registrador Zero
     final char [] $zero = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '0'};   //0
 

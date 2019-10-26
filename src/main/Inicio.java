@@ -4,11 +4,6 @@ import instrucoes.Decodifica;
 import registradores.OperacoesRegistradores;
 
 public class Inicio {
-
-    private int PC;     //Program Counter
-
-    //private Registradores registradores = new Registradores();
-    //private HILO hilo = new HILO();
     private byte [] memory = new byte [4096 * 4];
 
     //Objetos necessarios para executar o programa
@@ -33,15 +28,13 @@ public class Inicio {
     void executaInstrucoes (){
 
         /*  Executa uma instrução da memoria */
-        for (PC = 0x0 ; PC < 0x0fff; PC+= 4) {
+        for (opReg.getPC() ; opReg.getPC() < 0x0fff; opReg.setPC(opReg.getPC()+4)) {
 
             /*  Salva as instruções de 4 bytes (32 bits) em uma string
              *  a partir do endereço do PC */ 
             String instrucao = null;
-            instrucao = separaDados.separaInstrucao(instrucao, PC, memory);
-            decodifica.separaInstrucao(instrucao, PC, opReg); //Decodifica e executa a instrucao
-
-            //Verificar se pc precisa ser alterado
+            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memory);
+            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg); //Decodifica e executa a instrucao
 
 
             //Teste para saber se esta lendo as instruções corretamente
@@ -66,9 +59,4 @@ public class Inicio {
             opReg.setValorReg(i, opReg.getValorReg(0));
         }
     }
-
-    void alteraValorPC (){
-
-    }
-
 }

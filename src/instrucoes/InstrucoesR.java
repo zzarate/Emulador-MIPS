@@ -9,12 +9,13 @@ import registradores.OperacoesRegistradores;
 public class InstrucoesR {
 
     private HILO hilo = new HILO();
+    private Syscall syscall = new Syscall();
     
     private int rs = 0;
     private int rt = 0;
     private int rd = 0;
+    private char [] shamt = new char [6];
     
-    //private int newPC;
 
 
     void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu){
@@ -23,8 +24,7 @@ public class InstrucoesR {
         for (int i = 26, j =0; i <32; i++, j++) {
             funct [j] = vetInstrucao[i];
         }
-
-        //verificar se SHAMT <--------------------------    
+  
         verificaFunct(funct, vetInstrucao, PC, opReg, alu);
         //Debug
         System.out.println("Funct: ");
@@ -32,18 +32,10 @@ public class InstrucoesR {
     }
 
     void verificaShamt (char [] vetInstrucao,OperacoesRegistradores opReg, OpALU alu){
-        char [] shamt = new char [6];
-        int temp;
-
         for (int i = 20, j =0; i <26; i++, j++) {
             shamt [j] = vetInstrucao[i];
         }
-        temp = Integer.parseInt(new String (shamt));
-        if (temp != 0) {
-            opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rt), shamt));
-        }
         
-
     }
 
     void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu ){
@@ -80,16 +72,13 @@ public class InstrucoesR {
             System.out.println("Instrucao Move from low");
         }
         if (Arrays.equals(funct, instrucoes.and )) {
-            //opCode And
-            System.out.println("Instrucao And");
+            opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
         if (Arrays.equals(funct, instrucoes.or )) {
-            //opCode Or 
-            System.out.println("Instrucao Or");
+            opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
         if (Arrays.equals(funct, instrucoes.slt )) {
-            //opCode Set on Less Than 
-            System.out.println("Instrucao Set on Less Than");
+            opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
 
         //opCode Shift left logical
@@ -105,14 +94,15 @@ public class InstrucoesR {
             //opCode Shift right arithmetic
             System.out.println("Instrucao Shift right arithmetic");
         }
+        
+        //opCode Jump register
         if (Arrays.equals(funct, instrucoes.jr )) {
-            //opCode Jump register
-            System.out.println("Instrucao Jump register");
-
+            opReg.setPC(Integer.parseInt(new String (opReg.getValorReg(rs))));
         }
+
+        //opCode Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
-            //opCode Syscall
-            System.out.println("Instrucao syscall");
+            syscall.verifica(opReg);
             
         }
     }
