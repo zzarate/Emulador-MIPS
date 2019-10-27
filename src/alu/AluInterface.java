@@ -10,9 +10,9 @@ public interface AluInterface {
     void mult (char[] num1, char[] num2, HILO hilo);
     void div (char[] num1, char[] num2, HILO hilo);
     //Logica
-	char [] or (char [] num1,char [] num2);      // <------------- receber um array de char  e retornar um array de char
-    char [] and (char [] num1,char [] num2);     // o mesmo de cima
-    char slt (char[] num1,char[] num2); //retornar um array de char
+	char [] or (char [] num1,char [] num2);
+    char [] and (char [] num1,char [] num2);
+    char slt (char[] num1,char[] num2);     //retornar um array de char
 
     //Deslocameno de bits
     char[] sll (char[] num1, int num2);

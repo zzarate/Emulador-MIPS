@@ -209,7 +209,7 @@ public class OpALU implements AluInterface {
     @Override
     public char slt(char[] num1, char[] num2) {
         char[] result;
-        result = new char[5];
+        result = new char[5];//         <------ Não deveria ser 32, já que são 32 bits de tamanho????
         result = sub(num1, num2);
         
         if(result[4] == 1){
