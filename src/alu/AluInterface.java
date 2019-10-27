@@ -12,12 +12,12 @@ public interface AluInterface {
     //Logica
 	char [] or (char [] num1,char [] num2);
     char [] and (char [] num1,char [] num2);
-    char slt (char[] num1,char[] num2);     //retornar um array de char
+    char [] slt (char[] num1,char[] num2);     //retornar um array de char
 
     //Deslocameno de bits
     char[] sll (char[] num1, int num2);
     char[] srl (char[] num1, int num2);
     //Desvio condicional
-    char bne (char[] num1,char[] num2);
-    char beq (char[] num1,char[] num2);
+    char [] bne (char[] num1,char[] num2);
+    char [] beq (char[] num1,char[] num2);
 }

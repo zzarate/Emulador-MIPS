@@ -71,12 +71,18 @@ public class InstrucoesR {
             //opCode Move from low
             System.out.println("Instrucao Move from low");
         }
+
+        //opCode AND
         if (Arrays.equals(funct, instrucoes.and )) {
             opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
+
+        //opCode OR
         if (Arrays.equals(funct, instrucoes.or )) {
             opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
+
+        //opCode SLT
         if (Arrays.equals(funct, instrucoes.slt )) {
             opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
@@ -84,6 +90,7 @@ public class InstrucoesR {
         //opCode Shift left logical
         if (Arrays.equals(funct, instrucoes.sll)) {
             verificaShamt(vetInstrucao, opReg, alu);
+            opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
 
         if (Arrays.equals(funct, instrucoes.srl )) {
@@ -116,6 +123,15 @@ public class InstrucoesR {
      *  RD = 01001 / Registrador 9 / $T1                                 *                       
      * *******************************************************************/
 
+     /**
+      * Salva local do registrador que a instrucao vai utilizar
+      *  Exemplo: ADD $t1 $t2 $t3 - 000000/01010/01011/01001/00000/100000 
+      *  RS = 01010 / Registrador 10/ $T2                                 
+      *  RT = 01011 / Registrador 11/ $T3                              
+      *  RD = 01001 / Registrador 9 / $T1
+      * 
+      * @param instrucao instrucao para receber o destino dos registradores
+      */
     void salvaRegTipoR(char[] instrucao){
         char [] regDest = new char [5];
 

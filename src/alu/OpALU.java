@@ -207,7 +207,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char slt(char[] num1, char[] num2) {
+    public char slt(char[] num1, char[] num2) {     //<------- Deve retornar um array de char
         char[] result;
         result = new char[5];//         <------ Não deveria ser 32, já que são 32 bits de tamanho????
         result = sub(num1, num2);
@@ -253,7 +253,7 @@ public class OpALU implements AluInterface {
     }
  
     @Override
-    public char bne(char[] num1, char[] num2) {
+    public char bne(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
         char[] result;
         result = new char[16];
         result = sub(num1, num2);
@@ -266,7 +266,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char beq(char[] num1, char[] num2) {
+    public char beq(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
         char[] result;
         result = new char[16];
         result = sub(num1, num2);
@@ -276,6 +276,26 @@ public class OpALU implements AluInterface {
             }
         }
         return hum;
+    }
+
+
+    /**
+     * Extende o tamanho do array de retorno para 
+     * garantir que ele tenha 32 bits
+     * 
+     * @param valor     valor de retorno com tamanho < 32
+     * @return          valor enviado com 32 bits de tamanho
+     */
+    private char [] fillArray (char [] valor){
+        int tamVet = valor.length;
+        char [] result = new char [32];
+
+        if (tamVet < 32) {
+            for (int i = tamVet; i < 32; i++) {
+                result[i] = '0';
+            }
+        }
+        return result;
     }
 
 }
