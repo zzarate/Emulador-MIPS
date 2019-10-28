@@ -3,6 +3,7 @@ package instrucoes;
 import java.util.Arrays;
 
 import alu.OpALU;
+import registradores.HILO;
 import registradores.OperacoesRegistradores;
 public class Decodifica {
 
@@ -13,6 +14,7 @@ public class Decodifica {
 	
     private InstrucoesR tipoR = new InstrucoesR();
     private OpALU alu = new OpALU();
+    private HILO hilo = new HILO();
 
     public void separaInstrucao (String instrucao, int PC, OperacoesRegistradores opReg){
 
@@ -40,7 +42,7 @@ public class Decodifica {
 
         //opCode tipo R
         if (Arrays.equals(opCode, instrucoes.R )) {
-            tipoR.separaFunct(vetInstrucao, PC, opReg, alu);
+            tipoR.separaFunct(vetInstrucao, PC, opReg, alu, hilo);
         }
         
         //opCode Add immediate

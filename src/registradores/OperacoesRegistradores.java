@@ -530,5 +530,7 @@ public class OperacoesRegistradores{
         if (enderecoReg == 31 ) {
             System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$ra))));
         }
+
+        
     }
 }
