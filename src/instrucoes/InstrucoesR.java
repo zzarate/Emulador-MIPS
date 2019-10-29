@@ -64,7 +64,7 @@ public class InstrucoesR {
 
         if (Arrays.equals(funct, instrucoes.mfhi )) {
             //opCode Move from high
-            opReg.setValorReg(rd, );
+            opReg.setValorReg(rd, );                    // <<-------------------
         }
         if (Arrays.equals(funct, instrucoes.mflo )) {
             //opCode Move from low

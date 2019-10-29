@@ -5,6 +5,8 @@ import registradores.HILO;
 public class OpALU implements AluInterface {
     static final char zero = '0';
     static final char hum = '1';
+    static final char [] humArray = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '1'};
+    static final char [] zeroArray = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '0'};
 
     //Soma
     @Override
@@ -140,13 +142,13 @@ public class OpALU implements AluInterface {
         }
         for(i = 0; i < tam; i++){
             if(num1[0] == 1){
-                add(mult, prod);
-                sll(mult, (char) 1);
-                srl(num1, (char) 1);
+                add(mult, prod);            //                  <---------------------------------------
+                sll(mult, humArray);
+                srl(num1, humArray);
             }
             else{
-                sll(mult, (char) 1);
-                srl(num1, (char) 1);
+                sll(mult, humArray);
+                srl(num1, humArray);
             }
         }
         hilo.setHilo(prod);
@@ -207,22 +209,23 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char [] slt(char[] num1, char[] num2) {     //<------- Deve retornar um array de char
+    public char [] slt(char[] num1, char[] num2) {
         char[] result;
-        result = new char[5];                       //<------ Não deveria ser 32, já que são 32 bits de tamanho????
+        result = new char[32];
         result = sub(num1, num2);
         
         if(result[4] == 1){
-            return hum;
+            return humArray;
         }
         else{
-            return zero;
+            return zeroArray;
         }
     }
 
 
     @Override
-    public char[] sll(char[] num1, int num2) {     
+    public char[] sll(char[] num1, char [] numArray) { 
+        int num2 = Integer.parseInt(new String(numArray));
         int aux = num1.length; //ver o tamanho do vetor
         int i = aux - 1;
         int k;
@@ -237,7 +240,8 @@ public class OpALU implements AluInterface {
         return num1;
     }
 
-    public char[] srl(char[] num1, int num2) {
+    public char[] srl(char[] num1, char [] numArray) {
+        int num2 = Integer.parseInt(new String(numArray));
         int aux = num1.length; //ver o tamanho do vetor
         int i = aux - 1;
         int k;
@@ -251,6 +255,12 @@ public class OpALU implements AluInterface {
         }
         return num1;
     }
+
+    @Override
+    public char[] sra(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return null;
+    }
  
     @Override
     public char [] bne(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
@@ -259,10 +269,10 @@ public class OpALU implements AluInterface {
         result = sub(num1, num2);
         for(int i = 0; i < 16; i++){
             if(result[i] == 1){
-                return hum;
+                return humArray;
             }
         }
-        return zero;
+        return zeroArray;
     }
 
     @Override
@@ -272,29 +282,10 @@ public class OpALU implements AluInterface {
         result = sub(num1, num2);
         for(int i = 0; i < 16; i++){
             if(result[i] == 1){
-                return zero;
+                return zeroArray;
             }
         }
-        return hum;
-    }
-
-    /**
-     * Extende o tamanho do array de retorno para 
-     * garantir que ele tenha 32 bits
-     * 
-     * @param valor     valor de retorno com tamanho < 32
-     * @return          valor enviado com 32 bits de tamanho
-     */
-    private char [] fillArray (char [] valor){
-        int tamVet = valor.length;
-        char [] result = new char [32];
-
-        if (tamVet < 32) {
-            for (int i = tamVet; i < 32; i++) {
-                result[i] = '0';
-            }
-        }
-        return result;
+        return humArray;
     }
 
 }
