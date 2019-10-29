@@ -8,6 +8,9 @@ class Syscall {
 
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 1 ) {
             //print integer ($a0 = integer to print)
+            int x;
+            x = Integer.parseInt(new String (opReg.getValorReg(4));
+            System.out.printf ("%d\n", x);
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 4 ) {
             //print string ($a0 = address of null-terminated string to print)
