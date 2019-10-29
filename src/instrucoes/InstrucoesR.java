@@ -8,7 +8,6 @@ import registradores.OperacoesRegistradores;
 
 public class InstrucoesR {
 
-    private HILO hilo = new HILO();
     private Syscall syscall = new Syscall();
     
     private int rs = 0;
@@ -18,14 +17,14 @@ public class InstrucoesR {
     
 
 
-    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu){
+    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo){
         char [] funct;
         funct = new char [6];
         for (int i = 26, j =0; i <32; i++, j++) {
             funct [j] = vetInstrucao[i];
         }
   
-        verificaFunct(funct, vetInstrucao, PC, opReg, alu);
+        verificaFunct(funct, vetInstrucao, PC, opReg, alu, hilo);
         //Debug
         System.out.println("Funct: ");
         System.out.println (funct);
@@ -38,84 +37,93 @@ public class InstrucoesR {
         
     }
 
-    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu ){
+    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo ){
         Funct instrucoes = new Funct();
 
-        //opCode Add
+        //oAdd
         if (Arrays.equals(funct, instrucoes.add )) {
             salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.add(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
 
-        //opCode Sub
+        //Sub
         if (Arrays.equals(funct, instrucoes.sub )) {
             salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.sub(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
 
-        //opCode Multiply
+        //Multiply
         if (Arrays.equals(funct, instrucoes.mult )) {
             alu.mult(opReg.getValorReg(rs), opReg.getValorReg(rt), hilo);
         }
 
-        //opCode Divide 
+        //Divide 
         if (Arrays.equals(funct, instrucoes.div )) {
             alu.div(opReg.getValorReg(rs), opReg.getValorReg(rt), hilo);
         }
 
         if (Arrays.equals(funct, instrucoes.mfhi )) {
             //opCode Move from high
-            System.out.println("Instrucao Move from high");
+            opReg.setValorReg(rd, );                    // <<-------------------
         }
         if (Arrays.equals(funct, instrucoes.mflo )) {
             //opCode Move from low
             System.out.println("Instrucao Move from low");
         }
+
+        //AND
         if (Arrays.equals(funct, instrucoes.and )) {
             opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
+
+        //OR
         if (Arrays.equals(funct, instrucoes.or )) {
             opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
+
+        //Set on Less Than
         if (Arrays.equals(funct, instrucoes.slt )) {
             opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)));
         }
 
-        //opCode Shift left logical
+        //Shift left logical
         if (Arrays.equals(funct, instrucoes.sll)) {
             verificaShamt(vetInstrucao, opReg, alu);
+            opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rs), shamt));
         }
 
+        //Shift right logical
         if (Arrays.equals(funct, instrucoes.srl )) {
-            //opCode Shift right logical
-            System.out.println("Instrucao Shift right logical");
+            verificaShamt(vetInstrucao, opReg, alu);
+            opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt));
         }
+
         if (Arrays.equals(funct, instrucoes.sra )) {
             //opCode Shift right arithmetic
             System.out.println("Instrucao Shift right arithmetic");
         }
         
-        //opCode Jump register
+        //Jump register
         if (Arrays.equals(funct, instrucoes.jr )) {
             opReg.setPC(Integer.parseInt(new String (opReg.getValorReg(rs))));
         }
 
-        //opCode Syscall
+        //Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
             syscall.verifica(opReg);
             
         }
     }
 
-
-    /* *******************************************************************
-     *  Salva local do registrador que a instrucao vai utilizar          *
-     *  Exemplo: ADD $t1 $t2 $t3 - 000000/01010/01011/01001/00000/100000 *
-     *  RS = 01010 / Registrador 10/ $T2                                 *
-     *  RT = 01011 / Registrador 11/ $T3                                 *
-     *  RD = 01001 / Registrador 9 / $T1                                 *                       
-     * *******************************************************************/
-
+     /**
+      *  Salva local do registrador que a instrucao vai utilizar
+      *  Exemplo: ADD $t1 $t2 $t3 - 000000/01010/01011/01001/00000/100000 
+      *  RS = 01010 / Registrador 10/ $T2                                 
+      *  RT = 01011 / Registrador 11/ $T3                              
+      *  RD = 01001 / Registrador 9 / $T1
+      * 
+      * @param instrucao instrucao para receber o destino dos registradores
+      */
     void salvaRegTipoR(char[] instrucao){
         char [] regDest = new char [5];
 

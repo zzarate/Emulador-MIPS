@@ -12,6 +12,25 @@ public class OperacoesRegistradores{
         return registradores.PC;
     }
 
+    /**
+     * Extende o tamanho do array de retorno para 
+     * garantir que ele tenha 32 bits
+     * 
+     * @param valor     valor de retorno com tamanho < 32
+     * @return          valor enviado com 32 bits de tamanho
+     */
+    private char [] fillArray (char [] valor){
+        int tamVet = valor.length;
+        char [] result = new char [32];
+
+        if (tamVet < 32) {
+            for (int i = tamVet; i < 32; i++) {
+                result[i] = '0';
+            }
+        }
+        return result;
+    }
+
     public void setValorReg(int enderecoReg, char [] valor ){
         //Registrador $zero     0
         if (enderecoReg == 0 ) {
@@ -530,5 +549,7 @@ public class OperacoesRegistradores{
         if (enderecoReg == 31 ) {
             System.out.println(String.format("0x%08x", Integer.parseInt(new String (registradores.$ra))));
         }
+
+        
     }
 }
