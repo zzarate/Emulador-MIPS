@@ -27,17 +27,14 @@ class Syscall {
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 12 ) {
             //read character ($v0 contains character read)
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == x ) {
-            
+        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 34 ) {
+            //print integer in hexadecimal ($a0 = integer to print,Displayed value is 8 hexadecimal digits, left-padding with zeroes if necessary)
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == x ) {
-            
+        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 35 ) {
+            //print integer in binary ($a0 = integer to print,Displayed value is 32 bits, left-padding with zeroes if necessary)
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == x ) {
-            
-        }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == x ) {
-            
+        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 36 ) {
+            //print integer as unsigned ($a0 = integer to print,Displayed as unsigned decimal value)
         }
     }
 }
