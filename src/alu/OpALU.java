@@ -196,14 +196,24 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] or(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        return null;
+        char[] result;
+        result = new char[32];
+
+        for(int i = 0; i < 32; i++){
+            result[i] = or(num1[i], num2[i]);
+        }
+        return result;
     }
 
     @Override
     public char[] and(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        return null;
+        char[] result;
+        result = new char[32];
+
+        for(int i = 0; i < 32; i++){
+            result[i] = and(num1[i], num2[i]);
+        }
+        return result;
     }
 
     @Override
@@ -219,7 +229,6 @@ public class OpALU implements AluInterface {
             return zero;
         }
     }
-
 
     @Override
     public char[] sll(char[] num1, int num2) {     
