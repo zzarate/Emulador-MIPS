@@ -33,12 +33,12 @@ public class Inicio {
              *  a partir do endereço do PC */ 
             String instrucao = null;
             instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory);
-            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg); //Decodifica e executa a instrucao
+            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria); //Decodifica e executa a instrucao
 
 
             //Teste para saber se esta lendo as instruções corretamente
-            System.out.println(instrucao);
-            System.out.println("");
+            //System.out.println(instrucao);
+            //System.out.println("");
 
         }
     }

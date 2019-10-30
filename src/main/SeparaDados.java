@@ -52,9 +52,9 @@ class SeparaDados{
 
 	/*Separa as instruções de 4 bytes, e devolve elas em uma string*/
 	String separaInstrucao (String instrucao, int PC, byte [] memory){
-		instrucao =Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
-		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
-		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		instrucao =Integer.toBinaryString((memory[PC+3] & 0xFF) + 0x100).substring(1);
+		instrucao= instrucao+ Integer.toBinaryString((memory[PC+2] & 0xFF) + 0x100).substring(1);
+		instrucao= instrucao+ Integer.toBinaryString((memory[PC+1] & 0xFF) + 0x100).substring(1);
 		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
 
 		return instrucao;

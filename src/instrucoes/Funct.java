@@ -26,5 +26,5 @@ public class Funct {
     public final char [] jr = { '0','0','1','0','0','0'};    //Jump register
 
     //Syscall
-    public final char [] syscall = { '0','0','1','1','0','0'};  //
+    public final char [] syscall = { '0','0','1','1','0','0'};  //Syscall
 }

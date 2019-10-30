@@ -35,7 +35,7 @@ public class HILO {
     }
 
     //Devolve valor armazenaddo no HI
-    char [] getHI (){
+    public char [] getHI (){
         char [] dest_HI;
         dest_HI = new char [32];
         for (int i = 32; i<64; i++) {

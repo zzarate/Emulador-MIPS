@@ -40,7 +40,7 @@ public class InstrucoesR {
     void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo ){
         Funct instrucoes = new Funct();
 
-        //oAdd
+        //Add
         if (Arrays.equals(funct, instrucoes.add )) {
             salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.add(opReg.getValorReg(rs), opReg.getValorReg(rt)));
@@ -62,13 +62,14 @@ public class InstrucoesR {
             alu.div(opReg.getValorReg(rs), opReg.getValorReg(rt), hilo);
         }
 
+        //opCode Move from high
         if (Arrays.equals(funct, instrucoes.mfhi )) {
-            //opCode Move from high
-            opReg.setValorReg(rd, );                    // <<-------------------
+            opReg.setValorReg(rd, hilo.getHI());
         }
+
+        //opCode Move from low
         if (Arrays.equals(funct, instrucoes.mflo )) {
-            //opCode Move from low
-            System.out.println("Instrucao Move from low");
+            opReg.setValorReg(rd, hilo.getLO());
         }
 
         //AND
@@ -98,7 +99,7 @@ public class InstrucoesR {
             opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt));
         }
 
-        if (Arrays.equals(funct, instrucoes.sra )) {
+        if (Arrays.equals(funct, instrucoes.sra )) {            //      <<-----------------------------------
             //opCode Shift right arithmetic
             System.out.println("Instrucao Shift right arithmetic");
         }

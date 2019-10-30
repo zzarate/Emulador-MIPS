@@ -1,7 +1,7 @@
 package main;
 
 public class Memoria {
-    byte [] memory = new byte [4096 * 4];
+    public byte [] memory = new byte [4096 * 4];
 
     final int minTextSection = 0x0000;   //0
     final int maxTextSection = 0x0fff;   //4.095
@@ -25,7 +25,7 @@ public class Memoria {
         if (countMemData < maxDataSection){
             memory [countMemData] = palavra;
 
-            countMemData++; //Contador para posição da memoria de texto
+            countMemData++; //Contador para posição da memoria de dados
         }
     }
 }

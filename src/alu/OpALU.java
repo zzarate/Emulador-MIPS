@@ -142,7 +142,7 @@ public class OpALU implements AluInterface {
         }
         for(i = 0; i < tam; i++){
             if(num1[0] == 1){
-                add(mult, prod);            //                  <---------------------------------------
+                add(mult, prod); 
                 sll(mult, humArray);
                 srl(num1, humArray);
             }
@@ -272,7 +272,7 @@ public class OpALU implements AluInterface {
     }
  
     @Override
-    public char [] bne(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
+    public char [] bne(char[] num1, char[] num2) {
         char[] result;
         result = new char[16];
         result = sub(num1, num2);
@@ -285,7 +285,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char [] beq(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
+    public char [] beq(char[] num1, char[] num2) {
         char[] result;
         result = new char[16];
         result = sub(num1, num2);
