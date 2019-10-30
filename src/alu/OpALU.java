@@ -173,20 +173,21 @@ public class OpALU implements AluInterface {
             i--;
         }
 
-        for(int j = 31, k = 32; j >= 0; j--, k++){
-                hl[k] = (char) hi[j];
+        for(int k = 31; k >= 0; k--){
+                hl[k] = (char) hi[k];
         }
 
         num = numero1 / numero2;
         i = 31;
         while(num > 0){
-            lo[i] = num % 2;
+            j = num % 2;
+            lo[i] = j + 48;   //tabela ascii +48
             num = num / 2;
             i--;
         }
 
-        for(int j = 31, k = 0; j >= 0; j--, k++){
-                hl[k] = (char) lo[j];
+        for(int k = 63, l = 31; l >= 0; k--, l--){
+                hl[k] = (char) lo[l];
         }
         hilo.setHilo(hl);
     }
@@ -219,7 +220,7 @@ public class OpALU implements AluInterface {
         result = new char[32];
         result = sub(num1, num2);
         
-        if(result[4] == 1){
+        if(result[0] == '1'){
             return humArray;
         }
         else{
@@ -230,15 +231,12 @@ public class OpALU implements AluInterface {
     @Override
     public char[] sll(char[] num1, char [] numArray) { 
         int num2 = Integer.parseInt(new String(numArray));
-        int aux = num1.length; //ver o tamanho do vetor
-        int i = aux - 1;
-        int k;
+        int i;
         while(num2 > 0){
-            for(k = 4; k > 0; k--){
-                num1[i] = num1[i-1];
-                i--;
+            for(i = 31; i > 0; i--){
+                num1[i-1] = num1[i];
             }
-            num1[0] = 0;
+            num1[31] = '0';
             num2--;
         }
         return num1;
@@ -246,15 +244,12 @@ public class OpALU implements AluInterface {
 
     public char[] srl(char[] num1, char [] numArray) {
         int num2 = Integer.parseInt(new String(numArray));
-        int aux = num1.length; //ver o tamanho do vetor
-        int i = aux - 1;
-        int k;
+        int i;
         while(num2 > 0){
-            for(k = 4; k > 0; k--){
-                num1[i] = num1[i+1];
-                i++;
+            for(i = 0; i < 31; i++){
+                num1[i+1] = num1[i];
             }
-            num1[31] = 0;
+            num1[0] = '0';
             num2--;
         }
         return num1;
