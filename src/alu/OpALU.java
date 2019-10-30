@@ -118,6 +118,12 @@ public class OpALU implements AluInterface {
     }
 
     @Override
+    public char[] addiu(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    @Override
     public void mult(char[] num1, char[] num2, HILO hilo) {
         char[] mult; //multiplicando
         mult = new char[64];
@@ -159,6 +165,7 @@ public class OpALU implements AluInterface {
         int i = 31;
         int j = 0;
         int[] hi, lo;
+        int aux = 0;
         hi = new int[32];
         lo = new int[32];
         for(i = 0; i < 64; i++){
@@ -168,26 +175,30 @@ public class OpALU implements AluInterface {
         num = numero1 % numero2;
         while(num > 0){
             j = num % 2;
-            hi[i] = j + 48; //tabela ascii +48
+            j = j + 48;    //tabela ascii +48
+            hi[i] = (char) j; 
             num = num / 2;
             i--;
         }
 
         for(int k = 31; k >= 0; k--){
-                hl[k] = (char) hi[k];
+            aux = hi[k] + 48;
+            hl[k] = (char) aux;
         }
 
         num = numero1 / numero2;
         i = 31;
         while(num > 0){
             j = num % 2;
-            lo[i] = j + 48;   //tabela ascii +48
+            j = j + 48;    //tabela ascii +48
+            lo[i] = (char) j;   
             num = num / 2;
             i--;
         }
 
         for(int k = 63, l = 31; l >= 0; k--, l--){
-                hl[k] = (char) lo[l];
+            aux = lo[l] + 48;
+            hl[k] = (char) aux;
         }
         hilo.setHilo(hl);
     }
