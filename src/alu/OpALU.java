@@ -11,42 +11,41 @@ public class OpALU implements AluInterface {
     //Soma
     @Override
     public char[] add(char[] num1, char[] num2) {
-        int carryIn = 0;
-        int carryOut = 0;
-        int tam = num1.length;  // tamanho do vetor
+        char carryIn = '0';
+        char carryOut = '0';
         char[] result;
-        result = new char[tam];
-    	for(int i = 0; i < tam; i++){
+        result = new char[32];
+    	for(int i = 31; i >= 0; i--){
             carryIn = carryOut;
-            int and = and(num1[i], num2[i]);
-            int or = or(num1[i], num2[i]);
-            if(carryIn == 0){
-                if(and == 1 && or == 1){
-                    result[i] = 0;
-                    carryOut = 1;
+            char and = and(num1[i], num2[i]);
+            char or = or(num1[i], num2[i]);
+            if(carryIn == '0'){
+                if(and == '1' && or == '1'){
+                    result[i] = '0';
+                    carryOut = '1';
                 }
                 else
-                    if(and == 0 && or == 0){
-                          result[i] = 0;
-                          carryOut = 0; 
+                    if(and == '0' && or == '0'){
+                          result[i] = '0';
+                          carryOut = '0'; 
                     }
                 else{
-                    result[i] = 1;
-                    carryOut = 0;
+                    result[i] = '1';
+                    carryOut = '0';
                 }
             }
             else{
-                if(and == 1 && or == 1){
-                    result[i] = 1;
-                    carryOut = 1;
+                if(and == '1' && or == '1'){
+                    result[i] = '1';
+                    carryOut = '1';
                 }
-                else if(and == 0 && or == 0){
-                          result[i] = 1;
-                          carryOut = 0; 
+                else if(and == '0' && or == '0'){
+                          result[i] = '1';
+                          carryOut = '0'; 
                 }
                 else{
-                    result[i] = 0;
-                    carryOut = 1;
+                    result[i] = '0';
+                    carryOut = '1';
                 }
             }
         }   
@@ -54,7 +53,7 @@ public class OpALU implements AluInterface {
     }
 
 	private char or(char num1, char num2) {
-		if(num1 == 0 && num2 == 0){
+		if(num1 == '0' && num2 == '0'){
             return zero;
         }
         else{
@@ -63,7 +62,7 @@ public class OpALU implements AluInterface {
     }
 
     private char and(char num1, char num2) {
-        if(num1 == 1 && num2 == 1){
+        if(num1 == '1' && num2 == '1'){
             return hum;
         }
         else{
@@ -74,25 +73,22 @@ public class OpALU implements AluInterface {
     //Subtração
     @Override
     public char[] sub(char[] num1, char[] num2) {
-        int tam = num1.length;
+        int i = 31;
         char[] result;
-        result = new char[tam];
-        char[] numI;
-        numI = new char[16];
-        for(int i = 0; i < 16; i++){
-            numI[i] = 0;
+        result = new char[32];
+        while(num2[i] == '0'){
+            i--;
         }
-        numI[0] = 1;
-
-    	for(int i = 0; i < tam; i++){
-            if(num2[i] == 0){
-                num2[i] = 1;
+        i--;
+        while( i >= 0){
+            if(num2[i] == '1'){
+                num2[i] = '0';
             }
             else{
-                num2[i] = 0;
+                num2[i] = '1';
             }
+            i--;
         }
-        num2 = addi(num2, numI);
         result = add(num1, num2);
         return result;
     }
@@ -100,21 +96,21 @@ public class OpALU implements AluInterface {
     //Add Imediato
     @Override
     public char[] addi(char[] num1, char[] num2) {
-
         char[] numI;
         numI = new char[32];
+
         for(int i = 0; i < 32; i++){
-            numI[i] = 0;
+            numI[i] = '0';
         }
-        if(num2[15] == 1){
-            for(int i = 0; i < 15; i++){
-                numI[i] = num2[i];
+        if(num2[0] == 1){
+            for(int i = 15, j = 31; i > 0; i--, j--){
+                numI[j] = num2[i];
             }
-            numI[31] = 1;
+            numI[0] = '1';
         }
         else{
-            for(int i = 0; i < 15; i++){
-                numI[i] = num2[i];
+            for(int i = 15, j = 31; i > 0; i--, j--){
+                numI[j] = num2[i];
             }
         }
         numI = add(num1, numI);
@@ -123,26 +119,25 @@ public class OpALU implements AluInterface {
 
     @Override
     public void mult(char[] num1, char[] num2, HILO hilo) {
-        int i;
         char[] mult; //multiplicando
         mult = new char[64];
         char[] prod;
         prod = new char[64];
-        int aux = num2.length;
-        int tam = num1.length;
+        int aux = 32; //tamanho do num2
+        int tam = 32; //tamanho do num1
 
-        for(i = 0; i < aux; i++){ //aumentando num2 para mult de tamanho 64
-            mult[i] = num2[i];
+        for(int i = 31, j = 63; i >= 0; i--, j--){ //aumentando num2 para mult de tamanho 64
+            mult[j] = num2[i];
         }
-        for(i = aux; i < 64; i++){
-            mult[i] = 0;
+        for(int j = 31; j >= 0; j--){ 
+            mult[j] = '0';
         }
-        for(i = 0; i < 64; i++){
-            prod[i] = 0;
+        for(int i = 0; i < 64; i++){
+            prod[i] = '0';
         }
-        for(i = 0; i < tam; i++){
-            if(num1[0] == 1){
-                add(mult, prod);            //                  <---------------------------------------
+        for(int i = 0; i < 32; i++){
+            if(num1[31] == 1){           // troquei 0 para 31 (to meio cansado, pode estar errado)
+                add(mult, prod);            //      <---------------------------------------
                 sll(mult, humArray);
                 srl(num1, humArray);
             }
