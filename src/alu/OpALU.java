@@ -193,17 +193,6 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char[] or(char[] num1, char[] num2) {
-        char[] result;
-        result = new char[32];
-
-        for(int i = 0; i < 32; i++){
-            result[i] = or(num1[i], num2[i]);
-        }
-        return result;
-    }
-
-    @Override
     public char[] and(char[] num1, char[] num2) {
         char[] result;
         result = new char[32];
@@ -215,10 +204,56 @@ public class OpALU implements AluInterface {
     }
 
     @Override
+    public char[] andi(char[] num1, char[] num2) {
+
+        return null;
+    }
+
+    @Override
+    public char[] or(char[] num1, char[] num2) {
+        char[] result;
+        result = new char[32];
+
+        for(int i = 0; i < 32; i++){
+            result[i] = or(num1[i], num2[i]);
+        }
+        return result;
+    }
+
+    @Override
+    public char[] ori(char[] num1, char[] num2) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public char [] slt(char[] num1, char[] num2) {
         char[] result;
         result = new char[32];
         result = sub(num1, num2);
+        
+        if(result[0] == '1'){
+            return humArray;
+        }
+        else{
+            return zeroArray;
+        }
+    }
+
+    @Override
+    public char[] slti(char[] num1, char[] num2) {
+        char[] result;
+        result = new char[32];
+        char[] num;
+        num = new char[32];
+
+        for(int i = 0; i < 16; i++){
+            num[i] = '0';
+        }
+        for(int i = 31, k = 15; k >= 0; k--, i--){
+            num[i] = num2[k];
+        }
+        result = sub(num1, num);
         
         if(result[0] == '1'){
             return humArray;
