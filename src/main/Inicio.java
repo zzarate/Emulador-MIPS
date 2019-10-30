@@ -4,7 +4,6 @@ import instrucoes.Decodifica;
 import registradores.OperacoesRegistradores;
 
 public class Inicio {
-    private byte [] memory = new byte [4096 * 4];
 
     //Objetos necessarios para executar o programa
     private LeArquivo arquivo = new LeArquivo();
@@ -18,10 +17,10 @@ public class Inicio {
     void abreArquivo (String filetText, String fileData){
         //Abre e le o arquivo
         arquivo.abrirArquivo(filetText);    //Le primeiro arquivo
-        separaDados.salvaInstrucao (arquivo.arquivo, memory, memoria);       //Salva na memoria de texto
+        separaDados.salvaInstrucao (arquivo.arquivo, memoria);       //Salva na memoria de texto
 
         arquivo.abrirArquivo(fileData);     //Le arquivo de dados
-        separaDados.salvaDados (arquivo.arquivo, memory, memoria);       //Armazena arquivo lido na memoria
+        separaDados.salvaDados (arquivo.arquivo, memoria);       //Armazena arquivo lido na memoria
     }
 
     /*Executa instrucoes localizadas na memoria*/
@@ -33,7 +32,7 @@ public class Inicio {
             /*  Salva as instruções de 4 bytes (32 bits) em uma string
              *  a partir do endereço do PC */ 
             String instrucao = null;
-            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memory);
+            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory);
             decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg); //Decodifica e executa a instrucao
 
 
@@ -50,13 +49,15 @@ public class Inicio {
     //Memoria - Inicia toda a memoria com zeros
     void fillMem (){
         for (int i = memoria.minTextSection; i < memoria.maxStack; i++) {
-            memory[i]= 0;
+            memoria.memory[i]= 0;
         }
     }
 
     void fillRegistradores (){
         for (int i = 0; i < 31; i++) {
             opReg.setValorReg(i, opReg.getValorReg(0));
+            opReg.setValorReg(28, String.valueOf(0x1800).toCharArray());    //Atribui o endereço 0x1800 para o $sp
+            opReg.setValorReg(29, String.valueOf(0x00003ffc).toCharArray());    //Atribui o endereço  0x00003ffc para o $fp
         }
     }
 }

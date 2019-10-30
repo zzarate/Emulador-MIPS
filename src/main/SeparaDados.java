@@ -9,14 +9,14 @@ import main.Memoria;
 class SeparaDados{
 
     /* Le o conteudo presente no arquivo e armazena na memoria em formato big endian*/
-	void salvaInstrucao (File arquivo, byte [] memory ,Memoria memoria){
+	void salvaInstrucao (File arquivo, Memoria memoria){
 		try {
 			byte[] conteudo = Files.readAllBytes(arquivo.toPath());
 			for (int i = 0; i < conteudo.length; i+=4) {
 
 				/*Envia instrução para a memoria de texto*/
 				for (int j = 3; j >= 0; j--) {
-					memoria.salvaMemText(memory, conteudo[i]);
+					memoria.salvaMemText(conteudo[i]);
 				}
 			}
 
@@ -30,14 +30,14 @@ class SeparaDados{
 	}
 
 	/*Separa os dados em 4 bytes para enviar para a memoria de dados*/
-	void salvaDados (File arquivo, byte [] memory ,Memoria memoria){
+	void salvaDados (File arquivo, Memoria memoria){
 		try {
 			byte[] conteudo = Files.readAllBytes(arquivo.toPath());
 			for (int i = 0; i < conteudo.length; i+=4) {
 
 				/*Envia os dados do arquivo para a memoria de dados*/
 				for (int j = 3; j >= 0; j--) {
-					memoria.salvaMemData (memory, conteudo[i]);
+					memoria.salvaMemData (conteudo[i]);
 				}
 			}
 

@@ -1,6 +1,8 @@
 package main;
 
-class Memoria {
+public class Memoria {
+    byte [] memory = new byte [4096 * 4];
+
     final int minTextSection = 0x0000;   //0
     final int maxTextSection = 0x0fff;   //4.095
     final int minDataSection = 0x2000;   //8.192
@@ -11,17 +13,17 @@ class Memoria {
     private int countMemText = minTextSection;
     private int countMemData = minDataSection;
 
-    void salvaMemText (byte [] memory, byte instrucao){
+    public void salvaMemText (byte palavra){
         if (countMemText < maxTextSection){
-            memory [countMemText] = instrucao;
+            memory [countMemText] = palavra;
 
             countMemText++; //Contador para posição da memoria de texto
         }
     }
 
-    void salvaMemData (byte [] memory, byte instrucao){
+    public void salvaMemData (byte palavra){
         if (countMemData < maxDataSection){
-            memory [countMemData] = instrucao;
+            memory [countMemData] = palavra;
 
             countMemData++; //Contador para posição da memoria de texto
         }
