@@ -233,7 +233,7 @@ public class OpALU implements AluInterface {
         int num2 = Integer.parseInt(new String(numArray));
         int i;
         while(num2 > 0){
-            for(i = 31; i > 0; i--){
+            for(i = 1; i < 32; i++){
                 num1[i-1] = num1[i];
             }
             num1[31] = '0';
@@ -246,7 +246,7 @@ public class OpALU implements AluInterface {
         int num2 = Integer.parseInt(new String(numArray));
         int i;
         while(num2 > 0){
-            for(i = 0; i < 31; i++){
+            for(i = 30; i >= 0; i--){
                 num1[i+1] = num1[i];
             }
             num1[0] = '0';
@@ -256,9 +256,16 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char[] sra(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        return null;
+    public char[] sra(char[] num1, char[] numArray) {
+        int num2 = Integer.parseInt(new String(numArray));
+        int i;
+        while(num2 > 0){
+            for(i = 30; i >= 0; i--){
+                num1[i+1] = num1[i];
+            }
+            num2--;
+        }
+        return num1;
     }
  
     @Override
