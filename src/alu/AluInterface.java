@@ -10,9 +10,12 @@ public interface AluInterface {
     void mult (char[] num1, char[] num2, HILO hilo);
     void div (char[] num1, char[] num2, HILO hilo);
     //Logica
-	char [] or (char [] num1,char [] num2);
     char [] and (char [] num1,char [] num2);
+    char [] andi (char [] num1,char [] num2);  //duvida: se faz so and os 16bit do imeidato ou 32bit do registrador
+    char [] or (char [] num1,char [] num2);   
+    char [] ori (char [] num1,char [] num2);   //mesma duvida q addi
     char [] slt (char[] num1,char[] num2);     //retornar um array de char
+    char [] slti (char[] num1,char[] num2);
 
     //Deslocameno de bits
     char[] sll (char[] num1, char [] num2);
