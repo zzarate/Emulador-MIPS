@@ -315,7 +315,7 @@ public class OpALU implements AluInterface {
     }
  
     @Override
-    public char [] bne(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
+    public char [] bne(char[] num1, char[] num2) {
         char[] result;
         result = new char[32];
         result = sub(num1, num2);
@@ -328,7 +328,7 @@ public class OpALU implements AluInterface {
     }
 
     @Override
-    public char [] beq(char[] num1, char[] num2) {         //<------- Deve retornar um array de char
+    public char [] beq(char[] num1, char[] num2) {
         char[] result;
         result = new char[32];
         result = sub(num1, num2);
