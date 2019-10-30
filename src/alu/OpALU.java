@@ -123,8 +123,6 @@ public class OpALU implements AluInterface {
         mult = new char[64];
         char[] prod;
         prod = new char[64];
-        int aux = 32; //tamanho do num2
-        int tam = 32; //tamanho do num1
 
         for(int i = 31, j = 63; i >= 0; i--, j--){ //aumentando num2 para mult de tamanho 64
             mult[j] = num2[i];
@@ -159,16 +157,18 @@ public class OpALU implements AluInterface {
         char[] hl;
         hl = new char[64];
         int i = 31;
+        int j = 0;
         int[] hi, lo;
         hi = new int[32];
         lo = new int[32];
         for(i = 0; i < 64; i++){
-            hl[i] = 0;
+            hl[i] = '0';
         }
 
         num = numero1 % numero2;
         while(num > 0){
-            hi[i] = num % 2;
+            j = num % 2;
+            hi[i] = j + 48; //tabela ascii +48
             num = num / 2;
             i--;
         }
