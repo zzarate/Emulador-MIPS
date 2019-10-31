@@ -216,8 +216,19 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] andi(char[] num1, char[] num2) {
-
-        return null;
+	char[] result;
+        result = new char[32];
+	char[] num;
+        num = new char[32];
+	    
+	for(int i = 0; i < 16; i++){
+            num[i] = '0';
+        } 
+	for(int i = 16, k = 0; i < 32; i++, k++){
+            num[i] = num2[k];
+        }
+	result[i] = and(num1, num);
+        return result;
     }
 
     @Override
