@@ -105,37 +105,17 @@ public class Decodifica {
         //Store word
         if (Arrays.equals(opCode, instrucoes.sw )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
-
-            byte [] dados = new String(opReg.getValorReg(rt)).getBytes(StandardCharsets.UTF_8);
-
-            for (int i = 3; i >= 0; i--) {
-                memoria.memory[enderecoMem+i]= dados[i];
-            }
         }
 
         //Store half word
         if (Arrays.equals(opCode, instrucoes.sh )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
-
-            byte [] dados = new String(opReg.getValorReg(rt)).getBytes(StandardCharsets.UTF_8);
-
-            memoria.memory[enderecoMem]= dados[0];
-            memoria.memory[enderecoMem+1]= dados[1];
 
         }
 
         //Store byte
         if (Arrays.equals(opCode, instrucoes.sb )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-
-            salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
-
-            byte [] dados = new String(opReg.getValorReg(rt)).getBytes(StandardCharsets.UTF_8);
-
-            memoria.memory[enderecoMem]= dados[0];
         }
 
 
