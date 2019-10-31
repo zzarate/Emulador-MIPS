@@ -1,6 +1,5 @@
 package instrucoes;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import alu.OpALU;
