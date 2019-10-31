@@ -7,7 +7,7 @@ public interface AluInterface {
     char[] add (char[] num1,char[] num2);
     char[] sub (char[] num1,char[] num2);
     char[] addi (char[] num1, char[] num2);
-    char[] addiu (char[] num1, char[] num2);
+    char[] addiu (char[] num1, char[] num2);   //duvida como funcina o U
     void mult (char[] num1, char[] num2, HILO hilo);
     void div (char[] num1, char[] num2, HILO hilo);
     //Logica
