@@ -49,13 +49,13 @@ public class Decodifica {
         //opCode Add immediate
         if (Arrays.equals(opCode, instrucoes.addi )) {
             salvaTipoI(vetInstrucao);//Salva valor do imediato
-            opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), valorImmI));
+            opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), fillArray(valorImmI)));
         }
         
         //Add immediate unsigned
         if (Arrays.equals(opCode, instrucoes.addiu )) {
             salvaTipoI(vetInstrucao);//Salva valor do imediato
-            opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), valorImmI));
+            opReg.setValorReg(rt, alu.addiu(opReg.getValorReg(rs), fillArray(valorImmI)));
         }
 
         //Load word
@@ -101,6 +101,8 @@ public class Decodifica {
             opReg.setValorReg(rt, palavraArray);
         }
 
+        /*********************************************************************************************************************************** */
+
         //Store word
         if (Arrays.equals(opCode, instrucoes.sw )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
@@ -117,18 +119,30 @@ public class Decodifica {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
         }
 
+        /************************************************************************************************************************************* */
 
+        //Load upper immediate
         if (Arrays.equals(opCode, instrucoes.lui )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
+            opReg.setValorReg(rt, fillArray(valorImmI));
         }
+
+        //Andi
         if (Arrays.equals(opCode, instrucoes.andi )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
+            opReg.setValorReg(rt, alu.andi(opReg.getValorReg(rs), fillArray(valorImmI)));
         }
+
+        //Ori
         if (Arrays.equals(opCode, instrucoes.ori )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
+            opReg.setValorReg(rt, alu.ori(opReg.getValorReg(rs), fillArray(valorImmI)));
         }
+
+        //Set on less than immediate
         if (Arrays.equals(opCode, instrucoes.slti )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
+            opReg.setValorReg(rt, alu.slti(opReg.getValorReg(rs), fillArray(valorImmI)));
         }
 
         //Branch on equal 

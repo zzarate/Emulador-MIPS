@@ -99,9 +99,9 @@ public class InstrucoesR {
             opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt));
         }
 
-        if (Arrays.equals(funct, instrucoes.sra )) {            //      <<-----------------------------------
-            //opCode Shift right arithmetic
-            System.out.println("Instrucao Shift right arithmetic");
+        //Shift right arithmetic
+        if (Arrays.equals(funct, instrucoes.sra )) {
+            opReg.setValorReg(rd, alu.sra(opReg.getValorReg(rs), shamt));
         }
         
         //Jump register
