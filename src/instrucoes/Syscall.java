@@ -1,5 +1,7 @@
 package instrucoes;
 
+import java.util.Scanner;
+
 import registradores.OperacoesRegistradores;
 
 class Syscall {
@@ -17,6 +19,26 @@ class Syscall {
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 5 ) {
             //read integer ($v0 contains integer read)
+            char[] vzero;
+            int i = 31;
+            int j = 0;
+            vzero = new char[32];
+            Scanner sc = new Scanner(System.in);  
+
+            for(int k = 0; k < 32; k++){
+                vzero[k] = '0';
+            }
+            int x = sc.nextInt();
+            while(x > 0){
+                j = x % 2;
+                j = j + 48;
+                vzero[i] = (char) j; 
+                x = x / 2;
+                i--;
+            }
+            opReg.setValorReg(2, vzero);
+            sc.close();
+    
         } 
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 8 ) {
             //read string
