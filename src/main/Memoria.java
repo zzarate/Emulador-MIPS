@@ -6,8 +6,8 @@ import registradores.OperacoesRegistradores;
 public class Memoria {
     public byte [] memory = new byte [4096 * 4];
 
-    public final char [] spInit= Integer.toBinaryString(0x1800).toCharArray();
-    public final char [] fpInit= Integer.toBinaryString(0x00003ffc).toCharArray();
+    public final char [] gpInit= Integer.toBinaryString(0x1800).toCharArray();
+    public final char [] spInit= Integer.toBinaryString(0x00003ffc).toCharArray();
 
     public final int minTextSection = 0x0000;   //0
     public final int maxTextSection = 0x0fff;   //4.095

@@ -192,6 +192,7 @@ public class OperacoesRegistradores{
         
         //Registrador $gp       28
         if (enderecoReg == 28 ) {
+            registradores.$fp=registradores.$zero;
             registradores.$gp=armazenaValor(valor);
         }
 
