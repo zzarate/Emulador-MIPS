@@ -1,6 +1,7 @@
 package instrucoes;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 import alu.OpALU;
 import main.Memoria;
@@ -18,27 +19,24 @@ public class InstrucoesR {
     
 
 
-    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria){
+    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria, Scanner sc){
         char [] funct;
         funct = new char [6];
         for (int i = 26, j =0; i <32; i++, j++) {
             funct [j] = vetInstrucao[i];
         }
   
-        verificaFunct(funct, vetInstrucao, PC, opReg, alu, hilo, memoria);
-        //Debug
-        System.out.println("Funct: ");
-        System.out.println (funct);
+        verificaFunct(funct, vetInstrucao, PC, opReg, alu, hilo, memoria, sc);
     }
 
     void verificaShamt (char [] vetInstrucao,OperacoesRegistradores opReg, OpALU alu){
-        for (int i = 20, j =0; i <26; i++, j++) {
+        for (int i = 21, j =0; i <26; i++, j++) {
             shamt [j] = vetInstrucao[i];
         }
         
     }
 
-    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria ){
+    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria, Scanner sc ){
         Funct instrucoes = new Funct();
 
         //Add
@@ -112,7 +110,7 @@ public class InstrucoesR {
 
         //Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
-            syscall.verifica(opReg, memoria);
+            syscall.verifica(opReg, memoria, sc);
             
         }
     }
@@ -130,21 +128,24 @@ public class InstrucoesR {
         char [] regDest = new char [5];
 
         //Reg rs
-        for (int i = 6, j =0; i <10; i++, j++) {
+        for (int i = 6, j =0; i <11; i++, j++) {
             regDest [j] = instrucao[i];
         }
-        rs = Integer.parseInt(new String (regDest));
+        String aux = new String(regDest);
+        rs = (int)Long.parseLong(aux, 2);
 
         //Reg rt
-        for (int i = 10, j =0; i <15; i++, j++) {
+        for (int i = 11, j =0; i <16; i++, j++) {
             regDest [j] = instrucao[i];
         }
-        rt = Integer.parseInt(new String (regDest));
+        aux = new String(regDest);
+        rt = (int)Long.parseLong(aux, 2);
 
         //Reg rd
-        for (int i = 15, j =0; i <20; i++, j++) {
+        for (int i = 16, j =0; i <21; i++, j++) {
             regDest [j] = instrucao[i];
         }
-        rd = Integer.parseInt(new String (regDest));
+        aux = new String(regDest);
+        rd = (int)Long.parseLong(aux, 2);
     }
 }

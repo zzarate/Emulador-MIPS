@@ -7,7 +7,7 @@ import registradores.OperacoesRegistradores;
 
 class Syscall {
     
-    void verifica (OperacoesRegistradores opReg, Memoria memoria){
+    void verifica (OperacoesRegistradores opReg, Memoria memoria, Scanner sc){
 
         String aux = new String(opReg.getValorReg(2));
         int tempk = (int)Long.parseLong(aux, 2);
@@ -36,8 +36,7 @@ class Syscall {
             char[] vzero;
             int i = 31;
             int j = 0;
-            vzero = new char[32];
-            Scanner sc = new Scanner(System.in);  
+            vzero = new char[32];  
 
             for(int k = 0; k < 32; k++){
                 vzero[k] = '0';
@@ -51,7 +50,6 @@ class Syscall {
                 i--;
             }
             opReg.setValorReg(2, vzero, memoria);
-            sc.close();
     
         } 
         if (tempk == 8 ) {

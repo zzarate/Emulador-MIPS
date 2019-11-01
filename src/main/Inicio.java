@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 import instrucoes.Decodifica;
 import registradores.OperacoesRegistradores;
 
@@ -11,6 +13,8 @@ public class Inicio {
     private SeparaDados separaDados = new SeparaDados();
     private Decodifica decodifica = new Decodifica();
     private OperacoesRegistradores opReg = new OperacoesRegistradores();
+
+    private Scanner sc = new Scanner(System.in);
     
 
     /*Abrir arquivos recebidos como argumento*/
@@ -33,8 +37,9 @@ public class Inicio {
              *  a partir do endereço do PC */ 
             String instrucao = null;
             instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory); // <<---- problema
-            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria); //Decodifica e executa a instrucao << erro
+            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria, sc); //Decodifica e executa a instrucao << erro
         }
+        sc.close();
     }
 
 
@@ -48,18 +53,13 @@ public class Inicio {
     }
 
     void fillRegistradores (){
-        for (int i = 0; i < 28; i++) {
+        for (int i = 1; i < 28; i++) {
             opReg.setValorReg(i, opReg.getValorReg(0), memoria);
         }
         opReg.setValorReg(30, opReg.getValorReg(0), memoria);
         opReg.setValorReg(31, opReg.getValorReg(0), memoria);
 
-
-        int temp = 0x1800;
-        String aux = Integer.toBinaryString(temp);
-        opReg.setValorReg(28, aux.toCharArray(), memoria);    //Atribui o endereço 0x1800 para o $sp
-        temp = 0x00003ffc;
-        aux = Integer.toBinaryString(temp);
-        opReg.setValorReg(29, aux.toCharArray(), memoria);    //Atribui o endereço  0x00003ffc para o $fp
+        opReg.setValorReg(28, memoria.spInit, memoria);    //Atribui o endereço 0x1800 para o $sp           <<<<<<<<<<<<<<<<<<<<<<<<<   Recebendo valores incorretos
+        opReg.setValorReg(29, memoria.fpInit, memoria);    //Atribui o endereço  0x00003ffc para o $fp      <<<<<<<<<<<<<<<<<<<<<<<<<   Recebendo valores incorretos
     }
 }

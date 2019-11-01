@@ -1,6 +1,7 @@
 package instrucoes;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 import alu.OpALU;
 import main.Memoria;
@@ -17,7 +18,7 @@ public class Decodifica {
     private OpALU alu = new OpALU();
     private HILO hilo = new HILO();
 
-    public void separaInstrucao (String instrucao, int PC, OperacoesRegistradores opReg, Memoria memoria){
+    public void separaInstrucao (String instrucao, int PC, OperacoesRegistradores opReg, Memoria memoria, Scanner sc){
 
         //Separa OpCode
         char opCode [];
@@ -29,16 +30,16 @@ public class Decodifica {
         for (int i = 0; i < 6; i++) {
             opCode [i] = vetInstrucao[i];
         }
-        verificaInstrucao(opCode, vetInstrucao, PC, opReg, memoria);
+        verificaInstrucao(opCode, vetInstrucao, PC, opReg, memoria, sc);
     }
 
 
-    void verificaInstrucao (char [] opCode, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, Memoria memoria){
+    void verificaInstrucao (char [] opCode, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, Memoria memoria, Scanner sc){
         OpCode instrucoes = new OpCode();
 
         //opCode tipo R
         if (Arrays.equals(opCode, instrucoes.R )) {
-            tipoR.separaFunct(vetInstrucao, PC, opReg, alu, hilo, memoria);
+            tipoR.separaFunct(vetInstrucao, PC, opReg, alu, hilo, memoria, sc);
         }
         
         //opCode Add immediate

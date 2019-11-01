@@ -15,8 +15,7 @@ public class OperacoesRegistradores{
     }
 
     char [] armazenaValor (char [] valor){
-        char [] regTemp = new char [32];
-        regTemp=registradores.$zero;
+        char [] regTemp = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '0'};
 
         for (int i = valor.length-1, j = 31; i >= 0; i--, j--) {
             regTemp[j]=valor[i];
@@ -193,13 +192,11 @@ public class OperacoesRegistradores{
         
         //Registrador $gp       28
         if (enderecoReg == 28 ) {
-            registradores.$gp=registradores.$zero;
             registradores.$gp=armazenaValor(valor);
         }
-        
+
         //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            registradores.$sp=registradores.$zero;
             registradores.$sp=armazenaValor(valor);
 
             String aux = new String(registradores.$sp);
