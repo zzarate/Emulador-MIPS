@@ -59,7 +59,7 @@ public class Inicio {
         opReg.setValorReg(30, opReg.getValorReg(0), memoria);
         opReg.setValorReg(31, opReg.getValorReg(0), memoria);
 
-        opReg.setValorReg(28, memoria.spInit, memoria);    //Atribui o endereço 0x1800 para o $sp           <<<<<<<<<<<<<<<<<<<<<<<<<   Recebendo valores incorretos
-        opReg.setValorReg(29, memoria.fpInit, memoria);    //Atribui o endereço  0x00003ffc para o $fp      <<<<<<<<<<<<<<<<<<<<<<<<<   Recebendo valores incorretos
+        opReg.setValorReg(28, memoria.gpInit, memoria);    //Atribui o endereço 0x1800 para o $gp
+        opReg.setValorReg(29, memoria.spInit, memoria);    //Atribui o endereço  0x00003ffc para o $sp 
     }
 }
