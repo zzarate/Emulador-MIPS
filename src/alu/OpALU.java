@@ -119,8 +119,10 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] addiu(char[] num1, char[] num2) {
-        // TODO Auto-generated method stub
-        return null;
+        char[] numI;
+        numI = new char[32];
+        numI = addi(num1, num2);
+        return numI;
     }
     
     @Override
@@ -216,19 +218,16 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] andi(char[] num1, char[] num2) {
-	char[] result;
-        result = new char[32];
-	char[] num;
+	    char[] num;
         num = new char[32];
 	    
-	for(int i = 0; i < 16; i++){
-            num[i] = '0';
+	    for(int i = 0; i < 16; i++){
+            num[i] = num1[i];
         } 
-	for(int i = 16, k = 0; i < 32; i++, k++){
-            num[i] = num2[k];
+	    for(int i = 16, k = 0; i < 32; i++, k++){
+            num[i] = and(num1[i], num2[k]);
         }
-	result[i] = and(num1, num);                                                     //<<------ vc ta eviando um array e salvando em um unico char (dps que vc arrumar, exclui esse comentario)
-        return result;
+        return num;
     }
 
     @Override
@@ -244,19 +243,16 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] ori(char[] num1, char[] num2) {
-        char[] result;
-        result = new char[32];
-	char[] num;
+	    char[] num;
         num = new char[32];
 	    
-	for(int i = 0; i < 16; i++){
-            num[i] = '0';
+	    for(int i = 0; i < 16; i++){
+            num[i] = num1[i];
         } 
-	for(int i = 16, k = 0; i < 32; i++, k++){
-            num[i] = num2[k];
+    	for(int i = 16, k = 0; i < 32; i++, k++){
+            num[i] = or(num1[i], num2[k]);
         }
-	result[i] = or(num1, num);                                                                  //<<------ vc ta eviando um array e salvando em um unico char (dps que vc arrumar, exclui esse comentario)
-        return result;
+        return num;
     }
 
     @Override
