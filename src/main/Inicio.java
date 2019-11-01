@@ -27,7 +27,7 @@ public class Inicio {
     void executaInstrucoes (){
 
         /*  Executa uma instrução da memoria */
-        for (opReg.getPC() ; opReg.getPC() < 0x0fff; opReg.setPC(opReg.getPC()+4)) {
+        for (opReg.getPC() ; opReg.getPC() < 0x0fff; opReg.setPC(opReg.getPC()+4)) { //verificar se esta contando de 4 em 4
 
             /*  Salva as instruções de 4 bytes (32 bits) em uma string
              *  a partir do endereço do PC */ 

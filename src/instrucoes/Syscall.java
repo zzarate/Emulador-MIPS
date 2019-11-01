@@ -47,7 +47,15 @@ class Syscall {
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 10 ) {
             //exit (terminate execution)
             //Imprimir os valores dos registradores e de toda a memoria
-            //System.exit(0); //terminado sem problemas
+
+            //Imprime os valores dos registradores
+            for (int i = 0; i < 31; i++) {
+                int temp = (int)Long.parseLong(new String(opReg.getValorReg(i)), 2);
+                System.out.print ("$" + i + "   ");
+                System.out.println(String.format("0x%X", temp));
+            }
+
+            System.exit(0); //terminado sem problemas
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 11 ) {
             //print character ($a0 = character to print,  	See note below table)
