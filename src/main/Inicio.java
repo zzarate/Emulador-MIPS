@@ -32,14 +32,8 @@ public class Inicio {
             /*  Salva as instruções de 4 bytes (32 bits) em uma string
              *  a partir do endereço do PC */ 
             String instrucao = null;
-            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory);
-            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria); //Decodifica e executa a instrucao
-
-
-            //Teste para saber se esta lendo as instruções corretamente
-            //System.out.println(instrucao);
-            //System.out.println("");
-
+            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory); // <<---- problema
+            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria); //Decodifica e executa a instrucao << erro
         }
     }
 
@@ -54,10 +48,18 @@ public class Inicio {
     }
 
     void fillRegistradores (){
-        for (int i = 0; i < 31; i++) {
+        for (int i = 0; i < 28; i++) {
             opReg.setValorReg(i, opReg.getValorReg(0), memoria);
-            opReg.setValorReg(28, String.valueOf(0x1800).toCharArray(), memoria);    //Atribui o endereço 0x1800 para o $sp
-            opReg.setValorReg(29, String.valueOf(0x00003ffc).toCharArray(), memoria);    //Atribui o endereço  0x00003ffc para o $fp
         }
+        opReg.setValorReg(30, opReg.getValorReg(0), memoria);
+        opReg.setValorReg(31, opReg.getValorReg(0), memoria);
+
+
+        int temp = 0x1800;
+        String aux = Integer.toBinaryString(temp);
+        opReg.setValorReg(28, aux.toCharArray(), memoria);    //Atribui o endereço 0x1800 para o $sp
+        temp = 0x00003ffc;
+        aux = Integer.toBinaryString(temp);
+        opReg.setValorReg(29, aux.toCharArray(), memoria);    //Atribui o endereço  0x00003ffc para o $fp
     }
 }

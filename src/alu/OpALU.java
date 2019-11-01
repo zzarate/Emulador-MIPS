@@ -102,7 +102,7 @@ public class OpALU implements AluInterface {
         for(int i = 0; i < 32; i++){
             numI[i] = '0';
         }
-        if(num2[0] == 1){
+        if(num2[0] == '1'){
             for(int i = 15, j = 31; i > 0; i--, j--){
                 numI[j] = num2[i];
             }

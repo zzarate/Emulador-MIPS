@@ -29,3 +29,7 @@ hs_err_pid*
 # VS-Code
 Emulador-MIPS.code-workspace
 /.vscode
+
+# Test files
+data.bin
+text.bin

@@ -9,7 +9,10 @@ class Syscall {
     
     void verifica (OperacoesRegistradores opReg, Memoria memoria){
 
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 1 ) {
+        String aux = new String(opReg.getValorReg(2));
+        int tempk = (int)Long.parseLong(aux, 2);
+
+        if (tempk == 1 ) {  //<<< seria isso?
             //print integer ($a0 = integer to print)
             long x;
             char[] y;
@@ -25,10 +28,10 @@ class Syscall {
             }
             System.out.printf ("%d\n", x);
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 4 ) {
+        if (tempk == 4 ) {
             //print string ($a0 = address of null-terminated string to print)
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 5 ) {
+        if (tempk == 5 ) {
             //read integer ($v0 contains integer read)
             char[] vzero;
             int i = 31;
@@ -51,10 +54,10 @@ class Syscall {
             sc.close();
     
         } 
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 8 ) {
+        if (tempk == 8 ) {
             //read string
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 10 ) {
+        if (tempk == 10 ) {
             //exit (terminate execution)
             //Imprimir os valores dos registradores e de toda a memoria
 
@@ -89,28 +92,28 @@ class Syscall {
 
             System.exit(0); //terminado sem problemas
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 11 ) {
+        if (tempk == 11 ) {
             //print character ($a0 = character to print,  	See note below table)
             int x;
             x = Integer.parseInt(new String (opReg.getValorReg(4)));
             System.out.printf ("%c\n", x);
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 12 ) {
+        if (tempk == 12 ) {
             //read character ($v0 contains character read)
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 34 ) {
+        if (tempk == 34 ) {
             //print integer in hexadecimal ($a0 = integer to print,Displayed value is 8 hexadecimal digits, left-padding with zeroes if necessary)
             int x;
             x = Integer.parseInt(new String (opReg.getValorReg(4)));
             System.out.printf ("%x\n", x);
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 35 ) {
+        if (tempk == 35 ) {
             //print integer in binary ($a0 = integer to print,Displayed value is 32 bits, left-padding with zeroes if necessary)
             int x;
             x = Integer.parseInt(new String (opReg.getValorReg(4)));
             System.out.printf ("%c\n", x);
         }
-        if (Integer.parseInt(new String (opReg.getValorReg(2))) == 36 ) {
+        if (tempk == 36 ) {
             //print integer as unsigned ($a0 = integer to print,Displayed as unsigned decimal value)
         }
     }

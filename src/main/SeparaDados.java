@@ -16,7 +16,7 @@ class SeparaDados{
 
 				/*Envia instrução para a memoria de texto*/
 				for (int j = 3; j >= 0; j--) {
-					memoria.salvaMemText(conteudo[i]);
+					memoria.salvaMemText(conteudo[i+j]);
 				}
 			}
 
@@ -52,10 +52,13 @@ class SeparaDados{
 
 	/*Separa as instruções de 4 bytes, e devolve elas em uma string*/
 	String separaInstrucao (String instrucao, int PC, byte [] memory){
-		instrucao =Integer.toBinaryString((memory[PC+3] & 0xFF) + 0x100).substring(1);
-		instrucao= instrucao+ Integer.toBinaryString((memory[PC+2] & 0xFF) + 0x100).substring(1);
-		instrucao= instrucao+ Integer.toBinaryString((memory[PC+1] & 0xFF) + 0x100).substring(1);
-		instrucao= instrucao+ Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		String [] temp= new String [4];
+		temp[0] =Integer.toBinaryString((memory[PC] & 0xFF) + 0x100).substring(1);
+		temp[1]= Integer.toBinaryString((memory[PC+1] & 0xFF) + 0x100).substring(1);
+		temp[2]= Integer.toBinaryString((memory[PC+2] & 0xFF) + 0x100).substring(1);
+		temp[3]= Integer.toBinaryString((memory[PC+3] & 0xFF) + 0x100).substring(1);
+
+		instrucao = temp [0] + temp [1] + temp [2] + temp [3];
 
 		return instrucao;
 	}

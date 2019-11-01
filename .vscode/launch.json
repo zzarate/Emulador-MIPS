@@ -1,17 +1,19 @@
 {
     "configurations": [
+        
+
+        {
+            "type": "java",
+            "name": "Debug (Launch) with Arguments Prompt",
+            "request": "launch",
+            "mainClass": "",
+            "args": "text.bin data.bin"
+        },
         {
             "type": "java",
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
             "mainClass": "main.Main",
-            "projectName": "Emulador-MIPS"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - InicioPrograma",
-            "request": "launch",
-            "mainClass": "main.InicioPrograma",
             "projectName": "Emulador-MIPS"
         }
     ]

@@ -1,22 +1,18 @@
 package main;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args){
+    	
         //Recebe parametros da main
-        String filetText = new String (args [0]);   //Recebe nome do primeiro arquivo do parametro
-        String fileData = new String (args [1]);    //Recebe nome do segundo arquivo do parametro
+        String filetText = args [0];   //Recebe nome do primeiro arquivo do parametro
+        String fileData = args [1];    //Recebe nome do segundo arquivo do parametro
 
         //Inicia a decodificacao e o programa
         Inicio inicio = new Inicio();
         inicio.fillMem();
         inicio.fillRegistradores();
         inicio.abreArquivo(filetText, fileData);
-        inicio.executaInstrucoes();
+        inicio.executaInstrucoes(); //<<erro
 
     }
-
-    
 }

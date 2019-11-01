@@ -30,11 +30,6 @@ public class Decodifica {
             opCode [i] = vetInstrucao[i];
         }
         verificaInstrucao(opCode, vetInstrucao, PC, opReg, memoria);
-        
-        //Debug
-        System.out.println ("OpCode: ");
-        System.out.println (opCode);
-        System.out.println ("");
     }
 
 
@@ -64,10 +59,13 @@ public class Decodifica {
             int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
             
             String palavra = null;
-            palavra =Integer.toBinaryString((memoria.memory[enderecoMem+3] & 0xFF) + 0x100).substring(1);
-		    palavra= palavra+ Integer.toBinaryString((memoria.memory[enderecoMem+2] & 0xFF) + 0x100).substring(1);
-		    palavra= palavra+ Integer.toBinaryString((memoria.memory[enderecoMem+1] & 0xFF) + 0x100).substring(1);
-		    palavra= palavra+ Integer.toBinaryString((memoria.memory[enderecoMem] & 0xFF) + 0x100).substring(1);
+            String [] temp= new String [4];
+		    temp[0] =Integer.toBinaryString((memoria.memory[enderecoMem] & 0xFF) + 0x100).substring(1);
+		    temp[1]= Integer.toBinaryString((memoria.memory[enderecoMem+1] & 0xFF) + 0x100).substring(1);
+		    temp[2]= Integer.toBinaryString((memoria.memory[enderecoMem+2] & 0xFF) + 0x100).substring(1);
+		    temp[3]= Integer.toBinaryString((memoria.memory[enderecoMem+3] & 0xFF) + 0x100).substring(1);
+
+		    palavra = temp [0] + temp [1] + temp [2] + temp [3];
 
             opReg.setValorReg(rt, palavra.toCharArray(), memoria);
 
@@ -79,8 +77,11 @@ public class Decodifica {
             int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
             
             String palavra = null;
-            palavra =Integer.toBinaryString((memoria.memory[enderecoMem+1] & 0xFF) + 0x100).substring(1);
-            palavra= palavra+ Integer.toBinaryString((memoria.memory[enderecoMem] & 0xFF) + 0x100).substring(1);
+            String [] temp= new String [2];
+		    temp[0] =Integer.toBinaryString((memoria.memory[enderecoMem+2] & 0xFF) + 0x100).substring(1);
+		    temp[1]= Integer.toBinaryString((memoria.memory[enderecoMem+3] & 0xFF) + 0x100).substring(1);
+
+		    palavra = temp [0] + temp [1];
 
             opReg.setValorReg(rt, palavra.toCharArray(), memoria);
 
@@ -92,7 +93,8 @@ public class Decodifica {
             int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
             
             String palavra = null;
-            palavra =Integer.toBinaryString((memoria.memory[enderecoMem] & 0xFF) + 0x100).substring(1);
+
+		    palavra = Integer.toBinaryString((memoria.memory[enderecoMem+3] & 0xFF) + 0x100).substring(1);
 
             opReg.setValorReg(rt, palavra.toCharArray(), memoria);
         }
@@ -104,8 +106,8 @@ public class Decodifica {
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
-            for (int i = 0, k=0; i < 4; i++) {
-                for (int j = 0; j < 8; j++, k++) {
+            for (int i = 0, k=8; i < 4; i++) {
+                for (int j = 8; j >= 0 ; j--, k--) {
                     byteTemp[j] = rtTemp[k];
                 }
             memoria.memory[enderecoMem+i]= (byte) Integer.parseInt(new String(byteTemp), 2);
@@ -119,8 +121,8 @@ public class Decodifica {
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
-            for (int i = 0, k=0; i < 2; i++) {
-                for (int j = 0; j < 8; j++, k++) {
+            for (int i = 0, k=8; i < 2; i++) {
+                for (int j = 8; j >= 0 ; j--, k--) {
                     byteTemp[j] = rtTemp[k];
                 }
             memoria.memory[enderecoMem+i]= (byte) Integer.parseInt(new String(byteTemp), 2);
@@ -134,8 +136,8 @@ public class Decodifica {
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
-            for (int i = 0, k=0; i < 1; i++) {
-                for (int j = 0; j < 8; j++, k++) {
+            for (int i = 0, k=8; i < 1; i++) {
+                for (int j = 8; j >= 0 ; j--, k--) {
                     byteTemp[j] = rtTemp[k];
                 }
             memoria.memory[enderecoMem+i]= (byte) Integer.parseInt(new String(byteTemp), 2);
@@ -212,7 +214,7 @@ public class Decodifica {
             opReg.setValorReg(31, auxPC, memoria);       //Guarda o valor do proximo PC no $RA
 
             for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
-                newPC[i] = auxPC[i];
+                newPC[i] = auxPC[i];        //      <<------    Problema
             }
             for (int i = 3, j=0 ; i < 29; i++, j++) {       //Receber os 26 bits do imediato em sequencia
                 newPC[i] = valorImmJ [j];
@@ -221,7 +223,7 @@ public class Decodifica {
                 newPC [i] = 0;
             }
 
-            opReg.setPC(Integer.parseInt(new String(newPC)));   //Atualiza o Proximo valor do PC
+            opReg.setPC(Integer.parseInt(new String(newPC), 2));   //Atualiza o Proximo valor do PC  <<---- erro
         }
     }
 
@@ -240,16 +242,16 @@ public class Decodifica {
         for (int i = 6, j =0; i < 11; i++, j++) {
             regDest [j] = vetInstrucao[i];
         }
-        rs= Integer.parseInt(new String(regDest));
+        rs= Integer.parseInt(new String(regDest), 2);
 
         //Reg rt
-        for (int i = 10, j =0; i < 16; i++, j++) {
+        for (int i = 11, j =0; i < 16; i++, j++) {
             regDest [j] = vetInstrucao[i];
         }
-        rt= Integer.parseInt(new String(regDest));
+        rt= Integer.parseInt(new String(regDest), 2);
         
         //Reg imm
-        for (int i = 15, j =0; i < 32; i++, j++) {
+        for (int i = 16, j =0; i < 32; i++, j++) {
             valorImmI [j] = vetInstrucao[i];
         }
     }
