@@ -1,5 +1,7 @@
 package registradores;
 
+import main.Memoria;
+
 public class OperacoesRegistradores{
 
     private Registradores registradores = new Registradores();
@@ -12,7 +14,7 @@ public class OperacoesRegistradores{
         return registradores.PC;
     }
 
-    public void setValorReg(int enderecoReg, char [] valor ){
+    public void setValorReg(int enderecoReg, char [] valor, Memoria memoria ){
         //Registrador $zero     0
         if (enderecoReg == 0 ) {
         }
@@ -91,8 +93,8 @@ public class OperacoesRegistradores{
 
         //Registrador $T5       13
         if (enderecoReg == 13 ) {       
-        registradores.$T5=registradores.$zero;
-        registradores.$T5=valor;
+            registradores.$T5=registradores.$zero;
+            registradores.$T5=valor;
         }
         
         //Registrador $T6       14
@@ -187,8 +189,15 @@ public class OperacoesRegistradores{
         
         //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            registradores.$sp=registradores.$zero;
-            registradores.$sp=valor;
+
+            if (Integer.parseInt(new String(registradores.$sp), 2) < memoria.minStack){
+                registradores.$sp=registradores.$zero;
+                registradores.$sp=valor;
+            } else{
+                System.out.println("Error: stack overflow.");
+                System.exit(1);
+            }
+            
         }
         
         //Registrador $fp       30

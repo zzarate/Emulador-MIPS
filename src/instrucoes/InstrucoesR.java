@@ -3,6 +3,7 @@ package instrucoes;
 import java.util.Arrays;
 
 import alu.OpALU;
+import main.Memoria;
 import registradores.HILO;
 import registradores.OperacoesRegistradores;
 
@@ -17,14 +18,14 @@ public class InstrucoesR {
     
 
 
-    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo){
+    void separaFunct (char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria){
         char [] funct;
         funct = new char [6];
         for (int i = 26, j =0; i <32; i++, j++) {
             funct [j] = vetInstrucao[i];
         }
   
-        verificaFunct(funct, vetInstrucao, PC, opReg, alu, hilo);
+        verificaFunct(funct, vetInstrucao, PC, opReg, alu, hilo, memoria);
         //Debug
         System.out.println("Funct: ");
         System.out.println (funct);
@@ -37,19 +38,19 @@ public class InstrucoesR {
         
     }
 
-    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo ){
+    void verificaFunct (char [] funct, char [] vetInstrucao, int PC, OperacoesRegistradores opReg, OpALU alu, HILO hilo, Memoria memoria ){
         Funct instrucoes = new Funct();
 
         //Add
         if (Arrays.equals(funct, instrucoes.add )) {
             salvaRegTipoR(vetInstrucao);
-            opReg.setValorReg(rd, alu.add(opReg.getValorReg(rs), opReg.getValorReg(rt)));
+            opReg.setValorReg(rd, alu.add(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Sub
         if (Arrays.equals(funct, instrucoes.sub )) {
             salvaRegTipoR(vetInstrucao);
-            opReg.setValorReg(rd, alu.sub(opReg.getValorReg(rs), opReg.getValorReg(rt)));
+            opReg.setValorReg(rd, alu.sub(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Multiply
@@ -64,44 +65,44 @@ public class InstrucoesR {
 
         //opCode Move from high
         if (Arrays.equals(funct, instrucoes.mfhi )) {
-            opReg.setValorReg(rd, hilo.getHI());
+            opReg.setValorReg(rd, hilo.getHI(), memoria);
         }
 
         //opCode Move from low
         if (Arrays.equals(funct, instrucoes.mflo )) {
-            opReg.setValorReg(rd, hilo.getLO());
+            opReg.setValorReg(rd, hilo.getLO(), memoria);
         }
 
         //AND
         if (Arrays.equals(funct, instrucoes.and )) {
-            opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)));
+            opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //OR
         if (Arrays.equals(funct, instrucoes.or )) {
-            opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)));
+            opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Set on Less Than
         if (Arrays.equals(funct, instrucoes.slt )) {
-            opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)));
+            opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Shift left logical
         if (Arrays.equals(funct, instrucoes.sll)) {
             verificaShamt(vetInstrucao, opReg, alu);
-            opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rs), shamt));
+            opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rs), shamt), memoria);
         }
 
         //Shift right logical
         if (Arrays.equals(funct, instrucoes.srl )) {
             verificaShamt(vetInstrucao, opReg, alu);
-            opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt));
+            opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt), memoria);
         }
 
         //Shift right arithmetic
         if (Arrays.equals(funct, instrucoes.sra )) {
-            opReg.setValorReg(rd, alu.sra(opReg.getValorReg(rs), shamt));
+            opReg.setValorReg(rd, alu.sra(opReg.getValorReg(rs), shamt), memoria);
         }
         
         //Jump register
@@ -111,7 +112,7 @@ public class InstrucoesR {
 
         //Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
-            syscall.verifica(opReg);
+            syscall.verifica(opReg, memoria);
             
         }
     }

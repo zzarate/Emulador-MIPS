@@ -2,11 +2,12 @@ package instrucoes;
 
 import java.util.Scanner;
 
+import main.Memoria;
 import registradores.OperacoesRegistradores;
 
 class Syscall {
     
-    void verifica (OperacoesRegistradores opReg){
+    void verifica (OperacoesRegistradores opReg, Memoria memoria){
 
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 1 ) {
             //print integer ($a0 = integer to print)
@@ -36,7 +37,7 @@ class Syscall {
                 x = x / 2;
                 i--;
             }
-            opReg.setValorReg(2, vzero);
+            opReg.setValorReg(2, vzero, memoria);
             sc.close();
     
         } 
@@ -45,6 +46,8 @@ class Syscall {
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 10 ) {
             //exit (terminate execution)
+            //Imprimir os valores dos registradores e de toda a memoria
+            //System.exit(0); //terminado sem problemas
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 11 ) {
             //print character ($a0 = character to print,  	See note below table)

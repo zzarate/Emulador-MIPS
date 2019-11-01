@@ -55,9 +55,9 @@ public class Inicio {
 
     void fillRegistradores (){
         for (int i = 0; i < 31; i++) {
-            opReg.setValorReg(i, opReg.getValorReg(0));
-            opReg.setValorReg(28, String.valueOf(0x1800).toCharArray());    //Atribui o endereço 0x1800 para o $sp
-            opReg.setValorReg(29, String.valueOf(0x00003ffc).toCharArray());    //Atribui o endereço  0x00003ffc para o $fp
+            opReg.setValorReg(i, opReg.getValorReg(0), memoria);
+            opReg.setValorReg(28, String.valueOf(0x1800).toCharArray(), memoria);    //Atribui o endereço 0x1800 para o $sp
+            opReg.setValorReg(29, String.valueOf(0x00003ffc).toCharArray(), memoria);    //Atribui o endereço  0x00003ffc para o $fp
         }
     }
 }
