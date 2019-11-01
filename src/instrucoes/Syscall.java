@@ -11,8 +11,18 @@ class Syscall {
 
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 1 ) {
             //print integer ($a0 = integer to print)
-            int x;
-            x = Integer.parseInt(new String (opReg.getValorReg(4)));
+            long x;
+            char[] y;
+            y = new char[32];
+            y = opReg.getValorReg(4);
+            String n1 = String.copyValueOf(y);
+            x = Long.parseLong(n1, 2);
+            if(y[0] == '1'){
+                x = x - 1073741824;
+                x = x - 1073741824;
+                x = x - 1073741824;
+                x = x - 1073741824;
+            }
             System.out.printf ("%d\n", x);
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 4 ) {
