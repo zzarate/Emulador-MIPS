@@ -227,7 +227,7 @@ public class OpALU implements AluInterface {
 	for(int i = 16, k = 0; i < 32; i++, k++){
             num[i] = num2[k];
         }
-	result[i] = and(num1, num);
+	result[i] = and(num1, num);                                                     //<<------ vc ta eviando um array e salvando em um unico char (dps que vc arrumar, exclui esse comentario)
         return result;
     }
 
@@ -255,7 +255,7 @@ public class OpALU implements AluInterface {
 	for(int i = 16, k = 0; i < 32; i++, k++){
             num[i] = num2[k];
         }
-	result[i] = or(num1, num);
+	result[i] = or(num1, num);                                                                  //<<------ vc ta eviando um array e salvando em um unico char (dps que vc arrumar, exclui esse comentario)
         return result;
     }
 
