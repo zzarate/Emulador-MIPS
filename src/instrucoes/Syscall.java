@@ -55,6 +55,28 @@ class Syscall {
                 System.out.println(String.format("0x%X", temp));
             }
 
+            //Imprime os dados da memoria
+            for (int k = 0; k < memoria.memory.length; k+=16) {
+                int temp = memoria.memory[k];
+                System.out.print ("Mem[");
+                System.out.print (String.format("0x%X", temp));
+                System.out.print ("] ");
+
+                for (int i = 0; i < 16; i+=4) {
+                    //Parte obscura para imprimir em hexa
+                    String s = null;
+                    s =Integer.toBinaryString((memoria.memory[k+0] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+1] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+2] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+3] & 0xFF) + 0x100).substring(1);
+                    int palavraInt = (int)Long.parseLong(s, 2);
+    
+                    System.out.print (String.format("0x%X", palavraInt));
+                    System.out.print (" ");
+                }
+                
+            }
+
             System.exit(0); //terminado sem problemas
         }
         if (Integer.parseInt(new String (opReg.getValorReg(2))) == 11 ) {
