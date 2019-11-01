@@ -161,6 +161,18 @@ public class OpALU implements AluInterface {
         String n2 = String.copyValueOf(num2);
         int numero1 = Integer.parseInt(n1, 2);
         int numero2 = Integer.parseInt(n2, 2);
+        if(num1[0] == '1'){
+            numero1 = numero1 - 1073741824;
+            numero1 = numero1 - 1073741824;
+            numero1 = numero1 - 1073741824;
+            numero1 = numero1 - 1073741824;
+        }
+        if(num2[0] == '1'){
+            numero2 = numero2 - 1073741824;
+            numero2 = numero2 - 1073741824;
+            numero2 = numero2 - 1073741824;
+            numero2 = numero2 - 1073741824;
+        }
         int num;
         char[] hl;
         hl = new char[64];
@@ -294,7 +306,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] sll(char[] num1, char [] numArray) { 
-        int num2 = Integer.parseInt(new String(numArray));
+        long num2 = Long.parseLong(new String(numArray), 2);
         int i;
         while(num2 > 0){
             for(i = 1; i < 32; i++){
@@ -307,7 +319,7 @@ public class OpALU implements AluInterface {
     }
 
     public char[] srl(char[] num1, char [] numArray) {
-        int num2 = Integer.parseInt(new String(numArray));
+        long num2 = Long.parseLong(new String(numArray), 2);
         int i;
         while(num2 > 0){
             for(i = 30; i >= 0; i--){
@@ -321,7 +333,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] sra(char[] num1, char[] numArray) {
-        int num2 = Integer.parseInt(new String(numArray));
+        long num2 = Long.parseLong(new String(numArray), 2);
         int i;
         while(num2 > 0){
             for(i = 30; i >= 0; i--){
