@@ -3,7 +3,7 @@ package alu;
 import registradores.HILO;
 
 public interface AluInterface {
-	//Aritimeticas
+    //Aritimeticas
     char[] add (char[] num1,char[] num2);
     char[] sub (char[] num1,char[] num2);
     char[] addi (char[] num1, char[] num2);
