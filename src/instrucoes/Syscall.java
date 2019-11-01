@@ -50,7 +50,7 @@ class Syscall {
                 i--;
             }
             opReg.setValorReg(2, vzero, memoria);
-    
+            sc.close();
         } 
         if (tempk == 8 ) {
             //read string
@@ -98,6 +98,22 @@ class Syscall {
         }
         if (tempk == 12 ) {
             //read character ($v0 contains character read)
+            char[] vzero;
+            int i = 31;
+            int j = 0;
+            vzero = new char[32]; 
+            Scanner s = new Scanner(System.in);
+            char c = s.next().charAt(0);
+            int x = (int) c;
+            while(x > 0){
+                j = x % 2;
+                j = j + 48;
+                vzero[i] = (char) j; 
+                x = x / 2;
+                i--;
+            }
+            opReg.setValorReg(2, vzero, memoria);
+            s.close();
         }
         if (tempk == 34 ) {
             //print integer in hexadecimal ($a0 = integer to print,Displayed value is 8 hexadecimal digits, left-padding with zeroes if necessary)
