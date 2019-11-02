@@ -85,6 +85,7 @@ class Syscall {
                     System.out.print (String.format("0x%X", palavraInt));
                     System.out.print (" ");
                 }
+                System.out.println("");
                 
             }
 
