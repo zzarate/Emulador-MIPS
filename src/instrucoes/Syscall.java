@@ -130,6 +130,9 @@ class Syscall {
         }
         if (tempk == 36 ) {
             //print integer as unsigned ($a0 = integer to print,Displayed as unsigned decimal value)
+            int x;
+            x = Integer.parseInt(new String (opReg.getValorReg(4)));
+            System.out.println(Integer.toUnsignedString(x));
         }
     }
 }
