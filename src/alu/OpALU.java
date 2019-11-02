@@ -76,20 +76,24 @@ public class OpALU implements AluInterface {
         int i = 31;
         char[] result;
         result = new char[32];
-        while(num2[i] == '0'){
+        char[] num;
+        num = new char[32];
+        num = num2;
+        
+        while(num[i] == '0'){
             i--;
         }
         i--;
         while( i >= 0){
-            if(num2[i] == '1'){
-                num2[i] = '0';
+            if(num[i] == '1'){
+                num[i] = '0';
             }
             else{
-                num2[i] = '1';
+                num[i] = '1';
             }
             i--;
         }
-        result = add(num1, num2);
+        result = add(num1, num);
         return result;
     }
 
