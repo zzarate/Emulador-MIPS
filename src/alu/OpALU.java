@@ -78,7 +78,9 @@ public class OpALU implements AluInterface {
         result = new char[32];
         char[] num;
         num = new char[32];
-        num = num2;
+        for(int j = 0; j < 32; j++){
+            num[i] = num2[i];
+        }
         
         while(num[i] == '0'){
             i--;
