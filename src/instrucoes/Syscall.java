@@ -59,31 +59,35 @@ class Syscall {
             //Imprimir os valores dos registradores e de toda a memoria
 
             //Imprime os valores dos registradores
-            for (int i = 0; i < 31; i++) {
+            for (int i = 0; i < 32; i++) {
                 int temp = (int)Long.parseLong(new String(opReg.getValorReg(i)), 2);
-                System.out.print ("$" + i + "   ");
-                System.out.println(String.format("0x%X", temp));
+                if (i<10) {
+                    System.out.print ("$" + i + "	");
+                }else{
+                    System.out.print ("$" + i + "	");
+                }
+                System.out.println(String.format("0x%08x", temp));
             }
 
             //Imprime os dados da memoria
             for (int k = 0; k < memoria.memory.length; k+=16) {
-                int temp = memoria.memory[k];
                 System.out.print ("Mem[");
-                System.out.print (String.format("0x%X", temp));
-                System.out.print ("] ");
+                System.out.print (String.format("0x%08x", k));
+                System.out.print ("]	");
 
                 for (int i = 0; i < 16; i+=4) {
                     //Parte obscura para imprimir em hexa
                     String s = null;
-                    s =Integer.toBinaryString((memoria.memory[k+0] & 0xFF) + 0x100).substring(1);
-                    s= s+ Integer.toBinaryString((memoria.memory[k+1] & 0xFF) + 0x100).substring(1);
-                    s= s+ Integer.toBinaryString((memoria.memory[k+2] & 0xFF) + 0x100).substring(1);
-                    s= s+ Integer.toBinaryString((memoria.memory[k+3] & 0xFF) + 0x100).substring(1);
+                    s =Integer.toBinaryString((memoria.memory[k+i] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+i+1] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+i+2] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+i+3] & 0xFF) + 0x100).substring(1);
                     int palavraInt = (int)Long.parseLong(s, 2);
     
-                    System.out.print (String.format("0x%X", palavraInt));
-                    System.out.print (" ");
+                    System.out.print (String.format("0x%08x", palavraInt));
+                    System.out.print ("	");
                 }
+                System.out.println("");
                 
             }
 
