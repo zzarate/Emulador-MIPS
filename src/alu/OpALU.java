@@ -73,28 +73,20 @@ public class OpALU implements AluInterface {
     //Subtração
     @Override
     public char[] sub(char[] num1, char[] num2) {
-        int i = 31;
         char[] result;
         result = new char[32];
         char[] num;
         num = new char[32];
-        for(int j = 0; j < 32; j++){
-            num[j] = num2[j];
-        }
-        
-        while(num[i] == '0'){
-            i--;
-        }
-        i--;
-        while( i >= 0){
-            if(num[i] == '1'){
-                num[i] = '0';
+
+        for(int k = 0; k < 32; k++){ //complemento 2
+            if(num2[k] == '1'){
+                num[k] = '0';
             }
             else{
-                num[i] = '1';
+                num[k] = '1';
             }
-            i--;
         }
+        num = addi(num, humArray);
         result = add(num1, num);
         return result;
     }
