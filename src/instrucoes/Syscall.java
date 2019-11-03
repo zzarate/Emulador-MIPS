@@ -15,22 +15,16 @@ class Syscall {
 
         if (tempk == 1 ) {  //<<< seria isso?
             //print integer ($a0 = integer to print)
-            long x;
             char[] y;
             y = new char[32];
             y = opReg.getValorReg(4);
             String n1 = String.copyValueOf(y);
-            x = Long.parseLong(n1, 2);
-            if(y[0] == '1'){
-                x = x - 1073741824;
-                x = x - 1073741824;
-                x = x - 1073741824;
-                x = x - 1073741824;
-            }
+            int x = (int) Long.parseLong(n1, 2);
             System.out.printf ("%d\n", x);
         }
         if (tempk == 4 ) {
             //print string ($a0 = address of null-terminated string to print)
+
         }
         if (tempk == 5 ) {
             //read integer ($v0 contains integer read)
