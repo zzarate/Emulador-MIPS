@@ -105,19 +105,16 @@ public class OpALU implements AluInterface {
         char[] numI;
         numI = new char[32];
 
-        for(int i = 0; i < 32; i++){
-            numI[i] = '0';
-        }
         if(num2[0] == '1'){
-            for(int i = 15; i < 32; i++){
+            for(int i = 16; i < 32; i++){
                 numI[i] = num2[i];
             }
 		    for(int i = 0; i < 16; i++){
-                numI[0] = '1';
+                numI[i] = '1';
             }
 		}
         else{
-            for(int i = 15; i < 32; i++){
+            for(int i = 0; i < 32; i++){
                 numI[i] = num2[i];
             }
         }

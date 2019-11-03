@@ -30,7 +30,7 @@ class Syscall {
             String n1 = String.copyValueOf(y);
             int x = (int) Long.parseLong(n1, 2);
 
-            String temp= new String();
+            String temp = new String();
             temp = Integer.toBinaryString((memoria.memory[x] & 0xFF) + 0x100).substring(1);
             int tem = (int)Long.parseLong(temp, 2);
 
