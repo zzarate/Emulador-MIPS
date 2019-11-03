@@ -154,13 +154,13 @@ public class Decodifica {
         //Andi
         if (Arrays.equals(opCode, instrucoes.andi )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.andi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
+            opReg.setValorReg(rt, alu.and(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Ori
         if (Arrays.equals(opCode, instrucoes.ori )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.ori(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
+            opReg.setValorReg(rt, alu.or(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Set on less than immediate
@@ -204,11 +204,11 @@ public class Decodifica {
                 newPC [i] = '0';
             }
             temp = (int)Long.parseLong(new String(newPC), 2);
-            opReg.setPC(temp);   //Atualiza o Proximo valor do PC
+            opReg.setPC(temp);   //Atualiza o Proximo valor do PC       //Pc ta pegando o valor fora do range
         }
         
         //Jump and link
-        if (Arrays.equals(opCode, instrucoes.jal )) {
+        if (Arrays.equals(opCode, instrucoes.jal )) {   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CORRIGIR - NAO CALCULA O VALOR CORRETAMENTE
             char [] auxPC = new char [32];
             char [] newPC = new char [32];
 
