@@ -1,5 +1,6 @@
 {
     "configurations": [
+
         
 
         {
@@ -8,6 +9,13 @@
             "request": "launch",
             "mainClass": "",
             "args": "text.bin data.bin"
+        },
+        {
+            "type": "java",
+            "name": "Debug calculadora",
+            "request": "launch",
+            "mainClass": "",
+            "args": "calculadora_text.bin calculadora_data.bin"
         },
         {
             "type": "java",

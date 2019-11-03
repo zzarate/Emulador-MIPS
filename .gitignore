@@ -33,3 +33,5 @@ Emulador-MIPS.code-workspace
 # Test files
 data.bin
 text.bin
+calculadora_text.bin
+calculadora_data.bin
