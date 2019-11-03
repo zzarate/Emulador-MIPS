@@ -104,23 +104,21 @@ public class OpALU implements AluInterface {
     public char[] addi(char[] num1, char[] num2) {
         char[] numI;
         numI = new char[32];
-        int i, j;
-        for(i = 0; i < 32; i++){
+
+        for(int i = 0; i < 32; i++){
             numI[i] = '0';
         }
-        j = 16;
-        for(i = 0; i < 16; i++){
-            numI[j] = num2[i];
-            j++;
-        }
-        if(num2[0] == '1'){    
-            for(i = 0; i < 16; i++){
+        if(num2[0] == '1'){
+            for(int i = 15; i < 32; i++){
+                numI[i] = num2[i];
+            }
+		    for(int i = 0; i < 16; i++){
                 numI[0] = '1';
             }
-        }
-        if(num2[0] == '0'){
-            for(i = 0; i < 16; i++){
-                numI[0] = '0';
+		}
+        else{
+            for(int i = 15; i < 32; i++){
+                numI[i] = num2[i];
             }
         }
         numI = add(num1, numI);
