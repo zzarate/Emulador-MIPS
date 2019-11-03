@@ -2,12 +2,13 @@ package instrucoes;
 
 import java.util.Scanner;
 
+import alu.OpALU;
 import main.Memoria;
 import registradores.OperacoesRegistradores;
 
 class Syscall {
     
-    void verifica (OperacoesRegistradores opReg, Memoria memoria, Scanner sc){
+    void verifica (OperacoesRegistradores opReg, Memoria memoria, Scanner sc, OpALU alu){
 
         String aux = new String(opReg.getValorReg(2));
         int tempk = (int)Long.parseLong(aux, 2);

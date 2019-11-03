@@ -30,7 +30,7 @@ public class InstrucoesR {
     }
 
     void verificaShamt (char [] vetInstrucao,OperacoesRegistradores opReg, OpALU alu){
-        for (int i = 21, j =0; i <26; i++, j++) {
+        for (int i = 21, j =0; i <27; i++, j++) {
             shamt [j] = vetInstrucao[i];
         }
         
@@ -110,7 +110,7 @@ public class InstrucoesR {
 
         //Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
-            syscall.verifica(opReg, memoria, sc);
+            syscall.verifica(opReg, memoria, sc, alu);
             
         }
     }

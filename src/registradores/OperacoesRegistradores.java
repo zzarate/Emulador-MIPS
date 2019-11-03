@@ -14,7 +14,7 @@ public class OperacoesRegistradores{
         return registradores.PC;
     }
 
-    char [] armazenaValor (char [] valor){
+    public char [] extendValor (char [] valor){
         char [] regTemp = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '0'};
 
         for (int i = valor.length-1, j = 31; i >= 0; i--, j--) {
@@ -31,174 +31,174 @@ public class OperacoesRegistradores{
         //Registrador $AT       1
         if (enderecoReg == 1 ) {
             registradores.$AT=registradores.$zero;
-            registradores.$AT=armazenaValor(valor);
+            registradores.$AT=extendValor(valor);
         }
         
         //Registrador $V0       2
         if (enderecoReg == 2 ) {
             registradores.$V0=registradores.$zero;
-            registradores.$V0=armazenaValor(valor);
+            registradores.$V0=extendValor(valor);
         } 
 
         //Registrador $V1       3
         if (enderecoReg == 3 ) {
             registradores.$V1=registradores.$zero;
-            registradores.$V1=armazenaValor(valor);
+            registradores.$V1=extendValor(valor);
         }
 
         //Registrador $A0       4
         if (enderecoReg == 4 ) {
             registradores.$A0=registradores.$zero;
-            registradores.$A0=armazenaValor(valor);
+            registradores.$A0=extendValor(valor);
         }
         
         //Registrador $A1       5
         if (enderecoReg == 5 ) {
             registradores.$A1=registradores.$zero;
-            registradores.$A1=armazenaValor(valor);
+            registradores.$A1=extendValor(valor);
         }
         
         //Registrador $A2       6
         if (enderecoReg == 6 ) {
             registradores.$A2=registradores.$zero;
-            registradores.$A2=armazenaValor(valor);
+            registradores.$A2=extendValor(valor);
         }
         
         //Registrador $A3       7
         if (enderecoReg == 7 ) {
             registradores.$A3=registradores.$zero;
-            registradores.$A3=armazenaValor(valor);
+            registradores.$A3=extendValor(valor);
         }
         
         //Registrador $T0       8
         if (enderecoReg == 8 ) {
             registradores.$T0=registradores.$zero;
-            registradores.$T0=armazenaValor(valor);
+            registradores.$T0=extendValor(valor);
         }
         
         //Registrador $T1       9
         if (enderecoReg == 9 ) {
             registradores.$T1=registradores.$zero;
-            registradores.$T1=armazenaValor(valor);
+            registradores.$T1=extendValor(valor);
         }
         
         //Registrador $T2       10
         if (enderecoReg == 10 ) {
             registradores.$T2=registradores.$zero;
-            registradores.$T2=armazenaValor(valor);
+            registradores.$T2=extendValor(valor);
         }
         
         //Registrador $T3       11
         if (enderecoReg == 11 ) {
             registradores.$T3=registradores.$zero;
-            registradores.$T3=armazenaValor(valor);
+            registradores.$T3=extendValor(valor);
         }
         
         //Registrador $T4       12
         if (enderecoReg == 12 ) {
             registradores.$T4=registradores.$zero;
-            registradores.$T4=armazenaValor(valor);
+            registradores.$T4=extendValor(valor);
         }
 
         //Registrador $T5       13
         if (enderecoReg == 13 ) {       
             registradores.$T5=registradores.$zero;
-            registradores.$T5=armazenaValor(valor);
+            registradores.$T5=extendValor(valor);
         }
         
         //Registrador $T6       14
         if (enderecoReg == 14 ) {
             registradores.$T6=registradores.$zero;
-            registradores.$T6=armazenaValor(valor);
+            registradores.$T6=extendValor(valor);
         }
         
         //Registrador $T7       15
         if (enderecoReg == 15 ) {
             registradores.$T7=registradores.$zero;
-            registradores.$T7=armazenaValor(valor);
+            registradores.$T7=extendValor(valor);
         }
         
         //Registrador $S0       16
         if (enderecoReg == 16 ) {
             registradores.$S0=registradores.$zero;
-            registradores.$S0=armazenaValor(valor);
+            registradores.$S0=extendValor(valor);
         }
         
         //Registrador $S1       17
         if (enderecoReg == 17 ) {
             registradores.$S1=registradores.$zero;
-            registradores.$S1=armazenaValor(valor);
+            registradores.$S1=extendValor(valor);
         }
         
         //Registrador $S2       18
         if (enderecoReg == 18 ) {
             registradores.$S2=registradores.$zero;
-            registradores.$S2=armazenaValor(valor);
+            registradores.$S2=extendValor(valor);
         }
         
         //Registrador $S3       19
         if (enderecoReg == 19 ) {
             registradores.$S3=registradores.$zero;
-            registradores.$S3=armazenaValor(valor);
+            registradores.$S3=extendValor(valor);
         }
         
         //Registrador $S4       20
         if (enderecoReg == 20 ) {
             registradores.$S4=registradores.$zero;
-            registradores.$S4=armazenaValor(valor);
+            registradores.$S4=extendValor(valor);
         }
         
         //Registrador $S5       21
         if (enderecoReg == 21 ) {
             registradores.$S5=registradores.$zero;
-            registradores.$S5=armazenaValor(valor);
+            registradores.$S5=extendValor(valor);
         }
         
         //Registrador $S6       22
         if (enderecoReg == 22 ) {
             registradores.$S6=registradores.$zero;
-            registradores.$S6=armazenaValor(valor);
+            registradores.$S6=extendValor(valor);
         }
         
         //Registrador $S7       23
         if (enderecoReg == 23 ) {
             registradores.$S7=registradores.$zero;
-            registradores.$S7=armazenaValor(valor);
+            registradores.$S7=extendValor(valor);
         }
         
         //Registrador $T8       24
         if (enderecoReg == 24 ) {
             registradores.$T8=registradores.$zero;
-            registradores.$T8=armazenaValor(valor);
+            registradores.$T8=extendValor(valor);
         }
         
         //Registrador $T9       25
         if (enderecoReg == 25 ) {
             registradores.$T9=registradores.$zero;
-            registradores.$T9=armazenaValor(valor);
+            registradores.$T9=extendValor(valor);
         }
         
         //Registrador $K0       26
         if (enderecoReg == 26 ) {
             registradores.$K0=registradores.$zero;
-            registradores.$K0=armazenaValor(valor);
+            registradores.$K0=extendValor(valor);
         }
         
         //Registrador $K1       27
         if (enderecoReg == 27 ) {
             registradores.$K1=registradores.$zero;
-            registradores.$K1=armazenaValor(valor);
+            registradores.$K1=extendValor(valor);
         }
         
         //Registrador $gp       28
         if (enderecoReg == 28 ) {
             registradores.$fp=registradores.$zero;
-            registradores.$gp=armazenaValor(valor);
+            registradores.$gp=extendValor(valor);
         }
 
         //Registrador $sp       29
         if (enderecoReg == 29 ) {
-            registradores.$sp=armazenaValor(valor);
+            registradores.$sp=extendValor(valor);
 
             String aux = new String(registradores.$sp);
             int temp = (int)Long.parseLong(aux, 2);
@@ -212,13 +212,13 @@ public class OperacoesRegistradores{
         //Registrador $fp       30
         if (enderecoReg == 30 ) {
             registradores.$fp=registradores.$zero;
-            registradores.$fp=armazenaValor(valor);
+            registradores.$fp=extendValor(valor);
         }
         
         //Registrador $ra       31
         if (enderecoReg == 31 ) {
             registradores.$ra=registradores.$zero;
-            registradores.$ra=armazenaValor(valor);
+            registradores.$ra=extendValor(valor);
         }
     }
     

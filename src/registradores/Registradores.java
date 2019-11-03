@@ -26,7 +26,7 @@ public class Registradores {
 
     //Temporarios
     char[] $T0 = new char [32]; //8
-    protected char[] $T1 = new char [32]; //9
+    char[] $T1 = new char [32]; //9
     char[] $T2 = new char [32]; //10
     char[] $T3 = new char [32]; //11
     char[] $T4 = new char [32]; //12

@@ -45,20 +45,20 @@ public class Decodifica {
         //opCode Add immediate
         if (Arrays.equals(opCode, instrucoes.addi )) {
             salvaTipoI(vetInstrucao);//Salva valor do imediato
-            opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
         
         //Add immediate unsigned
         if (Arrays.equals(opCode, instrucoes.addiu )) {
             salvaTipoI(vetInstrucao);//Salva valor do imediato
-            opReg.setValorReg(rt, alu.addiu(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.addiu(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Load word
         if (Arrays.equals(opCode, instrucoes.lw )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
-            
+            int enderecoMem = (int) Long.parseLong(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI))), 2); //Memória[C + s] | memoria [rs + imm]
+
             String palavra = null;
             String [] temp= new String [4];
 		    temp[0] =Integer.toBinaryString((memoria.memory[enderecoMem] & 0xFF) + 0x100).substring(1);
@@ -75,7 +75,7 @@ public class Decodifica {
         //Load half word
         if (Arrays.equals(opCode, instrucoes.lh )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
+            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)))); //Memória[C + s] | memoria [rs + imm]
             
             String palavra = null;
             String [] temp= new String [2];
@@ -91,7 +91,7 @@ public class Decodifica {
         //Load byte
         if (Arrays.equals(opCode, instrucoes.lb )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
+            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI))), 2); //Memória[C + s] | memoria [rs + imm]
             
             String palavra = null;
 
@@ -103,12 +103,12 @@ public class Decodifica {
         //Store word
         if (Arrays.equals(opCode, instrucoes.sw )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
+            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI))), 2); //Memória[C + s] | memoria [rs + imm]
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
-            for (int i = 0, k=8; i < 4; i++) {
-                for (int j = 8; j >= 0 ; j--, k--) {
+            for (int i=0, k=31; i < 4; i++) {
+                for (int j=7 ; j >= 0 ; j--, k--) {
                     byteTemp[j] = rtTemp[k];
                 }
             memoria.memory[enderecoMem+i]= (byte) Integer.parseInt(new String(byteTemp), 2);
@@ -118,7 +118,7 @@ public class Decodifica {
         //Store half word
         if (Arrays.equals(opCode, instrucoes.sh )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
+            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)))); //Memória[C + s] | memoria [rs + imm]
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
@@ -133,7 +133,7 @@ public class Decodifica {
         //Store byte
         if (Arrays.equals(opCode, instrucoes.sb )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), valorImmI))); //Memória[C + s] | memoria [rs + imm]
+            int enderecoMem = Integer.parseInt(new String(alu.addi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)))); //Memória[C + s] | memoria [rs + imm]
             char [] rtTemp = opReg.getValorReg(rt);
 
             char [] byteTemp = new char [8];
@@ -148,38 +148,38 @@ public class Decodifica {
         //Load upper immediate
         if (Arrays.equals(opCode, instrucoes.lui )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, valorImmI, memoria);
+            opReg.setValorReg(rt, opReg.extendValor(valorImmI), memoria);
         }
 
         //Andi
         if (Arrays.equals(opCode, instrucoes.andi )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.andi(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.andi(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Ori
         if (Arrays.equals(opCode, instrucoes.ori )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.ori(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.ori(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Set on less than immediate
         if (Arrays.equals(opCode, instrucoes.slti )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.slti(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.slti(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
 
         //Branch on equal 
         if (Arrays.equals(opCode, instrucoes.beq )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.beq(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.beq(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
 
         }
 
         //Branch on not equal
         if (Arrays.equals(opCode, instrucoes.bne )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.bne(opReg.getValorReg(rs), valorImmI), memoria);
+            opReg.setValorReg(rt, alu.bne(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
         }
         
         //Jump
@@ -190,7 +190,9 @@ public class Decodifica {
             char [] newPC = new char [32];
 
             salvaTipoJ(vetInstrucao);
-            auxPC = ("" + PC+4).toCharArray();      //Atualiza o PC para a proxima instrução
+            int temp = PC+4;
+            String pctemp= Integer.toBinaryString(temp);
+            auxPC = opReg.extendValor(pctemp.toCharArray());      //Atualiza o PC para a proxima instrução
 
             for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
                 newPC[i] = auxPC[i];
@@ -198,11 +200,11 @@ public class Decodifica {
             for (int i = 3, j=0 ; i < 29; i++, j++) {       //Rcebe os 26 bits do imediato
                 newPC[i] = valorImmJ [j];
             }
-            for (int i = 29; i < 31; i++) {     //Adiciona zero nos dois bits menos significativo
-                newPC [i] = 0;
+            for (int i = 29; i < 32; i++) {     //Adiciona zero nos dois bits menos significativo
+                newPC [i] = '0';
             }
-
-            opReg.setPC(Integer.parseInt(new String(newPC)));   //Atualiza o Proximo valor do PC
+            temp = (int)Long.parseLong(new String(newPC), 2);
+            opReg.setPC(temp);   //Atualiza o Proximo valor do PC
         }
         
         //Jump and link
@@ -211,11 +213,13 @@ public class Decodifica {
             char [] newPC = new char [32];
 
             salvaTipoJ(vetInstrucao);
-            auxPC = ("" + PC+4).toCharArray();  //Atualiza o PC para a proxima instrução
+            int temp = PC+4;
+            String pctemp= Integer.toBinaryString(temp);
+            auxPC = opReg.extendValor(pctemp.toCharArray());      //Atualiza o PC para a proxima instruç
             opReg.setValorReg(31, auxPC, memoria);       //Guarda o valor do proximo PC no $RA
 
             for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
-                newPC[i] = auxPC[i];        //      <<------    Problema
+                newPC[i] = auxPC[i];
             }
             for (int i = 3, j=0 ; i < 29; i++, j++) {       //Receber os 26 bits do imediato em sequencia
                 newPC[i] = valorImmJ [j];
@@ -224,7 +228,7 @@ public class Decodifica {
                 newPC [i] = 0;
             }
 
-            opReg.setPC(Integer.parseInt(new String(newPC), 2));   //Atualiza o Proximo valor do PC  <<---- erro
+            opReg.setPC(Integer.parseInt(new String(newPC), 2));   //Atualiza o Proximo valor do PC
         }
     }
 
