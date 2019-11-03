@@ -28,7 +28,7 @@ public class HILO {
         char [] dest_LO;
         dest_LO = new char [32];
 
-        for (int i = 0; i<32; i++) {
+        for (int i = 32; i < 64; i++) {
             dest_LO[i]= HILO [i];
         }
         return dest_LO;
@@ -38,7 +38,7 @@ public class HILO {
     public char [] getHI (){
         char [] dest_HI;
         dest_HI = new char [32];
-        for (int i = 32; i<64; i++) {
+        for (int i = 0; i < 32; i++) {
             dest_HI[i]= HILO [i];
         }
         return dest_HI;
