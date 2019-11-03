@@ -152,13 +152,13 @@ public class OpALU implements AluInterface {
         }
         for(int i = 0; i < 32; i++){
             if(num1[31] == 1){           // troquei 0 para 31 (to meio cansado, pode estar errado)
-                add(mult, prod);            //      <---------------------------------------
-                sll(mult, humArray);
-                srl(num1, humArray);
+                prod = add(mult, prod);            //      <---------------------------------------
+                mult = sll(mult, humArray);
+                num1 = srl(num1, humArray);
             }
             else{
-                sll(mult, humArray);
-                srl(num1, humArray);
+                mult = sll(mult, humArray);
+                num1 = srl(num1, humArray);
             }
         }
         hilo.setHilo(prod);
