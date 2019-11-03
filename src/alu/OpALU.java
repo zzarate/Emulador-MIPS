@@ -109,16 +109,15 @@ public class OpALU implements AluInterface {
             numI[i] = '0';
         }
         if(num2[0] == '1'){
-            for(int i = 15, j = 31; i > 0; i--, j--){
+            for(int i = 15, j = 31; i >= 0; i--, j--){
                 numI[j] = num2[i];
             }
-		for(int i = 0; i < 16; i++){
-			numI[0] = '1';
+		    for(int i = 0; i < 16; i++){
+                numI[0] = '1';
+            }
 		}
-            
-        }
         else{
-            for(int i = 15, j = 31; i > 0; i--, j--){
+            for(int i = 15, j = 31; i >= 0; i--, j--){
                 numI[j] = num2[i];
             }
         }
@@ -168,8 +167,8 @@ public class OpALU implements AluInterface {
     public void div(char[] num1, char[] num2, HILO hilo) {
         String n1 = String.copyValueOf(num1);
         String n2 = String.copyValueOf(num2);
-        int numero1 = Integer.parseInt(n1, 2);
-        int numero2 = Integer.parseInt(n2, 2);
+        long numero1 = Long.parseLong(n1, 2);
+        long numero2 = Long.parseLong(n2, 2);
         if(num1[0] == '1'){
             numero1 = numero1 - 1073741824;
             numero1 = numero1 - 1073741824;
@@ -182,11 +181,11 @@ public class OpALU implements AluInterface {
             numero2 = numero2 - 1073741824;
             numero2 = numero2 - 1073741824;
         }
-        int num;
+        long num;
         char[] hl;
         hl = new char[64];
         int i = 31;
-        int j = 0;
+        long j = 0;
         int[] hi, lo;
         int aux = 0;
         hi = new int[32];
