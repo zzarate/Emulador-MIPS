@@ -13,7 +13,7 @@ class Syscall {
         String aux = new String(opReg.getValorReg(2));
         int tempk = (int)Long.parseLong(aux, 2);
 
-        if (tempk == 1 ) {  //<<< seria isso?
+        if (tempk == 1 ) { 
             //print integer ($a0 = integer to print)
             char[] y;
             y = new char[32];
@@ -24,7 +24,21 @@ class Syscall {
         }
         if (tempk == 4 ) {
             //print string ($a0 = address of null-terminated string to print)
+            char[] y;
+            y = new char[32];
+            y = opReg.getValorReg(4);
+            String n1 = String.copyValueOf(y);
+            int x = (int) Long.parseLong(n1, 2);
 
+            String temp= new String();
+            temp = Integer.toBinaryString((memoria.memory[x] & 0xFF) + 0x100).substring(1);
+            int tem = (int)Long.parseLong(temp, 2);
+
+            while(tem != 0){   //0 na tabela ascii e null
+                System.out.printf("%c\n", tem);
+                temp = Integer.toBinaryString((memoria.memory[x+1] & 0xFF) + 0x100).substring(1);
+                tem = (int)Long.parseLong(temp);
+            }
         }
         if (tempk == 5 ) {
             //read integer ($v0 contains integer read)
