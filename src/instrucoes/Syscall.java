@@ -38,17 +38,39 @@ class Syscall {
             int i = 31;
             int j = 0;
             vzero = new char[32];  
+            char [] hum = {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0','0', '0', '0', '0', '0', '0', '1'};
 
             for(int k = 0; k < 32; k++){
                 vzero[k] = '0';
             }
             int x = sc.nextInt();
-            while(x > 0){
-                j = x % 2;
-                j = j + 48;
-                vzero[i] = (char) j; 
-                x = x / 2;
-                i--;
+            if(x > 0){
+                while(x > 0){
+                    j = x % 2;
+                    j = j + 48;
+                    vzero[i] = (char) j; 
+                    x = x / 2;
+                    i--;
+                }
+            }
+            else{
+                x = x * (-1);
+                while(x > 0){
+                    j = x % 2;
+                    j = j + 48;
+                    vzero[i] = (char) j; 
+                    x = x / 2;
+                    i--;
+                }
+                for(int k = 0; k < 32; k++){
+                    if(vzero[k] == '1'){
+                        vzero[k] = '0';
+                    }
+                    else{
+                        vzero[k] = '1';
+                    }
+                }
+                vzero = alu.add(vzero, hum);
             }
             opReg.setValorReg(2, vzero, memoria);
         } 
