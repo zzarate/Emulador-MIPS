@@ -171,18 +171,21 @@ public class OpALU implements AluInterface {
         for(i = 0; i < 64; i++){
             hl[i] = '0';
         }
+        for(i = 0; i < 32; i++){
+            hi[i] = '0';
+            lo[i] = '0';
+        }
 
         num = numero1 % numero2;
         while(num > 0){
             j = num % 2;
-            j = j + 48;    //tabela ascii +48
-            hi[i] = (char) j; 
+            hi[i] =  j; 
             num = num / 2;
             i--;
         }
 
         for(int k = 31; k >= 0; k--){
-            aux = hi[k] + 48;
+            aux = hi[k] + 48;   //tabela ascii +48
             hl[k] = (char) aux;
         }
 
@@ -190,14 +193,13 @@ public class OpALU implements AluInterface {
         i = 31;
         while(num > 0){
             j = num % 2;
-            j = j + 48;    //tabela ascii +48
-            lo[i] = (char) j;   
+            lo[i] = j;   
             num = num / 2;
             i--;
         }
 
         for(int k = 63, l = 31; l >= 0; k--, l--){
-            aux = lo[l] + 48;
+            aux = lo[l] + 48;   //tabela ascii +48
             hl[k] = (char) aux;
         }
         hilo.setHilo(hl);
