@@ -36,7 +36,7 @@ class Syscall {
 
             while(tem != 0){   //0 na tabela ascii e null
                 System.out.printf("%c", tem);
-                temp = Integer.toBinaryString((memoria.memory[x+11] & 0xFF) + 0x100).substring(1);
+                temp = Integer.toBinaryString((memoria.memory[x+1] & 0xFF) + 0x100).substring(1);
                 tem = (int)Long.parseLong(temp);
             }
         }

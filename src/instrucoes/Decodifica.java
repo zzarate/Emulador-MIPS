@@ -185,32 +185,20 @@ public class Decodifica {
         //Jump
         if (Arrays.equals(opCode, instrucoes.j )) {
             salvaTipoJ(vetInstrucao);
-
-            char [] auxPC = new char [32];
-            char [] newPC = new char [32];
-
-            salvaTipoJ(vetInstrucao);
-            int temp = PC+4;
-            String pctemp= Integer.toBinaryString(temp);
-            auxPC = opReg.extendValor(pctemp.toCharArray());      //Atualiza o PC para a proxima instrução
-
-            for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
-                newPC[i] = auxPC[i];
-            }
-            for (int i = 3, j=0 ; i < 29; i++, j++) {       //Rcebe os 26 bits do imediato
-                newPC[i] = valorImmJ [j];
-            }
-            for (int i = 29; i < 32; i++) {     //Adiciona zero nos dois bits menos significativo
-                newPC [i] = '0';
-            }
-            temp = (int)Long.parseLong(new String(newPC), 2);
-            opReg.setPC(temp);   //Atualiza o Proximo valor do PC       //Pc ta pegando o valor fora do range
+            int temp = PC;
+            int newPC;
+            String vI = String.copyValueOf(valorImmJ);
+            int x = (int) Long.parseLong(vI, 2);
+            x = x * 4;
+            x = x - temp;
+            newPC = temp + x;
+            
+            opReg.setPC(newPC);   //Atualiza o Proximo valor do PC       //Pc ta pegando o valor fora do range
         }
         
         //Jump and link
         if (Arrays.equals(opCode, instrucoes.jal )) {   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CORRIGIR - NAO CALCULA O VALOR CORRETAMENTE
             char [] auxPC = new char [32];
-            char [] newPC = new char [32];
 
             salvaTipoJ(vetInstrucao);
             int temp = PC+4;
@@ -218,17 +206,15 @@ public class Decodifica {
             auxPC = opReg.extendValor(pctemp.toCharArray());      //Atualiza o PC para a proxima instruç
             opReg.setValorReg(31, auxPC, memoria);       //Guarda o valor do proximo PC no $RA
 
-            for (int i = 0; i < 3; i++) {       //Armazena os 4 bits mais significativos do PC
-                newPC[i] = auxPC[i];
-            }
-            for (int i = 3, j=0 ; i < 29; i++, j++) {       //Receber os 26 bits do imediato em sequencia
-                newPC[i] = valorImmJ [j];
-            }
-            for (int i = 29; i < 31; i++) {     //Adiciona zero nos dois bits menos significativos
-                newPC [i] = 0;
-            }
+            int tempAux = PC;
+            int newPC;
+            String vI = String.copyValueOf(valorImmJ);
+            int x = (int) Long.parseLong(vI, 2);
+            x = x * 4;
+            x = x - tempAux;
+            newPC = temp + x;
 
-            opReg.setPC(Integer.parseInt(new String(newPC), 2));   //Atualiza o Proximo valor do PC
+            opReg.setPC(newPC);   //Atualiza o Proximo valor do PC
         }
     }
 
