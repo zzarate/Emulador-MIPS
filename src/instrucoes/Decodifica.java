@@ -193,11 +193,11 @@ public class Decodifica {
             x = x - temp;
             newPC = temp + x;
             
-            opReg.setPC(newPC);   //Atualiza o Proximo valor do PC       //Pc ta pegando o valor fora do range
+            opReg.setPC(newPC-4);   //Atualiza o Proximo valor do PC
         }
         
         //Jump and link
-        if (Arrays.equals(opCode, instrucoes.jal )) {   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CORRIGIR - NAO CALCULA O VALOR CORRETAMENTE
+        if (Arrays.equals(opCode, instrucoes.jal )) {
             char [] auxPC = new char [32];
 
             salvaTipoJ(vetInstrucao);
@@ -214,7 +214,7 @@ public class Decodifica {
             x = x - tempAux;
             newPC = temp + x;
 
-            opReg.setPC(newPC);   //Atualiza o Proximo valor do PC
+            opReg.setPC(newPC-4);   //Atualiza o Proximo valor do PC
         }
     }
 

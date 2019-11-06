@@ -28,8 +28,8 @@ public class HILO {
         char [] dest_LO;
         dest_LO = new char [32];
 
-        for (int i = 32; i < 64; i++) {
-            dest_LO[i]= HILO [i];
+        for (int i = 32, j=0 ; i < 64; i++, j++) {
+            dest_LO[j]= HILO [i];
         }
         return dest_LO;
     }
