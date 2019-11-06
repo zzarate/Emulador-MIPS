@@ -128,6 +128,12 @@ public class OpALU implements AluInterface {
         mult = new char[64];
         char[] prod;
         prod = new char[64];
+        char[] num11;
+        num11 = new char[32];
+
+        for(int j = 0; j < 32; j++){ 
+            num11[j] = num1[j];
+        }
 
         for(int i = 31, j = 63; i >= 0; i--, j--){ //aumentando num2 para mult de tamanho 64
             mult[j] = num2[i];
@@ -142,11 +148,11 @@ public class OpALU implements AluInterface {
             if(num1[31] == 1){           // troquei 0 para 31 (to meio cansado, pode estar errado)
                 prod = add(mult, prod);            //      <---------------------------------------
                 mult = sll(mult, humArray);
-                num1 = srl(num1, humArray);
+                num11 = srl(num11, humArray);
             }
             else{
                 mult = sll(mult, humArray);
-                num1 = srl(num1, humArray);
+                num11 = srl(num11, humArray);
             }
         }
         hilo.setHilo(prod);
