@@ -145,7 +145,7 @@ public class OpALU implements AluInterface {
             prod[i] = '0';
         }
         for(int i = 0; i < 32; i++){
-            if(num1[31] == 1){           // troquei 0 para 31 (to meio cansado, pode estar errado)
+            if(num11[i] == '1'){           // troquei 0 para 31 (to meio cansado, pode estar errado)
                 prod = add(mult, prod);            //      <---------------------------------------
                 mult = sll(mult, humArray);
                 num11 = srl(num11, humArray);
@@ -300,7 +300,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] sll(char[] num1, char [] numArray) { 
-        long num2 = Long.parseLong(new String(numArray), 2); //<<<<<<<<<<<<<<<<<<<<<<<<
+        int num2 = (int)Long.parseLong(new String(numArray), 2); //<<<<<<<<<<<<<<<<<<<<<<<<
         int i;
         while(num2 > 0){
             for(i = 1; i < 32; i++){
@@ -313,7 +313,7 @@ public class OpALU implements AluInterface {
     }
 
     public char[] srl(char[] num1, char [] numArray) {
-        long num2 = Long.parseLong(new String(numArray), 2);
+        int num2 = (int)Long.parseLong(new String(numArray), 2);
         int i;
         while(num2 > 0){
             for(i = 30; i >= 0; i--){
