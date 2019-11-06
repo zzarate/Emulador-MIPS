@@ -32,12 +32,16 @@ class Syscall {
 
             String temp = new String();
             temp = Integer.toBinaryString((memoria.memory[x] & 0xFF) + 0x100).substring(1);
+            temp = temp + Integer.toBinaryString((memoria.memory[x+1] & 0xFF) + 0x100).substring(1);
             int tem = (int)Long.parseLong(temp, 2);
 
+            int i = 1;
             while(tem != 0){   //0 na tabela ascii e null
                 System.out.printf("%c", tem);
-                temp = Integer.toBinaryString((memoria.memory[x+1] & 0xFF) + 0x100).substring(1);
+                temp = Integer.toBinaryString((memoria.memory[x+i+1] & 0xFF) + 0x100).substring(1);
+                temp = Integer.toBinaryString((memoria.memory[x+i+2] & 0xFF) + 0x100).substring(1);
                 tem = (int)Long.parseLong(temp);
+                i+=2;
             }
         }
         if (tempk == 5 ) {
