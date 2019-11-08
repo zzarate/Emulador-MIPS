@@ -12,7 +12,8 @@ public class Main {
         inicio.fillMem();
         inicio.fillRegistradores();
         inicio.abreArquivo(filetText, fileData);
-        inicio.executaInstrucoes(); //<<erro
+        inicio.executaInstrucoes();
+        System.exit(1);
 
     }
 }
