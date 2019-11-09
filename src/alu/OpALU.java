@@ -121,7 +121,49 @@ public class OpALU implements AluInterface {
         numI = addi(num1, num2);
         return numI;
     }
-    
+
+    private char[] add64(char[] num1, char[] num2) {
+        char carryIn = '0';
+        char carryOut = '0';
+        char[] result;
+        result = new char[64];
+    	for(int i = 63; i >= 0; i--){
+            carryIn = carryOut;
+            char and = and(num1[i], num2[i]);
+            char or = or(num1[i], num2[i]);
+            if(carryIn == '0'){
+                if(and == '1' && or == '1'){
+                    result[i] = '0';
+                    carryOut = '1';
+                }
+                else
+                    if(and == '0' && or == '0'){
+                          result[i] = '0';
+                          carryOut = '0'; 
+                    }
+                else{
+                    result[i] = '1';
+                    carryOut = '0';
+                }
+            }
+            else{
+                if(and == '1' && or == '1'){
+                    result[i] = '1';
+                    carryOut = '1';
+                }
+                else if(and == '0' && or == '0'){
+                          result[i] = '1';
+                          carryOut = '0'; 
+                }
+                else{
+                    result[i] = '0';
+                    carryOut = '1';
+                }
+            }
+        }   
+        return result;
+    }
+
     @Override
     public void mult(char[] num1, char[] num2, HILO hilo) {
         char[] mult; //multiplicando
@@ -144,18 +186,31 @@ public class OpALU implements AluInterface {
         for(int i = 0; i < 64; i++){
             prod[i] = '0';
         }
-        for(int i = 0; i < 32; i++){
-            if(num11[i] == '1'){           // troquei 0 para 31 (to meio cansado, pode estar errado)
-                prod = add(mult, prod);            //      <---------------------------------------
-                mult = sll(mult, humArray);
+        for(int i = 31; i >= 0; i--){
+            if(num11[31] == '1'){           
+                prod = add64(mult, prod);            
+                mult = sll64(mult, humArray);
                 num11 = srl(num11, humArray);
             }
             else{
-                mult = sll(mult, humArray);
+                mult = sll64(mult, humArray);
                 num11 = srl(num11, humArray);
             }
         }
         hilo.setHilo(prod);
+    }
+
+    private char[] sll64(char[] num1, char [] numArray) { 
+        int num2 = (int)Long.parseLong(new String(numArray), 2); 
+        int i;
+        while(num2 > 0){
+            for(i = 1; i < 64; i++){
+                num1[i-1] = num1[i];
+            }
+            num1[63] = '0';
+            num2--;
+        }
+        return num1;
     }
 
     @Override
