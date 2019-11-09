@@ -1,7 +1,9 @@
 # Emulador-MIPS
-Emulador funcional com conjunto reduzido de instruções MIPS
+Emulador funcional com conjunto reduzido de instruções MIPS.
+Functional emulator with reduced set of MIPS instructions. All the code and comments are in Portuguese.
 
 ## Instruções testadas
+### Tested instructions
 
 - [x]   Addi
 - [x]   Add
@@ -14,7 +16,7 @@ Emulador funcional com conjunto reduzido de instruções MIPS
 - [x]   Bne
 - [ ]   Mflo
 - [ ]   Mfhi
-- [ ]   Mult
+- [x]   Mult
 - [ ]   Div
 - [ ]   ...
 
