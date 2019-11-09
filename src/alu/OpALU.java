@@ -219,19 +219,14 @@ public class OpALU implements AluInterface {
         String n2 = String.copyValueOf(num2);
         int numero1 = (int)Long.parseLong(n1, 2);
         int numero2 = (int)Long.parseLong(n2, 2);
-    
         int num;
-        char[] hl;
-        hl = new char[64];
         int i = 31;
         int j = 0;
-        int[] hi, lo;
+        char[] hi, lo;
         int aux = 0;
-        hi = new int[32];
-        lo = new int[32];
-        for(i = 0; i < 64; i++){
-            hl[i] = '0';
-        }
+        hi = new char[32];
+        lo = new char[32];
+
         for(i = 0; i < 32; i++){
             hi[i] = '0';
             lo[i] = '0';
@@ -241,30 +236,23 @@ public class OpALU implements AluInterface {
         i = 31;
         while(num > 0){
             j = num % 2;
-            hi[i] =  j; 
+            aux = j + 48;
+            hi[i] = (char) aux; 
             num = num / 2;
             i--;
         }
-
-        for(int k = 31; k >= 0; k--){
-            aux = hi[k] + 48;   //tabela ascii +48
-            hl[k] = (char) aux;
-        }
-
+        hilo.setHI(hi);
+  
         num = numero1 / numero2;
         i = 31;
         while(num > 0){
             j = num % 2;
-            lo[i] = j;   
+            aux = j + 48;
+            lo[i] = (char) aux;   
             num = num / 2;
             i--;
         }
-
-        for(int k = 63, l = 31; l >= 0; k--, l--){
-            aux = lo[l] + 48;   //tabela ascii +48
-            hl[k] = (char) aux;
-        }
-        hilo.setHilo(hl);
+        hilo.setLO(lo);
     }
 
     @Override
