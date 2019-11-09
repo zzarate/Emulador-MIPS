@@ -307,11 +307,8 @@ public class OpALU implements AluInterface {
 	    char[] num;
         num = new char[32];
 	    
-	    for(int i = 0; i < 16; i++){
-            num[i] = num1[i];
-        } 
-    	for(int i = 16, k = 0; i < 32; i++, k++){
-            num[i] = or(num1[i], num2[k]);
+    	for(int i = 0; i < 32; i++){
+            num[i] = or(num1[i], num2[i]);
         }
         return num;
     }

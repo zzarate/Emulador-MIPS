@@ -36,8 +36,8 @@ public class Inicio {
             /*  Salva as instruções de 4 bytes (32 bits) em uma string
              *  a partir do endereço do PC */ 
             String instrucao = null;
-            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory); // <<---- problema
-            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria, sc); //Decodifica e executa a instrucao << erro
+            instrucao = separaDados.separaInstrucao(instrucao, opReg.getPC(), memoria.memory);
+            decodifica.separaInstrucao(instrucao, opReg.getPC(), opReg, memoria, sc);
         }
         sc.close();
     }

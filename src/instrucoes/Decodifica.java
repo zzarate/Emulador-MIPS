@@ -172,14 +172,30 @@ public class Decodifica {
         //Branch on equal 
         if (Arrays.equals(opCode, instrucoes.beq )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.beq(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
+            char [] temp = alu.beq(opReg.getValorReg(rs), opReg.getValorReg(rt));
+            int result =Integer.parseInt(new String(temp), 2);
+
+            if ( result == 1 ) {
+                String vI = String.copyValueOf(valorImmI);
+                int c = (int) Long.parseLong(vI, 2);
+                int newPC = PC + 4 + (c*4);
+                opReg.setPC(newPC-4);
+            }
 
         }
 
         //Branch on not equal
         if (Arrays.equals(opCode, instrucoes.bne )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            opReg.setValorReg(rt, alu.bne(opReg.getValorReg(rs), opReg.extendValor(valorImmI)), memoria);
+            char [] temp = alu.bne(opReg.getValorReg(rs), opReg.getValorReg(rt));
+            int result =Integer.parseInt(new String(temp), 2);
+
+            if ( result != 1 ) {
+                String vI = String.copyValueOf(valorImmI);
+                int c = (int) Long.parseLong(vI, 2);
+                int newPC = PC + 4 + (c*4);
+                opReg.setPC(newPC-4);
+            }
         }
         
         //Jump
@@ -193,7 +209,8 @@ public class Decodifica {
             x = x - temp;
             newPC = temp + x;
             
-            opReg.setPC(newPC-4);   //Atualiza o Proximo valor do PC
+            opReg.setPC(newPC-4);
+
         }
         
         //Jump and link
