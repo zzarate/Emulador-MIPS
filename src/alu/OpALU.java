@@ -187,7 +187,7 @@ public class OpALU implements AluInterface {
             prod[i] = '0';
         }
         for(int i = 31; i >= 0; i--){
-            if(num11[i] == '1'){           
+            if(num11[31] == '1'){           
                 prod = add64(mult, prod);            
                 mult = sll64(mult, humArray);
                 num11 = srl(num11, humArray);
