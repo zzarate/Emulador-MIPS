@@ -238,6 +238,7 @@ public class OpALU implements AluInterface {
         }
 
         num = numero1 % numero2;
+        i = 31;
         while(num > 0){
             j = num % 2;
             hi[i] =  j; 
