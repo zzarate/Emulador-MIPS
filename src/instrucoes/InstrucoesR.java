@@ -53,63 +53,75 @@ public class InstrucoesR {
 
         //Multiply
         if (Arrays.equals(funct, instrucoes.mult )) {
+            salvaRegTipoR(vetInstrucao);
             alu.mult(opReg.getValorReg(rs), opReg.getValorReg(rt), hilo);
         }
 
         //Divide 
         if (Arrays.equals(funct, instrucoes.div )) {
+            salvaRegTipoR(vetInstrucao);
             alu.div(opReg.getValorReg(rs), opReg.getValorReg(rt), hilo);
         }
 
         //opCode Move from high
         if (Arrays.equals(funct, instrucoes.mfhi )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, hilo.getHI(), memoria);
         }
 
         //opCode Move from low
         if (Arrays.equals(funct, instrucoes.mflo )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, hilo.getLO(), memoria);
         }
 
         //AND
         if (Arrays.equals(funct, instrucoes.and )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.and(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //OR
         if (Arrays.equals(funct, instrucoes.or )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.or(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Set on Less Than
         if (Arrays.equals(funct, instrucoes.slt )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.slt(opReg.getValorReg(rs), opReg.getValorReg(rt)), memoria);
         }
 
         //Shift left logical
         if (Arrays.equals(funct, instrucoes.sll)) {
+            salvaRegTipoR(vetInstrucao);
             verificaShamt(vetInstrucao, opReg, alu);
             opReg.setValorReg(rd, alu.sll(opReg.getValorReg(rs), shamt), memoria);
         }
 
         //Shift right logical
         if (Arrays.equals(funct, instrucoes.srl )) {
+            salvaRegTipoR(vetInstrucao);
             verificaShamt(vetInstrucao, opReg, alu);
             opReg.setValorReg(rd, alu.srl(opReg.getValorReg(rs), shamt), memoria);
         }
 
         //Shift right arithmetic
         if (Arrays.equals(funct, instrucoes.sra )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setValorReg(rd, alu.sra(opReg.getValorReg(rs), shamt), memoria);
         }
         
         //Jump register
         if (Arrays.equals(funct, instrucoes.jr )) {
+            salvaRegTipoR(vetInstrucao);
             opReg.setPC(Integer.parseInt(new String (opReg.getValorReg(rs))));
         }
 
         //Syscall
         if (Arrays.equals(funct, instrucoes.syscall)) {
+            salvaRegTipoR(vetInstrucao);
             syscall.verifica(opReg, memoria, sc, alu);
             
         }
