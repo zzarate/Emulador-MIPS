@@ -2,8 +2,8 @@
 Emulador funcional com conjunto reduzido de instruções MIPS.
 Functional emulator with reduced set of MIPS instructions. All the code and comments are in Portuguese.
 
-## Instruções testadas
-### Tested instructions
+## Instruções testadas e funcionando
+### Tested and working instructions
 
 
 - [x]   Addi
@@ -19,6 +19,8 @@ Functional emulator with reduced set of MIPS instructions. All the code and comm
 - [ ]   Mfhi
 - [x]   Mult
 - [ ]   Div
+- [x]   Srl
+- [x]   Sll
 - [ ]   ...
 
 ### Syscall
