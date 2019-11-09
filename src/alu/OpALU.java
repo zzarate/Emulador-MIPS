@@ -220,7 +220,7 @@ public class OpALU implements AluInterface {
         int numero1 = (int)Long.parseLong(n1, 2);
         int numero2 = (int)Long.parseLong(n2, 2);
         int num;
-        int i = 31;
+        int i;
         int j = 0;
         char[] hi, lo;
         int aux = 0;
