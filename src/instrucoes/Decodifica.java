@@ -190,7 +190,7 @@ public class Decodifica {
             char [] temp = alu.bne(opReg.getValorReg(rs), opReg.getValorReg(rt));
             int result =Integer.parseInt(new String(temp), 2);
 
-            if ( result != 1 ) {
+            if ( result == 1 ) {
                 String vI = String.copyValueOf(valorImmI);
                 int c = (int) Long.parseLong(vI, 2);
                 int newPC = PC + 4 + (c*4);
