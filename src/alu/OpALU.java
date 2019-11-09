@@ -297,7 +297,7 @@ public class OpALU implements AluInterface {
 
     @Override
     public char[] sll(char[] num1, char [] numArray) { 
-        int num2 = (int)Long.parseLong(new String(numArray), 2); //<<<<<<<<<<<<<<<<<<<<<<<<
+        int num2 = (int)Long.parseLong(new String(numArray), 2);
         int i;
         while(num2 > 0){
             for(i = 1; i < 32; i++){
