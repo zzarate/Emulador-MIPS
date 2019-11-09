@@ -172,28 +172,35 @@ public class Decodifica {
         //Branch on equal 
         if (Arrays.equals(opCode, instrucoes.beq )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            char [] temp = alu.beq(opReg.getValorReg(rs), opReg.getValorReg(rt));
-            int result =Integer.parseInt(new String(temp), 2);
+            char [] b = alu.beq(opReg.getValorReg(rs), opReg.getValorReg(rt));
+            int result =Integer.parseInt(new String(b), 2);
 
             if ( result == 1 ) {
-                String vI = String.copyValueOf(valorImmI);
-                int c = (int) Long.parseLong(vI, 2);
-                int newPC = PC + 4 + (c*4);
+                int temp = PC;
+                int newPC;
+                String vI = String.copyValueOf(valorImmJ);
+                int x = (int) Long.parseLong(vI, 2);
+                x = x * 4;
+                x = x - temp;
+                newPC = temp + x;
                 opReg.setPC(newPC-4);
             }
-
         }
 
         //Branch on not equal
         if (Arrays.equals(opCode, instrucoes.bne )) {
             salvaTipoI(vetInstrucao);//Salva valor no imediato
-            char [] temp = alu.bne(opReg.getValorReg(rs), opReg.getValorReg(rt));
-            int result =Integer.parseInt(new String(temp), 2);
+            char [] b = alu.bne(opReg.getValorReg(rs), opReg.getValorReg(rt));
+            int result =Integer.parseInt(new String(b), 2);
 
             if ( result == 1 ) {
-                String vI = String.copyValueOf(valorImmI);
-                int c = (int) Long.parseLong(vI, 2);
-                int newPC = PC + 4 + (c*4);
+                int temp = PC;
+                int newPC;
+                String vI = String.copyValueOf(valorImmJ);
+                int x = (int) Long.parseLong(vI, 2);
+                x = x * 4;
+                x = x - temp;
+                newPC = temp + x;
                 opReg.setPC(newPC-4);
             }
         }
