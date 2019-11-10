@@ -22,13 +22,11 @@ class Syscall {
             int x = (int) Long.parseLong(n1, 2);
             System.out.printf ("%d\n", x);
         }
+        
         if (tempk == 4 ) {
             //print string ($a0 = address of null-terminated string to print)
-            char[] y;
-            y = new char[32];
-            y = opReg.getValorReg(4);
-            String n1 = String.copyValueOf(y);
-            int x = (int) Long.parseLong(n1, 2);
+            String end_inicio = String.copyValueOf(opReg.getValorReg(4));
+            int x = (int) Long.parseLong(end_inicio, 2);
 
             String temp = new String();
             temp = Integer.toBinaryString((memoria.memory[x] & 0xFF) + 0x100).substring(1);
