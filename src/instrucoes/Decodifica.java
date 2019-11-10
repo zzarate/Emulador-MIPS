@@ -177,11 +177,26 @@ public class Decodifica {
 
             if ( result == 1 ) {
                 int newPC;
-                String vI = String.copyValueOf(valorImmI);
-                int x = (int) Long.parseLong(vI, 2);
-                newPC = PC+4;
-                newPC += (x*4);
-                opReg.setPC(newPC-4);
+                if(valorImmI[0] == '1'){
+                    char[] vaI = new char[32];
+                    for(int i = 0, j = 16; i < 16; i++, j++){
+                        vaI[j] = valorImmI[i];
+                        vaI[i] = '1';
+                    }
+                    String vI = String.copyValueOf(vaI);
+                    int x = (int) Long.parseLong(vI, 2);
+                    newPC = PC+4;
+                    newPC += (x*4);
+                    opReg.setPC(newPC-4);
+                }
+                else{
+                    String vI = String.copyValueOf(valorImmI);
+                    int x = (int) Long.parseLong(vI, 2);
+                    newPC = PC+4;
+                    newPC += (x*4);
+                    opReg.setPC(newPC-4);
+                }
+                
             }
         }
 

@@ -385,7 +385,7 @@ public class OpALU implements AluInterface {
         result = new char[32];
         result = sub(num1, num2);
         for(int i = 0; i < 32; i++){
-            if(result[i] == 1){
+            if(result[i] == '1'){
                 return humArray;
             }
         }
@@ -398,7 +398,7 @@ public class OpALU implements AluInterface {
         result = new char[32];
         result = sub(num1, num2);
         for(int i = 0; i < 32; i++){
-            if(result[i] == 1){
+            if(result[i] == '1'){
                 return zeroArray;
             }
         }
