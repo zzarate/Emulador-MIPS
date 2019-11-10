@@ -27,5 +27,5 @@ Functional emulator with reduced set of MIPS instructions. All the code and comm
 
 - [x]   Print integer
 - [x]   Exit
-- [ ]   Print String
+- [x]   Print String
 - [ ]   ...
