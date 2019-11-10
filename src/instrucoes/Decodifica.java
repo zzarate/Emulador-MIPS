@@ -176,13 +176,11 @@ public class Decodifica {
             int result =Integer.parseInt(new String(b), 2);
 
             if ( result == 1 ) {
-                int temp = PC;
                 int newPC;
-                String vI = String.copyValueOf(valorImmJ);
+                String vI = String.copyValueOf(valorImmI);
                 int x = (int) Long.parseLong(vI, 2);
-                x = x * 4;
-                x = x - temp;
-                newPC = temp + x;
+                newPC = PC+4;
+                newPC += (x*4);
                 opReg.setPC(newPC-4);
             }
         }
@@ -194,14 +192,14 @@ public class Decodifica {
             int result =Integer.parseInt(new String(b), 2);
 
             if ( result == 1 ) {
-                int temp = PC;
                 int newPC;
-                String vI = String.copyValueOf(valorImmJ);
+                String vI = String.copyValueOf(valorImmI);
                 int x = (int) Long.parseLong(vI, 2);
-                x = x * 4;
-                x = x - temp;
-                newPC = temp + x;
+                newPC = PC+4;
+                newPC += (x*4);
                 opReg.setPC(newPC-4);
+
+
             }
         }
         
@@ -217,7 +215,6 @@ public class Decodifica {
             newPC = temp + x;
             
             opReg.setPC(newPC-4);
-
         }
         
         //Jump and link
