@@ -35,7 +35,7 @@ class SeparaDados{
 			for (int i = 0; i < conteudo.length; i+=4) {
 
 				/*Envia os dados do arquivo para a memoria de dados*/
-				for (int j = 3; j >= 0; j--) {
+				for (int j = 0; j < 4; j++) {
 					memoria.salvaMemData (conteudo[i+j]);
 				}
 			}
