@@ -43,9 +43,11 @@ Functional emulator with reduced set of MIPS instructions. All the code and comm
 - Print integer
 - Print String
 - Read integer
-- Exit
+- Exit*
 - Print char  (não testado/not tested)
 - Read char  (não testado/not tested)
 - Print integer in hex  (não testado/not tested)
 - Print integer in binary  (não testado/not tested)
 - Print integer as unsigned  (não testado/not tested)
+
+/* Antes de encerrar a execução, imprime os valores contidos nos registradores e em todas as posições da memoria, em hex. Before ending the execution, print the values contained in the registers and in all memory positions, in hex.
