@@ -35,3 +35,8 @@ data.bin
 text.bin
 calculadora_text.bin
 calculadora_data.bin
+
+#Saida do script de compilcao e montagem do jar
+MANIFEST.MD
+/out
+/emulador.jar
