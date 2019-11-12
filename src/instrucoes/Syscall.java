@@ -110,10 +110,10 @@ class Syscall {
                 for (int i = 0; i < 16; i+=4) {
                     //Parte obscura para imprimir em hexa
                     String s = null;
-                    s =Integer.toBinaryString((memoria.memory[k+i] & 0xFF) + 0x100).substring(1);
-                    s= s+ Integer.toBinaryString((memoria.memory[k+i+1] & 0xFF) + 0x100).substring(1);
+                    s =Integer.toBinaryString((memoria.memory[k+i+3] & 0xFF) + 0x100).substring(1);
                     s= s+ Integer.toBinaryString((memoria.memory[k+i+2] & 0xFF) + 0x100).substring(1);
-                    s= s+ Integer.toBinaryString((memoria.memory[k+i+3] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+i+2] & 0xFF) + 0x100).substring(1);
+                    s= s+ Integer.toBinaryString((memoria.memory[k+i] & 0xFF) + 0x100).substring(1);
                     int palavraInt = (int)Long.parseLong(s, 2);
     
                     System.out.print (String.format("0x%08x", palavraInt));
