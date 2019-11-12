@@ -6,6 +6,7 @@ Functional emulator with reduced set of MIPS instructions. All the code and comm
 ### How to execute
 
 Utilize o script "create_jar.sh" para compilar e gerar o executavel .jar.
+
 No console digite "java -jar" seguido do nome do arquivo (Ex.: emulador.jar), em seguida o nome do arquivo binário da seção de texto do seu programa e do arquivo da seção de dados, nessa ordem respectivamente. Caso inverta a ordem seu programa não será executado.
 
 Ex. de comando: `java -jar emulador.jar text.bin data.bin`
