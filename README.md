@@ -1,8 +1,7 @@
 # Emulador-MIPS
 
 
-## Como executar
-### How to execute
+## Como executar / How to execute
 
 Utilize o script "create_jar.sh" para compilar e gerar o executavel .jar.
 
@@ -15,8 +14,7 @@ No final da execução do programa, será impresso na tela, os valores dos regis
 É necesário Java 11 ou superior.
 
 
-## Instruções implementadas
-### Implemented instructions
+## Instruções implementadas / Implemented instructions
 
 - Add
 - Addi
@@ -49,8 +47,7 @@ No final da execução do programa, será impresso na tela, os valores dos regis
 - Jal  (não testado/not tested)
 
 ### Syscall
-#### Funções implementadas
-##### Implemented functions
+#### Funções implementadas / Implemented functions
 
 
 - Print integer
